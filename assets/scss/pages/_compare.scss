@@ -1,0 +1,127 @@
+/*--
+/*  4.16 - Compare CSS
+/*----------------------------------------*/
+
+
+.compare-page{}
+
+
+.compare-table{
+    & .table{
+        margin-bottom: 0;
+
+        & tbody{
+            & tr{
+                & th{
+                    width: 200px;
+                    text-align: center;
+                    padding: 15px 15px;
+                    border: 1px solid #e6e6e6;
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: $heading-color;
+                    vertical-align: middle;
+                    
+                    @media #{$large-mobile}{
+                        padding: 20px 15px;
+                    }
+                }
+                & td{
+                    padding: 15px 15px;
+                    text-align: center;
+                    border: 1px solid #e6e6e6;
+                    color: $heading-color;
+                    font-size: 16px;
+                    min-width: 245px;
+                    
+                    @media #{$large-mobile}{
+                        padding: 20px 15px;
+                        font-size: 16px;
+                    }
+                    
+                    & .product-image-title{                        
+                        & .product-image{
+                            & img{
+                                display: block;
+                            }
+                        }
+                        & .category{
+                            color: $body-color;
+                            font-size: 15px;
+                            display: block;
+                            margin-top: 25px;
+
+                            &:hover{
+                                color: $primary;
+                            }
+                        }
+                        & .title{
+                            & a{
+                                font-size: 16px;
+                                font-family: $body-font;
+                                color: $heading-color;
+                                font-weight: 500;
+                                margin-top: 15px;
+                            }
+                        }
+                    }
+                    
+                    & .description{
+                        text-align: left;
+                        
+                        & p{
+                            font-size: 15px;
+                        }
+                    }
+                    
+                    & .btn{
+                        border-radius: 3px;
+                        font-weight: 500;
+                    }
+                    
+                    & .delete{
+                        font-size: 18px;
+                        color: $heading-color;
+                    }
+                    
+                    & .rating{
+                        & li{
+                            display: inline-block;
+                            font-size: 14px;
+                            color: $body-color;
+                            
+                            &.rating-on{
+                                color: #FF9800;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
