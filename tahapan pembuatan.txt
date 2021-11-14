@@ -1,1 +1,87 @@
+crud logo
+crud navigasi [parent > child]
 
+========================================================================================================================
+rancangan database
+========================================================================================================================
+
+navigation
+========================================================================================================================
+nav_home
+  id
+  name
+  parrent_id
+  url
+  status
+
+Slider
+========================================================================================================================
+home_slider
+  title
+  sub_title
+  image
+
+testimoni
+========================================================================================================================
+home_testimonials
+  name
+  position
+  description
+  image
+
+home produk di bawah (BUNGA APA YANG ANDA CARI HARI INI ?)
+========================================================================================================================
+home_lates_product
+  id_product
+  status
+
+kelebihan
+========================================================================================================================
+home_excess
+  icon
+  title
+  sub_title
+  column
+
+product
+========================================================================================================================
+products
+  review_id
+  color_product_id
+  SKU [kode barang]
+  name varchar 255
+  slug varchar 100
+  description [summernote]
+  size [summernote table]
+  price int
+  old_price int
+  discount int
+
+product_reviews
+  product_id
+  date
+  description
+  value
+
+products_colors
+  name
+
+products_color_detail
+  product_id
+  color_id
+
+product_categories
+  name
+  slug
+
+product_category_detail
+  product_id
+  category_id
+
+product_pictures
+  name
+  url
+
+product_picture_detail
+  product_id
+  picture_id
