@@ -13,7 +13,7 @@ class Category extends Render_Controller
 
         // Breadcrumb setting
         $this->breadcrumb_1 = 'Dashboard';
-        $this->breadcrumb_1_url = base_url();
+        $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
         $this->breadcrumb_3 = 'Produk';
         $this->breadcrumb_3_url = '#';
         $this->breadcrumb_4 = 'Kategori';

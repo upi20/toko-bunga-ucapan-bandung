@@ -12,7 +12,7 @@ class Pemilih extends Render_Controller
 
         // Breadcrumb setting
         $this->breadcrumb_1 = 'Dashboard';
-        $this->breadcrumb_1_url = base_url();
+        $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
         $this->breadcrumb_4 = 'Pemilih';
         $this->breadcrumb_4_url = base_url() . 'admin/pemilih/list';
         // content

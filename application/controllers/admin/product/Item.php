@@ -1,22 +1,23 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Count extends Render_Controller
+class Item extends Render_Controller
 {
   public function index()
   {
     // Page Settings
-    $this->title = 'Data Count';
-    $this->navigation = ['Perhitungan Suara'];
-    $this->plugins = ['datatables', 'plot'];
+    $this->title = 'List Produk';
+    $this->navigation = ['Master'];
+    $this->plugins = ['datatables'];
 
     // Breadcrumb setting
     $this->breadcrumb_1 = 'Dashboard';
     $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
-    $this->breadcrumb_4 = 'Count';
-    $this->breadcrumb_4_url = base_url() . 'admin/count/list';
-    // content
-    $this->content      = 'admin/count/list';
+    $this->breadcrumb_3 = 'Produk';
+    $this->breadcrumb_3_url = '#';
+    $this->breadcrumb_4 = 'Master';
+    $this->breadcrumb_4_url = base_url() . 'admin/product/item';
+    $this->content      = 'admin/product/list';
 
     // Send data to view
     $this->render();
@@ -37,23 +38,285 @@ class Count extends Render_Controller
       $_cari = null;
     }
 
-    $kategori = $this->input->post('kategori');
-    $kelas = $this->input->post('kelas');
+    $partner = $this->input->post('partner');
     $filter = [
-      'kategori' => $kategori,
-      'kelas' => $kelas,
+      'partner' => $partner,
     ];
 
     $data = $this->model->getAllData($draw, $length, $start, $_cari, $order, $filter)->result_array();
-    $count = $this->model->getAllData(null, null, null, $_cari, $order, $filter)->num_rows();
+    $count = $this->model->getAllData(null, null, null, $_cari, $order, null, $filter)->num_rows();
 
     $this->output_json(['recordsTotal' => $count, 'recordsFiltered' => $count, 'draw' => $draw, 'search' => $_cari, 'data' => $data]);
   }
 
+  public function simpan()
+  {
+    $this->load->library('form_validation');
+    $this->form_validation->set_error_delimiters('', '');
+    $this->form_validation->set_rules('id', 'id Calon', 'trim|required|numeric');
+    $this->form_validation->set_rules('npm', 'npm', 'trim|required');
+    $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+    $this->form_validation->set_rules('no_urut', 'No Urut', 'trim|required|numeric');
+    $this->form_validation->set_rules('visi', 'Visi', 'trim|required');
+    $this->form_validation->set_rules('misi', 'Misi', 'trim|required');
+    $this->form_validation->set_rules('status', 'Status', 'trim|required|numeric');
+
+    if ($this->form_validation->run() == FALSE) {
+      $this->output_json([
+        'status' => false,
+        'data' => null,
+        'message' => validation_errors()
+      ], 400);
+    } else {
+      $id = $this->input->post('id');
+      $npm = $this->input->post('npm');
+      $nama = $this->input->post('nama');
+      $no_urut = $this->input->post('no_urut');
+      $visi = $this->input->post('visi', false);
+      $misi = $this->input->post('misi', false);
+      $status = $this->input->post('status');
+      $is_ubah = $this->input->post('is-ubah');
+
+      $result = $this->model->simpan($id, $npm, $nama, $no_urut, $visi, $misi, $status, $is_ubah);
+
+      $code = $result != null ? 200 : 400;
+      $status = $result != null;
+      $this->output_json([
+        'status' => $status,
+        'length' => 1,
+        'data' =>  $result,
+        'message' => $status ? 'Data berhasil ditambahkan' : 'Data gagal ditambahkan'
+      ], $code);
+    }
+  }
+
+
+  public function create($id = null)
+  {
+    // Page Settings
+    $this->title = is_null($id) ? 'Tambah Produk' : 'Ubah Produk';
+    $this->navigation = ['Master'];
+    $this->plugins = ['datatables', 'select2', 'summernote'];
+    // Breadcrumb setting
+    $this->breadcrumb_1 = 'Dashboard';
+    $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
+    $this->breadcrumb_2 = 'Produk';
+    $this->breadcrumb_2_url = base_url() . 'admin/product/item';
+    $this->breadcrumb_3 = 'Tambah';
+    $this->breadcrumb_3_url = base_url() . 'admin/product/item/add';
+    $this->data['isUbah'] = $id != null;
+
+    // content
+    $this->content      = 'admin/product/add';
+
+    $ceknew = $this->model->cekNew($id);
+    if ($ceknew == null) {
+      redirect('/admin/product/item');
+      return;
+    }
+
+
+    $this->data['getID'] = $ceknew['id'];
+    $this->data['product'] = $ceknew;
+    $this->data['isUbah'] = $id != null;
+
+    // Send data to view
+    $this->render();
+  }
+
+  public function delete()
+  {
+    $this->load->library('form_validation');
+    $this->form_validation->set_error_delimiters('', '');
+    $this->form_validation->set_rules('id_calon', 'Id Calon', 'trim|required|numeric');
+    if ($this->form_validation->run() == FALSE) {
+      $this->output_json([
+        'status' => false,
+        'data' => null,
+        'message' => validation_errors()
+      ], 400);
+    } else {
+      $id = $this->input->post('id_calon');
+      $result = $this->model->delete($id);
+
+      $code = $result != null ? 200 : 400;
+      $status = $result != null;
+      $this->output_json([
+        'status' => $status,
+        'length' => 1,
+        'data' =>  $result,
+        'message' => $status ? 'Data berhasil dihapus' : 'Data gagal dihapus'
+      ], $code);
+    }
+  }
+
+
+  // categories
+  public function ajax_data_categories()
+  {
+    $order = ['order' => $this->input->post('order'), 'columns' => $this->input->post('columns')];
+    $start = $this->input->post('start');
+    $draw = $this->input->post('draw');
+    $draw = $draw == null ? 1 : $draw;
+    $length = $this->input->post('length');
+    $cari = $this->input->post('search');
+
+    if (isset($cari['value'])) {
+      $_cari = $cari['value'];
+    } else {
+      $_cari = null;
+    }
+
+    $product_id = $this->input->post('product_id');
+    $filter = [
+      'product' => $product_id,
+    ];
+
+    $data = $this->model->ajax_data_categories($draw, $length, $start, $_cari, $order, $filter)->result_array();
+    $count = $this->model->ajax_data_categories(null, null, null, $_cari, $order, null, $filter)->num_rows();
+
+    $this->output_json(['recordsTotal' => $count, 'recordsFiltered' => $count, 'draw' => $draw, 'search' => $_cari, 'data' => $data]);
+  }
+
+  public function insert_category()
+  {
+    $this->db->trans_start();
+    $product_id = $this->input->post("product_id");
+    $category_id = $this->input->post("category_id");
+    $user_id = $this->id;
+    $result = $this->model->insert_category($user_id, $product_id, $category_id);
+
+    $this->db->trans_complete();
+    $code = $result ? 200 : 500;
+    $this->output_json(["data" => $result], $code);
+  }
+
+  public function delete_category()
+  {
+    $this->db->trans_start();
+    $detail_id = $this->input->post("detail_id");
+    $result = $this->model->delete_category($detail_id);
+
+    $this->db->trans_complete();
+    $code = $result ? 200 : 500;
+    $this->output_json(["data" => $result], $code);
+  }
+
+  // colors
+  public function ajax_data_colors()
+  {
+    $order = ['order' => $this->input->post('order'), 'columns' => $this->input->post('columns')];
+    $start = $this->input->post('start');
+    $draw = $this->input->post('draw');
+    $draw = $draw == null ? 1 : $draw;
+    $length = $this->input->post('length');
+    $cari = $this->input->post('search');
+
+    if (isset($cari['value'])) {
+      $_cari = $cari['value'];
+    } else {
+      $_cari = null;
+    }
+
+    $product_id = $this->input->post('product_id');
+    $filter = [
+      'product' => $product_id,
+    ];
+
+    $data = $this->model->ajax_data_colors($draw, $length, $start, $_cari, $order, $filter)->result_array();
+    $count = $this->model->ajax_data_colors(null, null, null, $_cari, $order, null, $filter)->num_rows();
+
+    $this->output_json(['recordsTotal' => $count, 'recordsFiltered' => $count, 'draw' => $draw, 'search' => $_cari, 'data' => $data]);
+  }
+
+  public function insert_color()
+  {
+    $this->db->trans_start();
+    $product_id = $this->input->post("product_id");
+    $color_id = $this->input->post("color_id");
+    $user_id = $this->id;
+    $result = $this->model->insert_color($user_id, $product_id, $color_id);
+
+    $this->db->trans_complete();
+    $code = $result ? 200 : 500;
+    $this->output_json(["data" => $result], $code);
+  }
+
+  public function delete_color()
+  {
+    $this->db->trans_start();
+    $detail_id = $this->input->post("detail_id");
+    $result = $this->model->delete_color($detail_id);
+
+    $this->db->trans_complete();
+    $code = $result ? 200 : 500;
+    $this->output_json(["data" => $result], $code);
+  }
+
+
+  // images
+  public function images_ajax_data()
+  {
+    $order = ['order' => $this->input->post('order'), 'columns' => $this->input->post('columns')];
+    $start = $this->input->post('start');
+    $draw = $this->input->post('draw');
+    $draw = $draw == null ? 1 : $draw;
+    $length = $this->input->post('length');
+    $cari = $this->input->post('search');
+
+    if (isset($cari['value'])) {
+      $_cari = $cari['value'];
+    } else {
+      $_cari = null;
+    }
+
+    $product_id = $this->input->post('product_id');
+    $filter = [
+      'product' => $product_id,
+    ];
+
+    $data = $this->model->images_ajax_data($draw, $length, $start, $_cari, $order, $filter)->result_array();
+    $count = $this->model->images_ajax_data(null, null, null, $_cari, $order, null, $filter)->num_rows();
+
+    $this->output_json(['recordsTotal' => $count, 'recordsFiltered' => $count, 'draw' => $draw, 'search' => $_cari, 'data' => $data]);
+  }
+
+  public function images_insert()
+  {
+    $this->db->trans_start();
+    $foto = '';
+    if ($_FILES['foto']['name'] != '') {
+      $foto = $this->uploadImage('foto');
+      $foto = $foto['data'];
+    }
+    $product_id = $this->input->post("product_id");
+    $name = $this->input->post("name");
+    $user_id = $this->id;
+    $result = $this->model->images_insert($user_id, $product_id, $name, $foto);
+
+    $this->db->trans_complete();
+    $code = $result ? 200 : 500;
+    $this->output_json(["data" => $result], $code);
+  }
+
+  public function delete_images()
+  {
+    $this->db->trans_start();
+    $detail_id = $this->input->post("detail_id");
+    $images = $this->input->post("images");
+    $result = $this->model->delete_images($detail_id);
+    if ($result) {
+      $this->deleteFile($images);
+    }
+    $this->db->trans_complete();
+    $code = $result ? 200 : 500;
+    $this->output_json(["data" => $result], $code);
+  }
+
+  // addon
   public function export_excel()
   {
     // data body
-
     $details = $this->model->getAllCount();
     $bulan_array = [
       1 => 'Januari',
@@ -81,7 +344,7 @@ class Count extends Render_Controller
     $row = 1;
     $col_start = "A";
     $col_end = "D";
-    $title_excel = "Rekapitulasi_Hasil_Perhitungan_Suara";
+    $title_excel = "Daftar_Calon_Ketua_Operasional";
     // Header excel ================================================================================================
     $spreadsheet = new PhpOffice\PhpSpreadsheet\Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
@@ -103,7 +366,7 @@ class Count extends Render_Controller
     // header 2 ====================================================================================================
     $row += 1;
     $sheet->mergeCells($col_start . $row . ":" . $col_end . $row)
-      ->setCellValue("A$row", "Rekapitulasi Hasil Perhitungan Suara");
+      ->setCellValue("A$row", "Daftar Produk Operasional DKM Ulil Albab");
     $sheet->getStyle($col_start . $row . ":" . $col_end . $row)->applyFromArray([
       "font" => [
         "bold" => true,
@@ -145,8 +408,8 @@ class Count extends Render_Controller
     $headers = [
       'No',
       'No Urut',
+      'NPP',
       'Nama',
-      'Jumlah Suara'
     ];
 
     // apply header
@@ -173,9 +436,9 @@ class Count extends Render_Controller
       $c = 0;
       $row++;
       $sheet->setCellValue(chr(65 + $c) . "$row", ($row - 5));
+      $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->npm);
       $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->no_urut);
       $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->nama);
-      $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->jumlah_suara);
     }
     // format
     // nomor center
@@ -209,31 +472,7 @@ class Count extends Render_Controller
 
     // $row += 3;
     // $sheet->setCellValue("Q" . $row, "(.....................................)");
-
-    $row += 2;
-    // waktu dan tangggal
-    $sheet->mergeCells($col_start . $row . ":" . $col_end . $row)
-      ->setCellValue("A$row", "Rincian Data Pemilihan:");
-
     $row++;
-    $sheet->mergeCells($col_start . $row . ":B" . $row)
-      ->setCellValue("A$row", "Total Pemilih");
-    $sheet->mergeCells("C" . $row . ":" . $col_end . $row)
-      ->setCellValue("C$row", ": {$this->pemilih} Orang");
-
-    $row++;
-    $sheet->mergeCells($col_start . $row . ":B" . $row)
-      ->setCellValue("A$row", "Sudah Pilih");
-    $sheet->mergeCells("C" . $row . ":" . $col_end . $row)
-      ->setCellValue("C$row", ": {$this->sudahPilih} Orang");
-
-    $row++;
-    $sheet->mergeCells($col_start . $row . ":B" . $row)
-      ->setCellValue("A$row", "Belum Pilih");
-    $sheet->mergeCells("C" . $row . ":" . $col_end . $row)
-      ->setCellValue("C$row", ": {$this->belumPilih} Orang");
-
-    $row += 2;
     // waktu dan tangggal
     $tanggal = date("d-m-Y H:i:s");
     $sheet->mergeCells($col_start . $row . ":" . $col_end . $row)
@@ -248,7 +487,7 @@ class Count extends Render_Controller
 
     // set width column
     $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
-    $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(w(8));
+    $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
     $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
     $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
 
@@ -284,14 +523,14 @@ class Count extends Render_Controller
   public function export_pdf()
   {
     // document name
-    $doc_name = "Rekapitulasi_Hasil_Perhitungan_Suara";
+    $doc_name = "Daftar_Calon_Ketua_Operasional";
 
     // set table header
     $headers = [
       'No',
       'No Urut',
+      'NPP',
       'Nama',
-      'Jumlah Suara'
     ];
     $thead_title = '';
     $thead_number = '';
@@ -315,8 +554,8 @@ class Count extends Render_Controller
       $body_table .= '<tr>';
       $body_table .= "<td style=\"text-align:center\">{$num}</td>";
       $body_table .= "<td>{$detail->no_urut}</td>";
+      $body_table .= "<td>{$detail->npm}</td>";
       $body_table .= "<td>{$detail->nama}</td>";
-      $body_table .= "<td>{$detail->jumlah_suara}</td>";
       $body_table .= '</tr>';
     }
 
@@ -325,31 +564,12 @@ class Count extends Render_Controller
     $tanggal = date("d-m-Y H:i:s");
     $body_head = '<div style="text-align:center">';
     $build_html = '
-                      <h3><span style="text-align:center; ">Rekapitulasi Hasil Perhitungan Suara</span></h3>' . "
+                      <h3><span style="text-align:center; ">Daftar Produk Operasional DKM Ulil Albab</span></h3>' . "
       <table>
       $thead_title
       $thead_number
       $body_table
       </table>
-      <br>
-      <table style='padding:2px; background-color:white; width:auto; border:0'>
-      <tr>
-        <td style='padding:2px; background-color:white; width:auto; border:0' colspan=\"2\">Rincian Data Pemilihan:</td>
-      </tr>
-      <tr>
-        <td style='padding:2px; background-color:white; width:auto; border:0'>Total Pemilih</td>
-        <td style='padding:2px; background-color:white; width:auto; border:0'>: {$this->pemilih} Orang</td>
-      </tr>
-      <tr>
-        <td style='padding:2px; background-color:white; width:auto; border:0'>Sudah Pilih</td>
-        <td style='padding:2px; background-color:white; width:auto; border:0'>: {$this->sudahPilih} Orang</td>
-      </tr>
-      <tr>
-        <td style='padding:2px; background-color:white; width:auto; border:0'>Belum Pilih</td>
-        <td style='padding:2px; background-color:white; width:auto; border:0'>: {$this->belumPilih} Orang</td>
-      </tr>
-    </table>
-      <br>
       <span style='text-align:left'>Data ini diambil pada tanggal dan waktu: $tanggal</span>
       ";
 
@@ -361,30 +581,18 @@ class Count extends Render_Controller
     ]);
   }
 
-  public function plot()
-  {
-    $result = $this->model->plot();
-    $this->output_json($result);
-  }
-
   function __construct()
   {
     parent::__construct();
     $this->sesion->cek_session();
     $akses = ['Super Admin'];
     $get_lv = $this->session->userdata('data')['level'];
-    // if (!in_array($get_lv, $akses)) {
-    //   redirect('my404', 'refresh');
-    // }
+    if (!in_array($get_lv, $akses)) {
+      redirect('my404', 'refresh');
+    }
     $this->id = $this->session->userdata('data')['id'];
-    $this->photo_path = './files/admin/pemilih/';
-    $this->load->model("admin/CountModel", 'model');
-    $this->load->model("DashboardModel", 'dashboard');
-    $this->pemilih = $this->dashboard->jumlahPemilih();
-    $this->sudahPilih = $this->dashboard->jumlahsudahPilih();
-    $this->belumPilih =  $this->pemilih - $this->sudahPilih;
-
-
+    $this->photo_path = './files/product/pictures/';
+    $this->load->model("admin/product/ItemModel", 'model');
     $this->default_template = 'templates/dashboard';
     $this->load->library('plugin');
     $this->load->helper('url');

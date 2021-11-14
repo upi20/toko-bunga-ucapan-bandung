@@ -989,7 +989,7 @@
       <div class="row">
         <div class="col-lg-8 ms-auto me-auto">
           <div class="history-area-content pb-0 mb-0 border-0 text-center">
-            <p>Toko Bunga Papan Ucapan menawarkan proses pemesanan yang sangat mudah, tinggal
+            <p>Toko Bunga Papan Ucapan Bandung menawarka proses pemesanan yang sangat mudah, tinggal
               cari
               produk yang Anda inginkan, atau rekomendasi produk sesuai dengan moment yang Anda
               butuhkan

@@ -12,7 +12,7 @@ class CalonKetua extends Render_Controller
 
     // Breadcrumb setting
     $this->breadcrumb_1 = 'Dashboard';
-    $this->breadcrumb_1_url = base_url();
+    $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
     $this->breadcrumb_2 = 'Users';
     $this->breadcrumb_2_url = '#';
     $this->breadcrumb_3 = 'Users';
@@ -100,7 +100,7 @@ class CalonKetua extends Render_Controller
 
     // Breadcrumb setting
     $this->breadcrumb_1 = 'Dashboard';
-    $this->breadcrumb_1_url = base_url();
+    $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
     $this->breadcrumb_2 = 'Calon Ketua';
     $this->breadcrumb_2_url = base_url() . 'admin/CalonKetua';
     $this->breadcrumb_3 = 'Tambah';
