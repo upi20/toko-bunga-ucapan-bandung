@@ -25,12 +25,14 @@ class Render_Controller extends CI_Controller
 	protected $breadcrumb_4_url;
 	protected $content;
 
-	protected $navigation		= array();
-	protected $data 			= array();
-	protected $plugins 			= array();
-	private   $plugin_scripts 	= array();
-	private   $plugin_styles 	= array();
+	protected $navigation = array();
+	protected $data = array();
+	protected $plugins = array();
+	private   $plugin_scripts = array();
+	private   $plugin_styles = array();
 	protected $debug = true;
+	protected $photo_path = './files/';
+	protected $navigation_type = 'admin';
 
 
 	protected function preRender()
@@ -45,7 +47,12 @@ class Render_Controller extends CI_Controller
 		if ($template == NULL) {
 			$template = $this->default_template;
 		}
-
+		$navigation = [];
+		switch ($this->navigation_type) {
+			case 'admin':
+				$navigation = $this->navigationHtml($this->default->menu());
+				break;
+		}
 		$data = array(
 			// Application
 			'template_type' 	=> $this->template_type,
@@ -73,7 +80,7 @@ class Render_Controller extends CI_Controller
 			'plugin_scripts' 	=> $this->plugin_scripts,
 			'title' 				=> $this->title,
 			'title_show' 			=> $this->title_show,
-			'navigation' 			=> $this->navigationHtml($this->default->menu()),
+			'navigation' 			=> $navigation,
 			'content' 				=> $this->content,
 			'navigation_array'		=> $this->navigation
 		);
@@ -300,5 +307,40 @@ class Render_Controller extends CI_Controller
 	public function base64url_decode($data)
 	{
 		return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
+	}
+
+	public function uploadImage($name)
+	{
+		$config['upload_path']          = $this->photo_path;
+		$config['allowed_types']        = 'jpg|png|jpeg|JPG|PNG|JPEG';
+		$config['file_name']            = md5(uniqid("duahati", true));
+		$config['overwrite']            = true;
+		$config['max_size']             = 8024;
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		if ($this->upload->do_upload($name)) {
+			return [
+				'status' => true,
+				'data' => $this->upload->data("file_name"),
+				'message' => 'Success'
+			];
+		} else {
+			return [
+				'status' => false,
+				'data' => null,
+				'message' => $this->upload->display_errors('', '')
+			];
+		}
+	}
+
+	public function deleteFile($file)
+	{
+		$res_foto = true;
+		if ($file != null && $file != '') {
+			if (file_exists($this->photo_path . $file)) {
+				$res_foto = unlink($this->photo_path . $file);
+			}
+		}
+		return $res_foto;
 	}
 }

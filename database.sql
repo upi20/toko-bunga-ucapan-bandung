@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 14, 2021 at 03:31 PM
+-- Generation Time: Nov 14, 2021 at 05:00 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -336,7 +336,11 @@ INSERT INTO `menu` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `
 (111, 0, 'Pemilih', '-', 2, ' fas fa-tasks', 'admin/pemilih', 'Aktif', '2021-10-28 18:27:32'),
 (112, 0, 'Perhitungan Suara', '-', 3, 'far fa-comment', 'admin/Count', 'Aktif', '2021-10-28 19:46:03'),
 (113, 0, 'Reset Suara', 'Reset / Kosongkan Suara', 5, 'fas fa-undo', 'pengaturan/reset', 'Aktif', '2021-10-28 22:41:40'),
-(114, 0, 'Kunci Pemungutan Suara', '1', 4, 'fas fa-key', 'admin/kunci', 'Aktif', '2021-10-28 23:24:00');
+(114, 0, 'Kunci Pemungutan Suara', '1', 4, 'fas fa-key', 'admin/kunci', 'Aktif', '2021-10-28 23:24:00'),
+(115, 118, 'Warna', 'Warna Produk', 3, 'far fa-circle', 'admin/product/color', 'Aktif', '2021-11-14 14:39:54'),
+(116, 118, 'Kategori', 'Kategori Produk', 2, 'far fa-circle', 'admin/product/category', 'Aktif', '2021-11-14 14:39:14'),
+(117, 118, 'List', 'List daftar Produk', 1, 'far fa-circle', 'admin/product/list', 'Aktif', '2021-11-14 14:38:38'),
+(118, 0, 'Produk', '-', 1, 'fas fa-fan', '#', 'Aktif', '2021-11-14 14:36:41');
 
 -- --------------------------------------------------------
 
@@ -512,7 +516,11 @@ INSERT INTO `role_aplikasi` (`rola_id`, `rola_menu_id`, `rola_lev_id`, `created_
 (239, 2, 1, '2021-10-28 22:25:10'),
 (240, 113, 1, '2021-10-28 22:44:39'),
 (241, 114, 1, '2021-10-28 23:24:05'),
-(242, 1, 127, '2021-10-28 23:56:31');
+(242, 1, 127, '2021-10-28 23:56:31'),
+(243, 118, 1, '2021-11-14 15:58:25'),
+(244, 117, 1, '2021-11-14 15:59:39'),
+(245, 116, 1, '2021-11-14 15:59:40'),
+(246, 115, 1, '2021-11-14 15:59:40');
 
 -- --------------------------------------------------------
 
@@ -860,7 +868,7 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -908,7 +916,7 @@ ALTER TABLE `product_reviews`
 -- AUTO_INCREMENT for table `role_aplikasi`
 --
 ALTER TABLE `role_aplikasi`
-  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
+  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
 -- AUTO_INCREMENT for table `role_users`
