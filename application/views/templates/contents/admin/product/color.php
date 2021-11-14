@@ -1,7 +1,7 @@
 <div class="card card-primary card-outline">
   <div class="card-header">
     <div class="d-flex justify-content-between w-100">
-      <h3 class="card-title">List Kategori Produk</h3>
+      <h3 class="card-title">List Warna Produk</h3>
       <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal" id="btn-tambah"><i class="fa fa-plus"></i> Tambah</button>
     </div>
   </div>
@@ -37,12 +37,12 @@
           <input type="hidden" id="id" name="id">
           <input type="hidden" id="temp_foto" name="temp_foto">
           <div class="form-group">
-            <label for="name">Nama Kategori</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Nama Kategori" required />
+            <label for="name">Nama Warna</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Nama Warna" required />
           </div>
           <div class="form-group">
             <label for="slug">Slug</label>
-            <input type="text" class="form-control" id="slug" name="slug" placeholder="Alamat url untuk akses kategori" required />
+            <input type="text" class="form-control" id="slug" name="slug" placeholder="Alamat url untuk akses warna" required />
           </div>
           <div class="form-group">
             <label for="foto">Icon</label>

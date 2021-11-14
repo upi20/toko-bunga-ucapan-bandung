@@ -4,7 +4,7 @@ $(function () {
     table_html.dataTable().fnDestroy()
     const new_table = table_html.DataTable({
       "ajax": {
-        "url": "<?= base_url()?>admin/product/category/ajax_data/",
+        "url": "<?= base_url()?>admin/product/color/ajax_data/",
         "data": null,
         "type": 'POST'
       },
@@ -29,7 +29,7 @@ $(function () {
                       id="btn-gambar"><i class="fas fa-eye"></i></button>`
           }, className: "nowrap"
         },
-        { "data": "category_product" },
+        { "data": "color_product" },
         { "data": "status_str" },
         {
           "data": "id", render(data, type, full, meta) {
@@ -72,7 +72,7 @@ $(function () {
   dynamic();
 
   $("#btn-tambah").click(() => {
-    $("#tambahModalTitle").text("Tambah Kategori");
+    $("#tambahModalTitle").text("Tambah dWarna");
     $('#id').val('');
     $('#name').val('');
     $('#slug').val('');
@@ -94,7 +94,7 @@ $(function () {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/category/' + ($("#id").val() == "" ? 'insert' : 'update'),
+      url: '<?= base_url() ?>admin/product/color/' + ($("#id").val() == "" ? 'insert' : 'update'),
       data: form,
       cache: false,
       contentType: false,
@@ -122,7 +122,7 @@ $(function () {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/category/delete',
+      url: '<?= base_url() ?>admin/product/color/delete',
       data: {
         id: id
       }
@@ -145,7 +145,7 @@ $(function () {
 })
 
 const view_gambar = (datas) => {
-  $("#img-view").attr('src', `<?= base_url() ?>/files/product/category/${datas.dataset.data}`)
+  $("#img-view").attr('src', `<?= base_url() ?>/files/product/color/${datas.dataset.data}`)
 }
 
 // Click Hapus
@@ -166,5 +166,5 @@ const Ubah = (datas) => {
   $('#name').val(data.name);
   $('#description').val(data.description);
   $('#status').val(data.status);
-  $("#tambahModalTitle").text("Ubah Kategori");
+  $("#tambahModalTitle").text("Ubah dWarna");
 }
