@@ -5,7 +5,7 @@ crud navigasi [parent > child]
 rancangan database
 ========================================================================================================================
 
-navigation
+template_navigation[clear]
 ========================================================================================================================
 nav_home
   id
@@ -14,7 +14,7 @@ nav_home
   url
   status
 
-Slider
+Slider [clear]
 ========================================================================================================================
 home_slider
   title
@@ -29,25 +29,29 @@ home_testimonials
   description
   image
 
-home produk di bawah (BUNGA APA YANG ANDA CARI HARI INI ?)
+home produk di bawah (BUNGA APA YANG ANDA CARI HARI INI ?) [clear]
 ========================================================================================================================
-home_lates_product
+home_lates_product [clear]
   id_product
   status
 
-kelebihan
+kelebihan (dibawah slider)
 ========================================================================================================================
-home_excess
+home_excess[clear]
   icon
   title
   sub_title
   column
 
+
+
+
+
+
+
 product
 ========================================================================================================================
-products
-  review_id
-  color_product_id
+products [clear]
   SKU [kode barang]
   name varchar 255
   slug varchar 100
@@ -57,31 +61,34 @@ products
   old_price int
   discount int
 
-product_reviews
+product_reviews [clear]
   product_id
   date
   description
-  value
 
-products_colors
+products_colors [clear]
   name
 
-products_color_detail
+products_color_detail [clear]
   product_id
   color_id
 
-product_categories
+product_categories [clear]
   name
   slug
 
-product_category_detail
+product_category_detail [clear]
   product_id
   category_id
 
-product_pictures
+product_pictures [clear]
+  product_id
   name
   url
 
-product_picture_detail
-  product_id
-  picture_id
+whatsapp [clear]
+  name
+  number
+  description
+
+https://api.whatsapp.com/send?phone=+6285798132505&text=Assaksdkjfadsiugfdasgyufhsadgfhs

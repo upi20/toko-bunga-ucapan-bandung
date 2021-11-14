@@ -98,32 +98,7 @@ class Login extends Render_Controller
 
 		$this->session->unset_userdata($session);
 
-		redirect('login', 'refresh');
-	}
-
-	public function konfirmasi_email()
-	{
-		$token = $this->input->get('t');
-		$cleanToken = $this->security->xss_clean($token);
-		$user_info = $this->login->isTokenValid($this->base64url_decode($cleanToken));
-		if (!$user_info) {
-			$this->session->set_flashdata('message', 'Token tidak valid atau kadaluarsa');
-			redirect(base_url('login'), 'refresh');
-		} else {
-			$result = $this->db->where('user_id', $user_info->user_id)->update('users', ['user_email_status' => '1']);
-			if ($result) {
-				$this->session->set_flashdata(['message' => [
-					'message' => 'Email berhasil dikonfirmasi',
-					'status' => true
-				]]);
-
-				// delete token
-				$this->db->where('user_id', $user_info->user_id)->delete('tokens');
-			} else {
-				$this->session->set_flashdata('message', 'Email gagal dikonfirmasi');
-			}
-			redirect(base_url('login'), 'refresh');
-		}
+		redirect('admin/login', 'refresh');
 	}
 
 	function __construct()

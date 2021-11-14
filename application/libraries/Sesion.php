@@ -9,7 +9,7 @@ class Sesion
 		$this->ci = &get_instance();
 
 		if ($this->ci->session->userdata('status') == false) {
-			redirect('login', 'refresh');
+			redirect('admin/login', 'refresh');
 		}
 	}
 
@@ -30,7 +30,7 @@ class Sesion
 		$this->ci = &get_instance();
 
 		if ($this->ci->session->userdata('status') == true) {
-			redirect('dashboard', 'refresh');
+			redirect('admin/dashboard', 'refresh');
 		}
 	}
 

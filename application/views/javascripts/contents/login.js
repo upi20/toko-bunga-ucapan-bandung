@@ -71,7 +71,7 @@ $(document).ready(function () {
                         setToast({ title: "Gagal", body: "Maaf. Akun anda belum dikonfirmasi", class: "bg-info" });
                     } else if (response.status == 0) {
                         setToast({ title: "Berhasil", body: "Login Sukses", class: "bg-primary" });
-                        window.location.href = base_url + 'dashboard';
+                        window.location.href = base_url + 'admin/dashboard';
                     } else {
                         setToast({ title: "Gagal", body: "Koneksi buruk.", class: "bg-warning" });
                     }

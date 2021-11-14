@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 29, 2021 at 06:42 PM
+-- Generation Time: Nov 14, 2021 at 03:31 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -12,8 +12,91 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Database: `dkm_vote`
+-- Database: `tokobungapapanucapanbandung`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `home_excess`
+--
+
+CREATE TABLE `home_excess` (
+  `id` int(11) NOT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `subtitle` text DEFAULT NULL,
+  `column` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `home_lates_product`
+--
+
+CREATE TABLE `home_lates_product` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `home_slider`
+--
+
+CREATE TABLE `home_slider` (
+  `id` int(11) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `subtitle` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `home_testimonials`
+--
+
+CREATE TABLE `home_testimonials` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -100,7 +183,7 @@ INSERT INTO `kpu_pemilih` (`id`, `nama`, `npp`, `token`, `keterangan`, `status`,
 (5, 'Pemilih Tiga', 'UA202110', 'BZXOL8I', 'adfasdfsdaf', 3, '2021-10-29 13:17:38', 1, NULL, 1, '2021-10-29 03:02:00', '2021-10-29 13:19:07', '2021-10-29 13:19:07'),
 (6, 'Hanif', 'UA202110', 'MOA49C5', 'tes', 3, '2021-10-29 10:25:41', 1, NULL, 1, '2021-10-29 10:24:27', '2021-10-29 13:18:58', '2021-10-29 13:18:58'),
 (7, 'Mujib Anhar Mutaqin', 'UA-17.001', 'K0IL72P', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:24:33', 1, NULL, NULL, '2021-10-29 13:20:28', '2021-10-29 22:24:33', NULL),
-(8, 'Adjie Abdul Azis', 'UA-18.004', 'QF0OGL9', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:24:42', 1, NULL, NULL, '2021-10-29 13:20:54', '2021-10-29 22:24:42', NULL),
+(8, 'Adjie Abdul Azis', 'UA-18.004', 'QF0OGL9', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 23:44:23', 1, NULL, NULL, '2021-10-29 13:20:54', '2021-10-29 23:44:23', NULL),
 (9, 'Ilham Taufikurrahman', 'UA-18.010', 'D9JZATM', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:24:54', 1, NULL, NULL, '2021-10-29 13:21:13', '2021-10-29 22:24:54', NULL),
 (10, 'Muhammad Ilham Solehudin', 'UA-18.011', '8MKZSIP', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:25:08', 1, NULL, NULL, '2021-10-29 13:21:34', '2021-10-29 22:25:08', NULL),
 (11, 'Dicki Maulana', 'UA-18.016', '8UMV5R4', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:27:50', 1, NULL, NULL, '2021-10-29 13:22:01', '2021-10-29 22:27:50', NULL),
@@ -108,9 +191,9 @@ INSERT INTO `kpu_pemilih` (`id`, `nama`, `npp`, `token`, `keterangan`, `status`,
 (13, 'Ida Koswara Sanusi', 'UA-18.021', 'PNQLYJ8', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:28:17', 1, NULL, NULL, '2021-10-29 13:23:57', '2021-10-29 22:28:17', NULL),
 (14, 'Iman Nurahman', 'UA-18.025', '9A8J4UF', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:28:30', 1, NULL, NULL, '2021-10-29 13:24:52', '2021-10-29 22:28:30', NULL),
 (15, 'Aulia Nur Muhamad', 'UA-19.003', '0TLPYQN', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, NULL, 1, NULL, NULL, '2021-10-29 13:25:39', NULL, NULL),
-(16, 'Ade Lukman', 'UA-19.004', '46SQEJ1', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:29:38', 1, NULL, NULL, '2021-10-29 13:26:09', '2021-10-29 22:29:38', NULL),
+(16, 'Ade Lukman', 'UA-19.004', '46SQEJ1', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 23:44:46', 1, NULL, NULL, '2021-10-29 13:26:09', '2021-10-29 23:44:46', NULL),
 (17, 'Suherman', 'UA-19.008', 'VZQO6X9', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:30:25', 1, NULL, NULL, '2021-10-29 13:27:16', '2021-10-29 22:30:25', NULL),
-(18, 'abu bakar Umar', 'UA-19.009', 'PH90MVU', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 22:23:33', 1, NULL, NULL, '2021-10-29 13:28:03', '2021-10-29 22:23:33', NULL),
+(18, 'abu bakar Umar', 'UA-19.009', 'PH90MVU', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, '2021-10-29 23:44:01', 1, NULL, NULL, '2021-10-29 13:28:03', '2021-10-29 23:44:01', NULL),
 (19, 'Kemas Prahastantra', 'UA-19.011', '5DUJCTL', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, NULL, 1, NULL, NULL, '2021-10-29 13:29:11', NULL, NULL),
 (20, 'Misbah', 'UA-19.012', 'ERTGYZO', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, NULL, 1, NULL, NULL, '2021-10-29 13:29:56', NULL, NULL),
 (21, 'Yoga pratama', 'UA-19.014', 'NX10EHF', 'Akhi jangan sampai golput ya, satu suara menentukan masa depan DKM ULIL ALBAB', 1, NULL, 1, NULL, NULL, '2021-10-29 13:31:00', NULL, NULL),
@@ -193,17 +276,10 @@ CREATE TABLE `kpu_pemilihan` (
 --
 
 INSERT INTO `kpu_pemilihan` (`id`, `id_pemilih`, `id_calon`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 18, 5, 1, NULL, NULL, NULL, '2021-10-29 22:23:03', NULL, NULL),
-(2, 7, 4, 1, NULL, NULL, NULL, '2021-10-29 22:24:35', NULL, NULL),
-(3, 8, 6, 1, NULL, NULL, NULL, '2021-10-29 22:24:47', NULL, NULL),
-(4, 9, 5, 1, NULL, NULL, NULL, '2021-10-29 22:24:58', NULL, NULL),
-(5, 10, 5, 1, NULL, NULL, NULL, '2021-10-29 22:25:14', NULL, NULL),
-(6, 11, 6, 1, NULL, NULL, NULL, '2021-10-29 22:27:54', NULL, NULL),
-(7, 12, 4, 1, NULL, NULL, NULL, '2021-10-29 22:28:08', NULL, NULL),
-(8, 13, 6, 1, NULL, NULL, NULL, '2021-10-29 22:28:20', NULL, NULL),
-(9, 14, 6, 1, NULL, NULL, NULL, '2021-10-29 22:28:39', NULL, NULL),
-(10, 16, 5, 1, NULL, NULL, NULL, '2021-10-29 22:28:50', NULL, NULL),
-(11, 17, 5, 1, NULL, NULL, NULL, '2021-10-29 22:30:30', NULL, NULL);
+(1, 17, 5, 1, NULL, NULL, NULL, '2021-10-29 23:43:39', NULL, NULL),
+(2, 18, 6, 1, NULL, NULL, NULL, '2021-10-29 23:44:04', NULL, NULL),
+(3, 8, 6, 1, NULL, NULL, NULL, '2021-10-29 23:44:26', NULL, NULL),
+(4, 16, 4, 1, NULL, NULL, NULL, '2021-10-29 23:44:49', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -265,6 +341,151 @@ INSERT INTO `menu` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `size` text DEFAULT NULL,
+  `old_price` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `discount` int(11) NOT NULL,
+  `sku` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_categories`
+--
+
+CREATE TABLE `product_categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_category_detail`
+--
+
+CREATE TABLE `product_category_detail` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_colors`
+--
+
+CREATE TABLE `product_colors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_color_detail`
+--
+
+CREATE TABLE `product_color_detail` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `color_id` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_pictures`
+--
+
+CREATE TABLE `product_pictures` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_reviews`
+--
+
+CREATE TABLE `product_reviews` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `role_aplikasi`
 --
 
@@ -316,6 +537,27 @@ INSERT INTO `role_users` (`role_id`, `role_user_id`, `role_lev_id`, `created_at`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `template_navigation`
+--
+
+CREATE TABLE `template_navigation` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `parrent_id` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -341,11 +583,68 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `id_partner`, `nik`, `user_nama`, `user_tgl_lahir`, `user_jk`, `user_password`, `user_email`, `user_email_status`, `user_phone`, `user_foto`, `user_status`, `created_at`, `updated_at`) VALUES
-(1, NULL, '1', 'Adjie Abdul Azis', NULL, NULL, '$2y$10$34NjNNzrzOHiYA/Wc54tt.n3TB9abQUM065ZueEMd/LDw2NewOFoG', 'administrator@gmail.com', '1', '08123123', NULL, 1, '2020-06-18 09:39:08', '2020-06-18 09:39:08');
+(1, NULL, '1', 'Administrator', NULL, NULL, '$2y$10$34NjNNzrzOHiYA/Wc54tt.n3TB9abQUM065ZueEMd/LDw2NewOFoG', 'administrator@gmail.com', '1', '08123123', NULL, 1, '2020-06-18 09:39:08', '2020-06-18 09:39:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `whatsapp`
+--
+
+CREATE TABLE `whatsapp` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` text NOT NULL,
+  `number` varchar(255) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT 0 COMMENT '0 Tidak aktif, 1 aktif',
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `home_excess`
+--
+ALTER TABLE `home_excess`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `home_lates_product`
+--
+ALTER TABLE `home_lates_product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `home_slider`
+--
+ALTER TABLE `home_slider`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `home_testimonials`
+--
+ALTER TABLE `home_testimonials`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
 
 --
 -- Indexes for table `kpu_calon`
@@ -394,6 +693,75 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`menu_id`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `product_categories`
+--
+ALTER TABLE `product_categories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `product_category_detail`
+--
+ALTER TABLE `product_category_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `product_colors`
+--
+ALTER TABLE `product_colors`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `product_color_detail`
+--
+ALTER TABLE `product_color_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `color_id` (`color_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `product_pictures`
+--
+ALTER TABLE `product_pictures`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `product_reviews`
+--
+ALTER TABLE `product_reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
 -- Indexes for table `role_aplikasi`
 --
 ALTER TABLE `role_aplikasi`
@@ -406,6 +774,15 @@ ALTER TABLE `role_users`
   ADD PRIMARY KEY (`role_id`);
 
 --
+-- Indexes for table `template_navigation`
+--
+ALTER TABLE `template_navigation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -413,8 +790,41 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `user_email` (`user_email`);
 
 --
+-- Indexes for table `whatsapp`
+--
+ALTER TABLE `whatsapp`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `home_excess`
+--
+ALTER TABLE `home_excess`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `home_lates_product`
+--
+ALTER TABLE `home_lates_product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `home_slider`
+--
+ALTER TABLE `home_slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `home_testimonials`
+--
+ALTER TABLE `home_testimonials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kpu_calon`
@@ -438,7 +848,7 @@ ALTER TABLE `kpu_pemilih`
 -- AUTO_INCREMENT for table `kpu_pemilihan`
 --
 ALTER TABLE `kpu_pemilihan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `level`
@@ -453,6 +863,48 @@ ALTER TABLE `menu`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_categories`
+--
+ALTER TABLE `product_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_category_detail`
+--
+ALTER TABLE `product_category_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_colors`
+--
+ALTER TABLE `product_colors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_color_detail`
+--
+ALTER TABLE `product_color_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_pictures`
+--
+ALTER TABLE `product_pictures`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_reviews`
+--
+ALTER TABLE `product_reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `role_aplikasi`
 --
 ALTER TABLE `role_aplikasi`
@@ -465,14 +917,59 @@ ALTER TABLE `role_users`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
+-- AUTO_INCREMENT for table `template_navigation`
+--
+ALTER TABLE `template_navigation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
+-- AUTO_INCREMENT for table `whatsapp`
+--
+ALTER TABLE `whatsapp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `home_excess`
+--
+ALTER TABLE `home_excess`
+  ADD CONSTRAINT `home_excess_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_excess_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_excess_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `home_lates_product`
+--
+ALTER TABLE `home_lates_product`
+  ADD CONSTRAINT `home_lates_product_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_lates_product_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_lates_product_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_lates_product_ibfk_5` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `home_slider`
+--
+ALTER TABLE `home_slider`
+  ADD CONSTRAINT `home_slider_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_slider_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_slider_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `home_testimonials`
+--
+ALTER TABLE `home_testimonials`
+  ADD CONSTRAINT `home_testimonials_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_testimonials_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_testimonials_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kpu_calon`
@@ -497,4 +994,82 @@ ALTER TABLE `kpu_pemilihan`
   ADD CONSTRAINT `kpu_pemilihan_ibfk_3` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `kpu_pemilihan_ibfk_4` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `kpu_pemilihan_ibfk_5` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_categories`
+--
+ALTER TABLE `product_categories`
+  ADD CONSTRAINT `product_categories_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_categories_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_categories_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_category_detail`
+--
+ALTER TABLE `product_category_detail`
+  ADD CONSTRAINT `product_category_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_category_detail_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_category_detail_ibfk_3` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_category_detail_ibfk_4` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_category_detail_ibfk_5` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_colors`
+--
+ALTER TABLE `product_colors`
+  ADD CONSTRAINT `product_color_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_color_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_color_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_color_detail`
+--
+ALTER TABLE `product_color_detail`
+  ADD CONSTRAINT `product_color_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_color_detail_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `product_colors` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_color_detail_ibfk_3` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_color_detail_ibfk_4` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_color_detail_ibfk_5` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_pictures`
+--
+ALTER TABLE `product_pictures`
+  ADD CONSTRAINT `product_pictures_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_pictures_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_pictures_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_pictures_ibfk_5` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_reviews`
+--
+ALTER TABLE `product_reviews`
+  ADD CONSTRAINT `product_reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_reviews_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_reviews_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_reviews_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `template_navigation`
+--
+ALTER TABLE `template_navigation`
+  ADD CONSTRAINT `template_navigation_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `template_navigation_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `template_navigation_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `whatsapp`
+--
+ALTER TABLE `whatsapp`
+  ADD CONSTRAINT `whatsapp_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `whatsapp_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `whatsapp_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;

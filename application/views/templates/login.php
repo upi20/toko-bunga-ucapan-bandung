@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login | KPU DKM</title>
+  <title>Login | Toko Bunga Ucapan Bandung</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -41,8 +41,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <!-- <img src="<?= base_url() ?>assets/images/logo.png" class="rounded mx-auto d-block" style="max-width: 100px;" alt="Logo SIKK"> -->
-        <span class="h5"><b>KPU DKM</b><br>Login Sebagai Administrator</span>
+        <span class="h5"><b>Toko Bunga Ucapan Bandung</b><br>Login Sebagai Administrator</span>
       </div>
 
       <div class="card-body pt-3">
@@ -82,7 +81,6 @@
           <button type="submit" form="form-login" class="btn btn-block btn-primary">
             <i class="fas fa-sign-in-alt"></i> Masuk
           </button>
-          <a class="btn text-center mt-1" href="<?= base_url() ?>lupaPassword">Lupa Password?</a>
         </div>
         <!-- /.social-auth-links -->
       </div>
@@ -90,7 +88,7 @@
     </div>
     <!-- /.card -->
   </div>
-  <small class="form-text text-muted">&copy; 2021 Persembahan Dari <b>Divisi Media dan Informasi</b></small>
+  <small class="form-text text-muted">&copy; 2021 Toko Bunga Ucapan Bandung</small>
   <!-- /.login-box -->
 
   <!-- jQuery -->
