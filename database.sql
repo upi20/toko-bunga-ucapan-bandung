@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 14, 2021 at 05:00 PM
+-- Generation Time: Nov 14, 2021 at 05:46 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -377,6 +377,7 @@ CREATE TABLE `product_categories` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `slug` varchar(255) DEFAULT NULL,
+  `foto` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `status` int(11) NOT NULL,
   `created_by` int(11) DEFAULT NULL,
@@ -386,6 +387,17 @@ CREATE TABLE `product_categories` (
   `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_categories`
+--
+
+INSERT INTO `product_categories` (`id`, `name`, `slug`, `foto`, `description`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Bunga wedding', 'bunga-wedding', '37192df5281fe4fbee5c19457edd685c.png', 'tes', 3, 1, 1, 1, '2021-11-14 23:10:38', '2021-11-14 23:38:45', '2021-11-14 23:38:45'),
+(2, 'Birthday Boqutets', 'birthday-boqutets', '', '', 1, 1, NULL, NULL, '2021-11-14 23:38:33', NULL, NULL),
+(3, 'Funeral Flowers', 'funeral-flowers', '', '', 1, 1, NULL, NULL, '2021-11-14 23:38:53', NULL, NULL),
+(4, 'Interior Decor', 'interior-decor', '', '', 1, 1, NULL, NULL, '2021-11-14 23:39:02', NULL, NULL),
+(5, 'Custom Orders', 'custom-orders', '', '', 1, 1, NULL, NULL, '2021-11-14 23:39:11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -416,6 +428,7 @@ CREATE TABLE `product_colors` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `slug` varchar(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `status` int(11) NOT NULL,
   `created_by` int(11) DEFAULT NULL,
@@ -425,6 +438,17 @@ CREATE TABLE `product_colors` (
   `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_colors`
+--
+
+INSERT INTO `product_colors` (`id`, `name`, `slug`, `foto`, `description`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Pink', 'pink', '', NULL, 1, 1, 1, NULL, '2021-11-14 23:26:40', '2021-11-14 23:27:21', NULL),
+(2, 'Red', 'red', '', '', 1, 1, NULL, NULL, '2021-11-14 23:39:57', NULL, NULL),
+(3, 'Black', 'black', '', '', 1, 1, NULL, NULL, '2021-11-14 23:40:03', NULL, NULL),
+(4, 'Blue', 'blue', '', '', 1, 1, NULL, NULL, '2021-11-14 23:40:15', NULL, NULL),
+(5, 'Green', 'green', '', '', 1, 1, NULL, NULL, '2021-11-14 23:40:21', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -714,6 +738,7 @@ ALTER TABLE `products`
 --
 ALTER TABLE `product_categories`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`,`status`),
   ADD KEY `created_by` (`created_by`),
   ADD KEY `updated_by` (`updated_by`),
   ADD KEY `deleted_by` (`deleted_by`);
@@ -880,7 +905,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `product_category_detail`
@@ -892,7 +917,7 @@ ALTER TABLE `product_category_detail`
 -- AUTO_INCREMENT for table `product_colors`
 --
 ALTER TABLE `product_colors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_color_detail`
