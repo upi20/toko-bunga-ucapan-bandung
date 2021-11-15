@@ -193,25 +193,38 @@ class ItemModel extends Render_Model
         return $result;
     }
 
-    public function images_insert($user_id, $product_id, $name, $foto)
+    public function images_insert($user_id, $product_id, $name, $number, $foto)
     {
         $data = [
             'product_id' => $product_id,
             'name' => $name,
             'foto' => $foto,
+            'number' => $number,
             'created_by' => $user_id,
         ];
         $result = $this->db->insert('product_images', $data);
         return $result;
     }
 
-    public function delete_images($detail_id)
+    public function images_update($id, $user_id, $product_id, $name, $number, $foto)
     {
-        $result = $this->db->where('id', $detail_id)
-            ->delete('delete_images');
+        $data = [
+            'product_id' => $product_id,
+            'name' => $name,
+            'foto' => $foto,
+            'number' => $number,
+            'created_by' => $user_id,
+        ];
+        $result = $this->db->where('id', $id)->update('product_images', $data);
         return $result;
     }
 
+    public function delete_images($detail_id)
+    {
+        $result = $this->db->where('id', $detail_id)
+            ->delete('product_images');
+        return $result;
+    }
 
     // get new
     public function cekNew($id = null)
@@ -237,6 +250,24 @@ class ItemModel extends Render_Model
         }
     }
 
+    // get list category
+
+    // get list color
+    public function getListCategory()
+    {
+        $result = $this->db->select('id, name as text')
+            ->from('product_categories')
+            ->get()->result_array();
+        return $result;
+    }
+
+    public function getListColor()
+    {
+        $result = $this->db->select('id, name as text')
+            ->from('product_colors')
+            ->get()->result_array();
+        return $result;
+    }
 
 
 
@@ -305,47 +336,21 @@ class ItemModel extends Render_Model
 
 
 
-    public function simpan($id, $npm, $nama, $no_urut, $visi, $misi, $status, $is_ubah)
+    public function simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $status)
     {
         $this->db->trans_start();
 
-        // cek apakah ada foto yang dikirim
-        $ubah_foto = false;
-        if ($_FILES['photo']['name'] != '') {
-            // simpan foto
-            $foto = $this->saveFile();
-            $ubah_foto = true;
-
-            $get_photo = $this->db->select('photo')->from('kpu_calon')->where('id', $id)->get()->row_array();
-            $this->db->reset_query();
-            // delete foto
-            if ($get_photo != null) {
-                if ($get_photo['photo'] != null && $get_photo['photo'] != '') {
-                    $this->deleteFile($get_photo['photo']);
-                }
-            }
-        }
-
-        // simpan profile
-        $this->db->where('id', $id);
-
-        $data = [
-            'npm' => $npm,
-            'nama' => $nama,
-            'no_urut' => $no_urut,
-            'visi' => $visi,
-            'misi' => $misi,
-            'status' => $status,
-            'created_by' => $this->session->userdata('data')['id'],
-        ];
-
-        // jika foto diubah
-        if ($ubah_foto) {
-            $data['photo'] = $foto['data'];
-        }
-        $return = $this->db->update('kpu_calon', $data);
-
-        // kirim
+        $return = $this->db->where('id', $id)->update('products', [
+            'name' => $name,
+            'slug' => $slug,
+            'excerpt' => $excerpt,
+            'price' => $price,
+            'old_price' => $old_price,
+            'discount' => $discount,
+            'description' => $description,
+            'size' => $size,
+            'status' => $status
+        ]);
         $this->db->trans_complete();
         return $return;
     }

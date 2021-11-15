@@ -69,10 +69,11 @@
       </div>
     </form>
     <div class="row">
-      <div class="col-lg-6">
+      <!-- category -->
+      <div class="col-lg-6 my-2">
         <div class="d-flex justify-content-between align-items-center">
           <label>Kategori Produk</label>
-          <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
+          <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#category_modal"><i class="fa fa-plus"></i> Tambah</button>
         </div>
         <table id="table_category" class="table table-bordered table-striped table-hover">
           <thead>
@@ -85,10 +86,11 @@
         </table>
       </div>
 
-      <div class="col-lg-6">
+      <!-- images -->
+      <div class="col-lg-6 my-2">
         <div class="d-flex justify-content-between align-items-center">
           <label>Gambar Produk</label>
-          <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#image_modal"><i class="fa fa-plus"></i> Tambah</button>
+          <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#image_modal" id="image_btn_tambah"><i class="fa fa-plus"></i> Tambah</button>
         </div>
         <table id="table_image" class="table table-bordered table-striped table-hover">
           <thead>
@@ -101,10 +103,11 @@
         </table>
       </div>
 
-      <div class="col-lg-6">
+      <!-- color -->
+      <div class="col-lg-6 my-2">
         <div class="d-flex justify-content-between align-items-center">
           <label>Warna Produk</label>
-          <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Tambah</button>
+          <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#color_modal"><i class="fa fa-plus"></i> Tambah</button>
         </div>
         <table id="table_color" class="table table-bordered table-striped table-hover">
           <thead>
@@ -116,12 +119,11 @@
           </thead>
         </table>
       </div>
-
     </div>
 
     <div class="form-group">
       <label for="status">Status<span class="text-red">*</span></label>
-      <select class="form-control" id="status" name="status" required>
+      <select class="form-control" id="status" name="status" required form="main-form">
         <option value="">Pilih Status</option>
         <option value="1" <?= $product['status'] == 1 ? 'selected' : '' ?>>Aktif</option>
         <option value="2" <?= $product['status'] == 2 ? 'selected' : '' ?>>Tidak Aktif</option>
@@ -164,7 +166,7 @@
   </div>
 </div>
 
-<!-- image -->
+<!-- image add -->
 <div class="modal fade" id="image_modal" tabindex="-1" role="dialog" aria-labelledby="image_modalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -174,16 +176,18 @@
       <div class="modal-body">
         <form action="" id="image_from" method="post">
           <div class="form-group">
-            <label for="number">Nomor Urut Gambar</label>
-            <input type="number" class="form-control" id="number" name="name" placeholder="Nomor Urut Gambar" required />
+            <label for="image_number">Nomor Urut Gambar</label>
+            <input type="number" class="form-control" id="image_number" name="number" placeholder="Nomor Urut Gambar" required />
+            <input type="hidden" id="image_id" name="id" />
+            <input type="hidden" id="image_temp" name="temp_foto" />
           </div>
           <div class="form-group">
             <label for="image_name">Nama Gambar</label>
             <input type="text" class="form-control" id="image_name" name="name" placeholder="Nama Gambar" required />
           </div>
           <div class="form-group">
-            <label for="foto">Gambar</label>
-            <input type="file" class="form-control-file" id="foto" name="foto" accept="image/png, image/jpeg, image/JPG, image/PNG, image/JPEG">
+            <label for="image_foto">Gambar</label>
+            <input type="file" class="form-control-file" id="image_foto" name="foto" accept="image/png, image/jpeg, image/JPG, image/PNG, image/JPEG">
           </div>
         </form>
       </div>
@@ -195,7 +199,7 @@
   </div>
 </div>
 
-<!-- image -->
+<!-- image delete -->
 <div class="modal fade" id="image_modal_delete" tabindex="-1" role="dialog" aria-labelledby="image_modal_deleteLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -203,19 +207,110 @@
         <h5 class="modal-title text-center" id="image_modal_deleteTitle">Hapus Gambar</h5>
       </div>
       <div class="modal-body">
-        <form action="" id="image_from" method="post">
+        <form action="" id="image_delete_from" method="post">
+          <input type="hidden" id="image_detail_id" name="detail_id" />
+          <input type="hidden" id="image_delete" name="images" />
+          <p>Apakah anda yakin akan menghapus gambar ini..?</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c" type="submit" form="image_delete_from"><i class="fa fa-save"></i> Hapus</button>
+        <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- categories -->
+<div class="modal fade" id="category_modal" tabindex="-1" role="dialog" aria-labelledby="category_modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header outline-info">
+        <h5 class="modal-title text-center" id="category_modalTitle">Tambah Kategori</h5>
+      </div>
+      <div class="modal-body">
+        <form action="" id="category_from" method="post">
           <div class="form-group">
-            <label for="image_name">Nama Gambar</label>
-            <input type="text" class="form-control" id="image_name" name="name" placeholder="Nama Gambar" required />
-          </div>
-          <div class="form-group">
-            <label for="foto">Gambar</label>
-            <input type="file" class="form-control-file" id="foto" name="foto" accept="image/png, image/jpeg, image/JPG, image/PNG, image/JPEG">
+            <label for="category_id">Kategori</label>
+            <select name="category_id" id="category_id" class="form-control">
+              <?php foreach ($categories as $category) : ?>
+                <option value="<?= $category['id']; ?>"><?= $category['text']; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c" type="submit" form="image_from"><i class="fa fa-save"></i> Simpan</button>
+        <button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c" type="submit" form="category_from"><i class="fa fa-save"></i> Simpan</button>
+        <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- category delete -->
+<div class="modal fade" id="category_modal_delete" tabindex="-1" role="dialog" aria-labelledby="category_modal_deleteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header outline-info">
+        <h5 class="modal-title text-center" id="category_modal_deleteTitle">Hapus Kategori</h5>
+      </div>
+      <div class="modal-body">
+        <form action="" id="category_delete_from" method="post">
+          <input type="hidden" id="category_detail_id" name="detail_id" />
+          <p>Apakah anda yakin akan menghapus kategori ini..?</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c" type="submit" form="category_delete_from"><i class="fa fa-save"></i> Hapus</button>
+        <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- colors -->
+<div class="modal fade" id="color_modal" tabindex="-1" role="dialog" aria-labelledby="color_modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header outline-info">
+        <h5 class="modal-title text-center" id="color_modalTitle">Tambah Warna</h5>
+      </div>
+      <div class="modal-body">
+        <form action="" id="color_from" method="post">
+          <div class="form-group">
+            <label for="color_id">Warna</label>
+            <select name="color_id" id="color_id" class="form-control">
+              <?php foreach ($colors as $color) : ?>
+                <option value="<?= $color['id']; ?>"><?= $color['text']; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c" type="submit" form="color_from"><i class="fa fa-save"></i> Simpan</button>
+        <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- color delete -->
+<div class="modal fade" id="color_modal_delete" tabindex="-1" role="dialog" aria-labelledby="color_modal_deleteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header outline-info">
+        <h5 class="modal-title text-center" id="color_modal_deleteTitle">Hapus Warna</h5>
+      </div>
+      <div class="modal-body">
+        <form action="" id="color_delete_from" method="post">
+          <input type="hidden" id="color_detail_id" name="detail_id" />
+          <p>Apakah anda yakin akan menghapus warna ini..?</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c" type="submit" form="color_delete_from"><i class="fa fa-save"></i> Hapus</button>
         <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
       </div>
     </div>

@@ -21,8 +21,8 @@ $(document).ready(() => {
         {
           "data": "id", render(data, type, full, meta) {
             return `<div class="pull-right">
-                <button class="btn btn-danger btn-xs" onclick="Hapus(${data})">
-                  <i class="fa fa-trash"></i>
+                <button class="btn btn-danger btn-xs" onclick="category_delete('${data}')">
+                <i class="fa fa-trash"></i>
                 </button>
               </div>`
           }, className: "nowrap"
@@ -67,9 +67,9 @@ $(document).ready(() => {
         {
           "data": "id", render(data, type, full, meta) {
             return `<div class="pull-right">
-                <button class="btn btn-danger btn-xs" onclick="Hapus(${data})">
-                  <i class="fa fa-trash"></i>
-                </button>
+            <button class="btn btn-danger btn-xs" onclick="color_delete('${data}')">
+            <i class="fa fa-trash"></i>
+            </button>
               </div>`
           }, className: "nowrap"
         }
@@ -119,9 +119,20 @@ $(document).ready(() => {
                       data-src="${full.foto}"
                       data-alt="${full.name}"
                       data-target="#fot_preview"
-                      onclick="photo_preview(this)"
+                      onclick="image_preview(this)"
                       id="btn-gambar"><i class="fas fa-eye  "></i></button>
-                <button class="btn btn-danger btn-xs" onclick="Hapus(${data})">
+                <button
+                  data-foto="${full.foto}"
+                  data-id="${full.id}"
+                  data-name="${full.name}"
+                  data-number="${full.number}"
+                  class="btn btn-info btn-xs" onclick="image_edit(this)">
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button class="btn btn-danger btn-xs"
+                  data-foto="${full.foto}"
+                  data-id="${full.id}"
+                  onclick="image_delete(this)">
                   <i class="fa fa-trash"></i>
                 </button>
               </div>`
@@ -144,6 +155,8 @@ $(document).ready(() => {
   table_image();
 
   // insert
+
+  // image
   $("#image_from").submit(function (ev) {
     ev.preventDefault();
     const form = new FormData(this);
@@ -151,7 +164,7 @@ $(document).ready(() => {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/item/images_insert',
+      url: `<?= base_url() ?>admin/product/item/images_${$('#image_id').val() == '' ? 'insert' : 'update'}`,
       data: form,
       cache: false,
       contentType: false,
@@ -162,6 +175,7 @@ $(document).ready(() => {
         title: 'Data berhasil disimpan'
       })
       table_image();
+      $("#image_modal").modal('toggle');
     }).fail(($xhr) => {
       Toast.fire({
         icon: 'error',
@@ -172,7 +186,160 @@ $(document).ready(() => {
     })
   });
 
+  $("#image_delete_from").submit(function (ev) {
+    ev.preventDefault();
+    const form = new FormData(this);
+    form.append('product_id', $('#id').val());
+    $.LoadingOverlay("show");
+    $.ajax({
+      method: 'post',
+      url: `<?= base_url() ?>admin/product/item/delete_images`,
+      data: form,
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done((data) => {
+      Toast.fire({
+        icon: 'success',
+        title: 'Data berhasil dihapus'
+      })
+      table_image();
+      $("#image_modal_delete").modal('toggle');
+    }).fail(($xhr) => {
+      Toast.fire({
+        icon: 'error',
+        title: 'Data gagal dihapus'
+      })
+    }).always(() => {
+      $.LoadingOverlay("hide");
+    })
+  });
 
+  $("#image_btn_tambah").click(() => {
+    $('#image_modalTitle').html('Tambah Gambar');
+    $('#image_id').val('');
+    $("#image_name").val('');
+    $("#image_number").val('');
+    $("#image_foto").val('');
+  })
+
+  // category
+  $("#category_from").submit(function (ev) {
+    ev.preventDefault();
+    const form = new FormData(this);
+    form.append('product_id', $('#id').val());
+    $.LoadingOverlay("show");
+    $.ajax({
+      method: 'post',
+      url: `<?= base_url() ?>admin/product/item/insert_category`,
+      data: form,
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done((data) => {
+      Toast.fire({
+        icon: 'success',
+        title: 'Data berhasil disimpan'
+      })
+      table_category();
+      $("#category_modal").modal('toggle');
+    }).fail(($xhr) => {
+      Toast.fire({
+        icon: 'error',
+        title: 'Data gagal disimpan'
+      })
+    }).always(() => {
+      $.LoadingOverlay("hide");
+    })
+  });
+
+  $("#category_delete_from").submit(function (ev) {
+    ev.preventDefault();
+    const form = new FormData(this);
+    form.append('product_id', $('#id').val());
+    $.LoadingOverlay("show");
+    $.ajax({
+      method: 'post',
+      url: `<?= base_url() ?>admin/product/item/delete_category`,
+      data: form,
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done((data) => {
+      Toast.fire({
+        icon: 'success',
+        title: 'Data berhasil dihapus'
+      })
+      table_category();
+      $("#category_modal_delete").modal('toggle');
+    }).fail(($xhr) => {
+      Toast.fire({
+        icon: 'error',
+        title: 'Data gagal dihapus'
+      })
+    }).always(() => {
+      $.LoadingOverlay("hide");
+    })
+  });
+
+  // color
+  $("#color_from").submit(function (ev) {
+    ev.preventDefault();
+    const form = new FormData(this);
+    form.append('product_id', $('#id').val());
+    $.LoadingOverlay("show");
+    $.ajax({
+      method: 'post',
+      url: `<?= base_url() ?>admin/product/item/insert_color`,
+      data: form,
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done((data) => {
+      Toast.fire({
+        icon: 'success',
+        title: 'Data berhasil disimpan'
+      })
+      table_color();
+      $("#color_modal").modal('toggle');
+    }).fail(($xhr) => {
+      Toast.fire({
+        icon: 'error',
+        title: 'Data gagal disimpan'
+      })
+    }).always(() => {
+      $.LoadingOverlay("hide");
+    })
+  });
+
+  $("#color_delete_from").submit(function (ev) {
+    ev.preventDefault();
+    const form = new FormData(this);
+    form.append('product_id', $('#id').val());
+    $.LoadingOverlay("show");
+    $.ajax({
+      method: 'post',
+      url: `<?= base_url() ?>admin/product/item/delete_color`,
+      data: form,
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done((data) => {
+      Toast.fire({
+        icon: 'success',
+        title: 'Data berhasil dihapus'
+      })
+      table_color();
+      $("#color_modal_delete").modal('toggle');
+    }).fail(($xhr) => {
+      Toast.fire({
+        icon: 'error',
+        title: 'Data gagal dihapus'
+      })
+    }).always(() => {
+      $.LoadingOverlay("hide");
+    })
+  });
 
   $("#name").keyup(function () {
     var Text = $(this).val();
@@ -194,7 +361,7 @@ $(document).ready(() => {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/CalonKetua/simpan',
+      url: '<?= base_url() ?>admin/product/item/simpan',
       data: form,
       cache: false,
       contentType: false,
@@ -219,10 +386,39 @@ $(document).ready(() => {
   });
 });
 
-function photo_preview(datas) {
+function image_preview(datas) {
   const data = datas.dataset;
   const img = $("#foto-preview");
   $("#fot_preview").modal('toggle');
   img.attr('src', `<?= base_url() ?>/files/product/pictures/${data.src}`);
   img.attr('alt', data.alt);
+}
+
+function image_edit(datas) {
+  const data = datas.dataset;
+  $("#image_modal").modal('toggle');
+  $('#image_modalTitle').html('Ubah Gambar');
+  $("#image_id").val(data.id);
+  $("#image_temp").val(data.foto);
+  $("#image_name").val(data.name);
+  $("#image_number").val(data.number);
+}
+
+function image_delete(datas) {
+  const data = datas.dataset;
+  $("#image_modal_delete").modal('toggle');
+  $("#image_detail_id").val(data.id);
+  $("#image_delete").val(data.foto);
+}
+
+// category
+function category_delete(id) {
+  $("#category_modal_delete").modal('toggle');
+  $("#category_detail_id").val(id);
+}
+
+// color
+function color_delete(id) {
+  $("#color_modal_delete").modal('toggle');
+  $("#color_detail_id").val(id);
 }

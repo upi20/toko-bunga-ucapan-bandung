@@ -53,13 +53,9 @@ class Item extends Render_Controller
   {
     $this->load->library('form_validation');
     $this->form_validation->set_error_delimiters('', '');
-    $this->form_validation->set_rules('id', 'id Calon', 'trim|required|numeric');
-    $this->form_validation->set_rules('npm', 'npm', 'trim|required');
-    $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
-    $this->form_validation->set_rules('no_urut', 'No Urut', 'trim|required|numeric');
-    $this->form_validation->set_rules('visi', 'Visi', 'trim|required');
-    $this->form_validation->set_rules('misi', 'Misi', 'trim|required');
-    $this->form_validation->set_rules('status', 'Status', 'trim|required|numeric');
+    $this->form_validation->set_rules('id', 'id Produk', 'trim|required|numeric');
+    $this->form_validation->set_rules('name', 'Nama', 'trim|required');
+    $this->form_validation->set_rules('price', 'Harga Produk', 'trim|required|numeric');
 
     if ($this->form_validation->run() == FALSE) {
       $this->output_json([
@@ -69,16 +65,16 @@ class Item extends Render_Controller
       ], 400);
     } else {
       $id = $this->input->post('id');
-      $npm = $this->input->post('npm');
-      $nama = $this->input->post('nama');
-      $no_urut = $this->input->post('no_urut');
-      $visi = $this->input->post('visi', false);
-      $misi = $this->input->post('misi', false);
+      $name = $this->input->post('name');
+      $slug = $this->input->post('slug');
+      $excerpt = $this->input->post('excerpt');
+      $price = $this->input->post('price');
+      $old_price = $this->input->post('old_price');
+      $discount = $this->input->post('discount');
+      $description = $this->input->post('description', false);
+      $size = $this->input->post('size', false);
       $status = $this->input->post('status');
-      $is_ubah = $this->input->post('is-ubah');
-
-      $result = $this->model->simpan($id, $npm, $nama, $no_urut, $visi, $misi, $status, $is_ubah);
-
+      $result = $this->model->simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $status);
       $code = $result != null ? 200 : 400;
       $status = $result != null;
       $this->output_json([
@@ -118,6 +114,8 @@ class Item extends Render_Controller
 
     $this->data['getID'] = $ceknew['id'];
     $this->data['product'] = $ceknew;
+    $this->data['categories'] = $this->model->getListCategory();
+    $this->data['colors'] = $this->model->getListColor();
     $this->data['isUbah'] = $id != null;
 
     // Send data to view
@@ -291,8 +289,32 @@ class Item extends Render_Controller
     }
     $product_id = $this->input->post("product_id");
     $name = $this->input->post("name");
+    $number = $this->input->post("number");
     $user_id = $this->id;
-    $result = $this->model->images_insert($user_id, $product_id, $name, $foto);
+    $result = $this->model->images_insert($user_id, $product_id, $name, $number, $foto);
+
+    $this->db->trans_complete();
+    $code = $result ? 200 : 500;
+    $this->output_json(["data" => $result], $code);
+  }
+
+  public function images_update()
+  {
+    $this->db->trans_start();
+    $id = $this->input->post("id");
+    $temp_foto = $this->input->post("temp_foto");
+    if ($_FILES['foto']['name'] != '') {
+      $foto = $this->uploadImage('foto');
+      $foto = $foto['data'];
+      $this->deleteFile($temp_foto);
+    } else {
+      $foto = $temp_foto;
+    }
+    $product_id = $this->input->post("product_id");
+    $name = $this->input->post("name");
+    $number = $this->input->post("number");
+    $user_id = $this->id;
+    $result = $this->model->images_update($id, $user_id, $product_id, $name, $number, $foto);
 
     $this->db->trans_complete();
     $code = $result ? 200 : 500;
