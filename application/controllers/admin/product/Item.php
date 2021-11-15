@@ -126,7 +126,7 @@ class Item extends Render_Controller
   {
     $this->load->library('form_validation');
     $this->form_validation->set_error_delimiters('', '');
-    $this->form_validation->set_rules('id_calon', 'Id Calon', 'trim|required|numeric');
+    $this->form_validation->set_rules('id', 'Id Produk', 'trim|required|numeric');
     if ($this->form_validation->run() == FALSE) {
       $this->output_json([
         'status' => false,
@@ -134,9 +134,28 @@ class Item extends Render_Controller
         'message' => validation_errors()
       ], 400);
     } else {
-      $id = $this->input->post('id_calon');
-      $result = $this->model->delete($id);
+      $id = $this->input->post('id');
+      $this->db->trans_start();
+      // get files
+      $files = $this->model->getAllImageFromProductById($id);
+      $files = $files ?? [];
 
+      // delete category
+      $category = $this->model->deleteCategoryProduct($id);
+      // delete color
+      $color = $this->model->deleteColorProduct($id);
+      // delete image
+      $image = $this->model->deleteImagesProduct($id);
+
+      // delete product
+      $result = $this->model->delete($id);
+      if ($result && $category && $color && $image) {
+        foreach ($files as $file) {
+          $foto = $file["foto"];
+          $this->deleteFile($foto);
+        }
+      }
+      $this->db->trans_complete();
       $code = $result != null ? 200 : 400;
       $status = $result != null;
       $this->output_json([

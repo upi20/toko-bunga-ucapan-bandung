@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 14, 2021 at 08:48 PM
+-- Generation Time: Nov 15, 2021 at 09:01 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -126,7 +126,7 @@ CREATE TABLE `kpu_calon` (
 --
 
 INSERT INTO `kpu_calon` (`id`, `npm`, `nama`, `photo`, `no_urut`, `visi`, `misi`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '0', 'Kemas Prahastantra', '31d3db68260260b8e58f3ac4c1a96406.jpeg', 1, '<div><span style=\"font-size: 1rem;\">Allah itu nomor satu&nbsp;</span><br></div><div><br></div>', '<p><span style=\"font-size: 1rem;\">Menomorkan satu Allah SWT</span><br></p>', 3, 1, NULL, 1, '2021-10-29 00:03:53', '2021-10-29 13:01:18', '2021-10-29 13:01:18'),
+(1, '0', 'Kemas Prahastantra', '31d3db68260260b8e58f3ac4c1a96406.jpeg', 1, '<div><span style=\"font-size: 1rem;\">Allah itu nomor satu&nbsp;</span><br></div><div><br></div>', '<p><span style=\"font-size: 1rem;\">Menomorkan satu Allah SWT</span><br></p>', 3, 1, NULL, 1, '2021-10-29 00:03:53', '2021-11-15 14:42:39', '2021-11-15 14:42:39'),
 (3, '1', '1', NULL, 1, '<p>sadfasdf</p>', '<p>sdaf</p>', 3, 1, NULL, 1, '2021-10-29 00:37:10', '2021-10-29 01:16:28', '2021-10-29 01:16:28'),
 (4, '19016', 'Tri Purwanto', 'daae460d185cd169c8e9ee9333de4c52.png', 1, '<div><span style=\"font-size: 1rem;\">1. menjadikan masjid ulil albab dan pengurus sebagai tempat ber-ukhuwah.</span><br></div><div>2. menjadikan sarana umat islam yang ingin ber-ukhuwah.</div>', '<div><div>1. menjadikan umat islam yang lebih agamis, cinta al-qur\'an dan bertaqwa.</div><div>2. menjadikan masjid sebagai tempat yang nyaman dan aman.</div><div>3. menjadikan organiasasi dkm ulil albab menjadi lebih profesional dalam kepengurusannya</div></div>', 1, 1, NULL, NULL, '2021-10-29 00:38:15', '2021-10-29 13:16:34', NULL),
 (5, 'TES.19011', 'Kemas Prahastantra', '975e331005124f282a9ecf21365cb6a8.png', 2, '<p>Allah itu nomor satu</p>', '<p>Menomorsatukan Allah </p>', 1, 1, NULL, NULL, '2021-10-29 02:57:53', '2021-10-29 21:55:42', NULL),
@@ -373,7 +373,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `slug`, `description`, `excerpt`, `size`, `old_price`, `price`, `discount`, `sku`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '2021-11-15 01:39:27', NULL, NULL);
+(1, 'Flowers daisy pink stick', 'flowers-daisy-pink-stick', '<p class=\"mb-3\" style=\"color: rgb(72, 72, 72); font-family: Poppins, sans-serif; font-size: 14px; background-color: rgb(248, 248, 248);\">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.</p><p style=\"margin-bottom: 10px; color: rgb(72, 72, 72); font-family: Poppins, sans-serif; font-size: 14px; background-color: rgb(248, 248, 248);\">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>', 'I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.', '<p><br></p><h4 class=\"title-3 mb-4\" style=\"line-height: 1; font-size: 18px; font-family: Poppins, sans-serif; color: rgb(0, 0, 0); background-color: rgb(248, 248, 248);\">Size Chart</h4><table class=\"table border\" style=\"caption-side: bottom; --bs-table-bg:transparent; --bs-table-accent-bg:transparent; --bs-table-striped-color:#212529; --bs-table-striped-bg:rgba(0, 0, 0, 0.05); --bs-table-active-color:#212529; --bs-table-active-bg:rgba(0, 0, 0, 0.1); --bs-table-hover-color:#212529; --bs-table-hover-bg:rgba(0, 0, 0, 0.075); width: 1090px; color: rgb(33, 37, 41); vertical-align: top; font-family: Poppins, sans-serif; font-size: 14px; background-color: rgb(248, 248, 248);\"><tbody style=\"border-style: solid; border-width: 0px; vertical-align: inherit;\"><tr style=\"border-style: solid; border-width: 0px;\"><td class=\"cun-name\" style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">UK</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">18</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">20</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">22</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">24</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">26</td></tr><tr style=\"border-style: solid; border-width: 0px;\"><td class=\"cun-name\" style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">European</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">46</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">48</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">50</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">52</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">54</td></tr><tr style=\"border-style: solid; border-width: 0px;\"><td class=\"cun-name\" style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">usa</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">14</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">16</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">18</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">20</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">22</td></tr><tr style=\"border-style: solid; border-width: 0px;\"><td class=\"cun-name\" style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">Australia</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">28</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">10</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">12</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">14</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">16</td></tr><tr style=\"border-style: solid; border-width: 0px;\"><td class=\"cun-name\" style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">Canada</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">24</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">18</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">14</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">42</td><td style=\"border-color: inherit; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-width: 0px 0px 1px; padding: 0.5rem; background-color: var(--bs-table-bg); box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);\">36</td></tr></tbody></table>', 120000, 100000, 17, NULL, 1, NULL, NULL, NULL, '2021-11-15 01:39:27', '2021-11-15 10:50:40', NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '2021-11-15 15:00:54', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -426,6 +427,15 @@ CREATE TABLE `product_category_detail` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `product_category_detail`
+--
+
+INSERT INTO `product_category_detail` (`id`, `product_id`, `category_id`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(4, NULL, NULL, 1, 1, NULL, NULL, '2021-11-15 09:30:28', NULL, NULL),
+(6, 1, 2, 1, 1, NULL, NULL, '2021-11-15 09:35:48', NULL, NULL),
+(7, 1, 3, 1, 1, NULL, NULL, '2021-11-15 09:35:52', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -456,7 +466,8 @@ INSERT INTO `product_colors` (`id`, `name`, `slug`, `foto`, `description`, `stat
 (2, 'Red', 'red', '', '', 1, 1, NULL, NULL, '2021-11-14 23:39:57', NULL, NULL),
 (3, 'Black', 'black', '', '', 1, 1, NULL, NULL, '2021-11-14 23:40:03', NULL, NULL),
 (4, 'Blue', 'blue', '', '', 1, 1, NULL, NULL, '2021-11-14 23:40:15', NULL, NULL),
-(5, 'Green', 'green', '', '', 1, 1, NULL, NULL, '2021-11-14 23:40:21', NULL, NULL);
+(5, 'Green', 'green', '', '', 1, 1, NULL, NULL, '2021-11-14 23:40:21', NULL, NULL),
+(6, 'White', 'white', '', '', 1, 1, NULL, NULL, '2021-11-15 09:57:37', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -476,6 +487,14 @@ CREATE TABLE `product_color_detail` (
   `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_color_detail`
+--
+
+INSERT INTO `product_color_detail` (`id`, `product_id`, `color_id`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, 1, 1, NULL, NULL, '2021-11-15 09:39:31', NULL, NULL),
+(4, 1, 6, 1, 1, NULL, NULL, '2021-11-15 09:57:49', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -504,7 +523,8 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `product_id`, `name`, `number`, `foto`, `description`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'Gambar 1', 1, '0c3eeca725e6a8bfd7259a0311404354.png', NULL, 1, 1, NULL, NULL, '2021-11-15 02:31:24', NULL, NULL);
+(1, 1, 'Gambar 1', 1, 'e31ec3aac88b913dc06faf5cb611c203.jpg', NULL, 1, 1, NULL, NULL, '2021-11-15 02:31:24', '2021-11-15 09:08:43', NULL),
+(3, 1, 'Gambar 2', 2, '2a465871252d3ec323221787dbef81f5.jpg', NULL, 1, 1, NULL, NULL, '2021-11-15 09:17:32', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -915,7 +935,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
@@ -927,25 +947,25 @@ ALTER TABLE `product_categories`
 -- AUTO_INCREMENT for table `product_category_detail`
 --
 ALTER TABLE `product_category_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product_colors`
 --
 ALTER TABLE `product_colors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `product_color_detail`
 --
 ALTER TABLE `product_color_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_reviews`

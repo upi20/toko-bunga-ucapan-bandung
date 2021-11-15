@@ -36,7 +36,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="price">Harga<span class="text-red">*</span></label>
-            <input type="text" class="form-control" id="price" name="price" placeholder="Harga" required value="<?= $product['price'] ?>" />
+            <input type="number" class="form-control" id="price" name="price" placeholder="Harga" required value="<?= $product['price'] ?>" />
             <small>Harga Produk Sekarang</small>
           </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="old_price">Harga Lama</label>
-            <input type="text" class="form-control" id="old_price" name="old_price" placeholder="Harga Lama" required value="<?= $product['old_price'] ?>" />
+            <input type="number" class="form-control" id="old_price" name="old_price" placeholder="Harga Lama" required value="<?= $product['old_price'] ?>" />
             <small>Harga lama yang nantinya akan di coret dan digantikan dengan harga baru. Bisa di kosongkan.</small>
           </div>
         </div>
@@ -52,7 +52,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="discount">Diskon</label>
-            <input type="text" class="form-control" id="discount" name="discount" placeholder="Diskon" required value="<?= $product['discount'] ?>" />
+            <input type="number" class="form-control" id="discount" name="discount" placeholder="Diskon" required value="<?= $product['discount'] ?>" />
             <small>Diskon akan ditampilkan di sisi kanan atas dari gambar produk, bisa di kosongkan jika tidak ada diskon.</small>
           </div>
         </div>

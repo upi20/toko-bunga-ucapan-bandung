@@ -14,13 +14,10 @@
     <table id="dt_basic_v2" class="table table-bordered table-striped table-hover">
       <thead>
         <tr>
-          <th>No</th>
-          <th>NPP</th>
+          <th style="max-width: 50px;">No</th>
           <th>Nama</th>
-          <th>No Urut</th>
-          <th>Foto</th>
-          <th>Visi</th>
-          <th>Misi</th>
+          <th>Slug</th>
+          <th>Harga</th>
           <th>Status</th>
           <th>Aksi</th>
         </tr>
@@ -30,68 +27,16 @@
   <!-- /.card-body -->
 </div>
 
-<!-- photo -->
-<div class="modal fade" id="gambar_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header outline-info">
-        <h5 class="modal-title text-center">Foto Member</h5>
-      </div>
-      <div class="modal-body">
-        <img src="<?= base_url() ?>\assets\images\student.png" class="img-fluid" alt="" id="img-view">
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- visi -->
-<div class="modal fade" id="visi_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header outline-info">
-        <h5 class="modal-title text-center">Visi Calon Ketua</h5>
-      </div>
-      <div class="modal-body" id="body_visi_modal">
-
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- misi -->
-<div class="modal fade" id="misi_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header outline-info">
-        <h5 class="modal-title text-center">Misi Calon Ketua</h5>
-      </div>
-      <div class="modal-body" id="body_misi_modal">
-
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- profile -->
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-center">Hapus Calon Ketua</h5>
+        <h5 class="modal-title text-center">Hapus Produk</h5>
       </div>
       <div class="modal-body">
         <form action="" id="fdelete">
-          <input type="hidden" name="id_calon" id="delete-id_calon">
-          <p>Apakah anda yakin akan menghapus Calon Ketua ini..?</p>
+          <input type="hidden" name="id" id="delete-id">
+          <p>Apakah anda yakin akan menghapus Produk ini..?</p>
         </form>
       </div>
       <div class="modal-footer">

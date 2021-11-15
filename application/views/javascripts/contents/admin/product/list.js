@@ -11,7 +11,7 @@ $(function () {
     table_html.dataTable().fnDestroy()
     const new_table = table_html.DataTable({
       "ajax": {
-        "url": "<?= base_url()?>admin/CalonKetua/ajax_data/",
+        "url": "<?= base_url()?>admin/product/item/ajax_data/",
         "data": datas,
         "type": 'POST'
       },
@@ -22,55 +22,26 @@ $(function () {
       "autoWidth": true,
       "columns": [
         { "data": null },
-        { "data": 'npm' },
-        { "data": 'nama' },
-        { "data": 'no_urut' },
+        { "data": 'name' },
+        { "data": 'slug' },
         {
-          "data": "photo", render(data, type, full, meta) {
-            return `<button
-              class="btn btn-success btn-sm btn-gambar"
-              data-toggle="modal"
-              data-data="${data}"
-              data-target="#gambar_modal"
-              onclick="view_gambar(this)"
-              id="btn-gambar"><i class="fas fa-eye"></i></button>`
-          }, className: "nowrap"
-        },
-        {
-          "data": "visi", render(data, type, full, meta) {
-            data_calon.set('visi_' + full.id, data);
-            return `<button
-              class="btn btn-success btn-sm btn-gambar"
-              data-toggle="modal"
-              data-data="${full.id}"
-              data-target="#visi_modal"
-              onclick="visi(this)"
-              id="btn-visi"><i class="fas fa-eye"></i></button>`
-          }, className: "nowrap"
-        },
-        {
-          "data": "misi", render(data, type, full, meta) {
-            data_calon.set('misi_' + full.id, data);
-            return `<button
-              class="btn btn-success btn-sm btn-gambar"
-              data-toggle="modal"
-              data-data="${full.id}"
-              data-target="#misi_modal"
-              onclick="misi(this)"
-              id="btn-misi"><i class="fas fa-eye"></i></button>`
-          }, className: "nowrap"
+          "data": 'price', render(data, type, full, meta) {
+            return `Rp. ${format_rupiah(data)}`
+          },
         },
         { "data": 'status_str' },
         {
 
           "data": "id", render(data, type, full, meta) {
             return `<div class="pull-right">
-                <a class="btn btn-primary btn-xs" href="<?= base_url() ?>admin/CalonKetua/tambah/${data}">
+                <a class="btn btn-info btn-xs" href="<?= base_url() ?>admin/product/item/create/${data}">
+                  <i class="fa fa-eye"></i> Lihat
+                </a>
+                <a class="btn btn-primary btn-xs" href="<?= base_url() ?>admin/product/item/create/${data}">
                   <i class="fa fa-edit"></i> Ubah
                 </a>
                 <button class="btn btn-danger btn-xs"
-                data-id_calon="${full.id}"
-                data-id_user="${full.id_user}"
+                data-id="${full.id}"
                 onclick="Hapus(this)">
                   <i class="fa fa-trash"></i> Hapus
                 </button>
@@ -83,7 +54,7 @@ $(function () {
       ],
       columnDefs: [{
         orderable: false,
-        targets: [0, 8]
+        targets: [0, 5]
       }],
     });
     new_table.on('draw.dt', function () {
@@ -103,7 +74,7 @@ $(function () {
     const form = new FormData(this);
     $.LoadingOverlay("show");
     $.ajax({
-      url: '<?= base_url() ?>admin/CalonKetua/delete',
+      url: '<?= base_url() ?>admin/product/item/delete',
       cache: false,
       contentType: false,
       processData: false,
@@ -132,24 +103,9 @@ $(function () {
 
 })
 
-
-
-
-const view_gambar = (datas) => {
-  $("#img-view").attr('src', `<?= base_url() ?>/files/calon/${datas.dataset.data}`)
-}
-
-const visi = (datas) => {
-  $("#body_visi_modal").html(data_calon.get('visi_' + datas.dataset.data))
-}
-
-const misi = (datas) => {
-  $("#body_misi_modal").html(data_calon.get('misi_' + datas.dataset.data))
-}
-
 // Click Hapus
 const Hapus = (datas) => {
   const data = datas.dataset;
-  $("#delete-id_calon").val(data.id_calon)
+  $("#delete-id").val(data.id)
   $('#delete').modal('toggle')
 }
