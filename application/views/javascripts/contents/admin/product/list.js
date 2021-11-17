@@ -29,6 +29,7 @@ $(function () {
             return `Rp. ${format_rupiah(data)}`
           },
         },
+        { "data": 'view_home_str' },
         { "data": 'status_str' },
         {
 
@@ -54,7 +55,7 @@ $(function () {
       ],
       columnDefs: [{
         orderable: false,
-        targets: [0, 5]
+        targets: [0, 6]
       }],
     });
     new_table.on('draw.dt', function () {

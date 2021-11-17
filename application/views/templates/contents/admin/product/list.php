@@ -18,6 +18,7 @@
           <th>Nama</th>
           <th>Slug</th>
           <th>Harga</th>
+          <th style="max-width: 150px;">Tampilkan di home</th>
           <th>Status</th>
           <th>Aksi</th>
         </tr>

@@ -74,7 +74,8 @@ class Item extends Render_Controller
       $description = $this->input->post('description', false);
       $size = $this->input->post('size', false);
       $status = $this->input->post('status');
-      $result = $this->model->simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $status);
+      $view_home = is_null($this->input->post('view_home')) ? 0 : 1;
+      $result = $this->model->simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $view_home, $status);
       $code = $result != null ? 200 : 400;
       $status = $result != null;
       $this->output_json([

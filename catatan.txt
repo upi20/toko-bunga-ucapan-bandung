@@ -2,17 +2,19 @@ Admin
   Product
     category [clear]
     color [clear]
-    master
+    master [clear]
     REVIEWS
+    Produk Terbaru (di setiap product ada)[clear]
+    lihat
 
   home
     Slider
     Kelebihan
-    Judul-Judul
+    Judul - Judul
     Media Sosial
-
-  Produk Terbaru
 
   Testimoni
 
   Navigasi
+
+  footer

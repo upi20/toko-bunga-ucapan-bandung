@@ -4,7 +4,7 @@ $(function () {
     table_html.dataTable().fnDestroy()
     const new_table = table_html.DataTable({
       "ajax": {
-        "url": "<?= base_url()?>admin/product/category/ajax_data/",
+        "url": "<?= base_url()?>admin/home/slider/ajax_data/",
         "data": null,
         "type": 'POST'
       },
@@ -16,7 +16,8 @@ $(function () {
       "columns": [
         { "data": null },
         { "data": "name" },
-        { "data": "slug" },
+        { "data": "title" },
+        { "data": "subtitle" },
         { "data": "description" },
         {
           "data": "foto", render(data, type, full, meta) {
@@ -29,18 +30,18 @@ $(function () {
                       id="btn-gambar"><i class="fas fa-eye"></i></button>`
           }, className: "nowrap"
         },
-        { "data": "category_product" },
         { "data": "status_str" },
         {
           "data": "id", render(data, type, full, meta) {
             return `<div class="pull-right">
-            <a class="btn btn-info btn-xs" href="">
+            <a class="btn btn-info btn-xs" href="<?= base_url()?>">
             <i class="fa fa-eye"></i> Lihat
           </a>
                 <button class="btn btn-primary btn-xs"
                                       data-id="${data}"
                                       data-name="${full.name}"
-                                      data-slug="${full.slug}"
+                                      data-title="${full.title}"
+                                      data-subtitle="${full.subtitle}"
                                       data-foto="${full.foto}"
                                       data-description="${full.description}"
                                       data-status="${full.status}"
@@ -75,20 +76,14 @@ $(function () {
   dynamic();
 
   $("#btn-tambah").click(() => {
-    $("#tambahModalTitle").text("Tambah Kategori");
+    $("#tambahModalTitle").text("Tambah Slider");
     $('#id').val('');
     $('#name').val('');
-    $('#slug').val('');
+    $('#title').val('');
+    $('#subtitle').val('');
     $('#foto').val('');
     $('#description').val('');
     $('#status').val('1');
-  });
-
-  $("#name").keyup(function () {
-    var Text = $(this).val();
-    $("#slug").val(Text.toLowerCase()
-      .replace(/[^\w ]+/g, '')
-      .replace(/ +/g, '-'));
   });
 
   $("#fmain").submit(function (ev) {
@@ -97,7 +92,7 @@ $(function () {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/category/' + ($("#id").val() == "" ? 'insert' : 'update'),
+      url: '<?= base_url() ?>admin/home/slider/' + ($("#id").val() == "" ? 'insert' : 'update'),
       data: form,
       cache: false,
       contentType: false,
@@ -125,7 +120,7 @@ $(function () {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/category/delete',
+      url: '<?= base_url() ?>admin/home/slider/delete',
       data: {
         id: id
       }
@@ -148,7 +143,7 @@ $(function () {
 })
 
 const view_gambar = (datas) => {
-  $("#img-view").attr('src', `<?= base_url() ?>/files/product/category/${datas.dataset.data}`)
+  $("#img-view").attr('src', `<?= base_url() ?>/files/home/slider/${datas.dataset.data}`)
 }
 
 // Click Hapus
@@ -164,10 +159,11 @@ const Ubah = (datas) => {
   const data = datas.dataset;
   $('#id').val(data.id);
   $('#temp_foto').val(data.foto);
-  $('#slug').val(data.slug);
+  $('#title').val(data.title);
+  $('#subtitle').val(data.subtitle);
   $('#foto').val('');
   $('#name').val(data.name);
   $('#description').val(data.description);
   $('#status').val(data.status);
-  $("#tambahModalTitle").text("Ubah Kategori");
+  $("#tambahModalTitle").text("Ubah Slider");
 }

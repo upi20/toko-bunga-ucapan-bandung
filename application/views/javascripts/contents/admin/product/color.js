@@ -34,6 +34,9 @@ $(function () {
         {
           "data": "id", render(data, type, full, meta) {
             return `<div class="pull-right">
+            <a class="btn btn-info btn-xs" href="">
+            <i class="fa fa-eye"></i> Lihat
+          </a>
                 <button class="btn btn-primary btn-xs"
                                       data-id="${data}"
                                       data-name="${full.name}"

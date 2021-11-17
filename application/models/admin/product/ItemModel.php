@@ -275,6 +275,7 @@ class ItemModel extends Render_Model
         // select datatable
         $this->db->select("a.*,
         IF(a.status = '2', 'Tidak Aktif', IF(a.status = '1', 'Aktif', 'Tidak Diketahui')) as status_str,
+        IF(a.view_home = '0', 'Tidak', IF(a.view_home = '1', 'Iya', 'Tidak Diketahui')) as view_home_str,
         ")->from('products a');
         $this->db->where("a.status !=", 0);
         $this->db->where("a.status !=", 3);
@@ -314,6 +315,7 @@ class ItemModel extends Render_Model
                 a.slug LIKE '%$cari%' or
                 a.description LIKE '%$cari%' or
                 a.excerpt LIKE '%$cari%' or
+                IF(a.view_home = '0', 'Tidak', IF(a.view_home = '1', 'Iya', 'Tidak Diketahui')) LIKE '%$cari%' or
                 a.size LIKE '%$cari%'
                 )");
         }
@@ -327,7 +329,7 @@ class ItemModel extends Render_Model
         return $result;
     }
 
-    public function simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $status)
+    public function simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $view_home, $status)
     {
         $this->db->trans_start();
 
@@ -335,6 +337,7 @@ class ItemModel extends Render_Model
             'name' => $name,
             'slug' => $slug,
             'excerpt' => $excerpt,
+            'view_home' => $view_home,
             'price' => $price,
             'old_price' => $old_price,
             'discount' => $discount,

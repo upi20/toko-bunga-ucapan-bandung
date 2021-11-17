@@ -119,15 +119,20 @@
           </thead>
         </table>
       </div>
-    </div>
-
-    <div class="form-group">
-      <label for="status">Status<span class="text-red">*</span></label>
-      <select class="form-control" id="status" name="status" required form="main-form">
-        <option value="">Pilih Status</option>
-        <option value="1" <?= $product['status'] == 1 ? 'selected' : '' ?>>Aktif</option>
-        <option value="2" <?= $product['status'] == 2 ? 'selected' : '' ?>>Tidak Aktif</option>
-      </select>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label for="status">Status<span class="text-red">*</span></label>
+          <select class="form-control" id="status" name="status" required form="main-form">
+            <option value="">Pilih Status</option>
+            <option value="1" <?= $product['status'] == 1 ? 'selected' : '' ?>>Aktif</option>
+            <option value="2" <?= $product['status'] == 2 ? 'selected' : '' ?>>Tidak Aktif</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="checkbox" id="view_home" name="view_home" title="Tampilkan di halaman utama" <?= $product['view_home'] == 1 ? 'checked' : ''; ?> form="main-form" />
+          <label for="view_home">Tampilkan di halaman utama</label>
+        </div>
+      </div>
     </div>
   </div>
   <!-- /.card-body -->
