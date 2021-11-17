@@ -1,7 +1,7 @@
 <div class="card card-primary card-outline">
   <div class="card-header">
     <div class="d-flex justify-content-between w-100">
-      <h3 class="card-title">List Slider Halaman Utama</h3>
+      <h3 class="card-title">List Keunggulan Toko Di Halaman Utama</h3>
       <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal" id="btn-tambah"><i class="fa fa-plus"></i> Tambah</button>
     </div>
   </div>
@@ -11,10 +11,9 @@
       <thead>
         <tr>
           <th>No</th>
-          <th>Nama</th>
           <th>Judul</th>
-          <th>Sub Judul</th>
           <th>Keterangan</th>
+          <th>Kolom</th>
           <th>Gambar</th>
           <th>Status</th>
           <th>Aksi</th>
@@ -37,24 +36,20 @@
           <input type="hidden" id="id" name="id">
           <input type="hidden" id="temp_foto" name="temp_foto">
           <div class="form-group">
-            <label for="name">Nama Slider</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Nama Slider" required />
-          </div>
-          <div class="form-group">
             <label for="title">Judul</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Judul untuk slider" required />
           </div>
           <div class="form-group">
-            <label for="subtitle">Sub Judul</label>
-            <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sub judul untuk slider" required />
+            <label for="description">Keterangan</label>
+            <textarea cols="3" rows="4" class="form-control" id="description" name="description" placeholder="Keterangan"></textarea>
           </div>
           <div class="form-group">
             <label for="foto">Gambar</label>
             <input type="file" class="form-control-file" id="foto" name="foto" accept="image/png, image/jpeg, image/JPG, image/PNG, image/JPEG">
           </div>
           <div class="form-group">
-            <label for="description">Keterangan</label>
-            <textarea cols="3" rows="4" class="form-control" id="description" name="description" placeholder="Keterangan"></textarea>
+            <label for="column">Kolom</label>
+            <input type="text" class="form-control" id="column" name="column" placeholder="Kolom Dengan format Bootstrap 5" required />
           </div>
           <div class="form-group">
             <label for="status">Status</label>

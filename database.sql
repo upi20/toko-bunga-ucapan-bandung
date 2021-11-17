@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 17, 2021 at 02:24 PM
+-- Generation Time: Nov 17, 2021 at 02:42 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -23,9 +23,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `home_excess` (
   `id` int(11) NOT NULL,
-  `icon` varchar(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `subtitle` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `column` varchar(255) DEFAULT NULL,
   `status` int(11) NOT NULL,
   `created_by` int(11) DEFAULT NULL,
@@ -35,6 +35,15 @@ CREATE TABLE `home_excess` (
   `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `home_excess`
+--
+
+INSERT INTO `home_excess` (`id`, `foto`, `title`, `description`, `column`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '92ed80325e278139105862f45e10c5cd.png', 'Bunga Berkualitas', 'Kami selalu menghadirkan rangkaian bunga terbaik dengan bunga segar pilihan.', 'col-lg-4 col-sm-6', 1, 1, 1, NULL, '2021-11-17 20:39:28', '2021-11-17 20:40:01', NULL),
+(2, 'cfa50b3e4de6dc62e336445986b923c6.png', 'Pelayanan Ramah', 'Dilayani oleh CS yang sudah berpengalaman dalam berbagai macam rangkaian bunga.', 'col-lg-4 col-sm-6', 1, 1, NULL, NULL, '2021-11-17 20:40:20', NULL, NULL),
+(3, '901bef74c7f2bacf2286ee2956bfd267.png', 'Kiriman Tepat Waktu', 'Layanan terbaik anda dengan pengiriman selalu on time.', 'col-lg-4 col-sm-6', 1, 1, NULL, NULL, '2021-11-17 20:40:42', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -63,8 +72,9 @@ CREATE TABLE `home_slider` (
 --
 
 INSERT INTO `home_slider` (`id`, `foto`, `name`, `title`, `subtitle`, `description`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'b72c1c02e892fb661119fc31bf69e0f5.jpg', 'Bunga 1', 'Welcome', 'Toko Bunga Ucapan Bandung', '', 1, 1, 1, NULL, '2021-11-17 20:22:03', '2021-11-17 20:24:06', NULL),
-(2, 'e990707bc479e10e60a9fa7d17756a8d.jpg', 'afdsaf', 'asdfasdf', 'sasdfasdf', 'safasdf', 3, 1, NULL, 1, '2021-11-17 20:23:42', '2021-11-17 20:23:47', '2021-11-17 20:23:47');
+(1, 'b72c1c02e892fb661119fc31bf69e0f5.jpg', 'Slider 1', 'Welcome', 'Toko Bunga Ucapan Bandung', '', 1, 1, 1, NULL, '2021-11-17 20:22:03', '2021-11-17 20:41:13', NULL),
+(2, 'e990707bc479e10e60a9fa7d17756a8d.jpg', 'afdsaf', 'asdfasdf', 'sasdfasdf', 'safasdf', 3, 1, NULL, 1, '2021-11-17 20:23:42', '2021-11-17 20:23:47', '2021-11-17 20:23:47'),
+(3, '9d18e4d337bdd0b3254192fddabbb8d4.jpg', 'Slider 2', 'Quality', 'Bunga Dengan Kualitas Terbaik', '', 1, 1, NULL, NULL, '2021-11-17 20:41:55', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -859,13 +869,13 @@ ALTER TABLE `whatsapp`
 -- AUTO_INCREMENT for table `home_excess`
 --
 ALTER TABLE `home_excess`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `home_slider`
 --
 ALTER TABLE `home_slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `home_testimonials`
