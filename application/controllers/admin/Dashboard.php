@@ -18,20 +18,7 @@ class Dashboard extends Render_Controller
 
 		if ($this->level == 'Super Admin') {
 			$this->content = 'dashboard/admin';
-			$this->data['calonKetua'] = $this->model->jumlahCalonKetua();
-			$this->data['pemilih'] = $this->model->jumlahPemilih();
-			$this->data['sudahPilih'] = $this->model->jumlahsudahPilih();
-			$this->data['belumPilih'] =	$this->data['pemilih'] - 	$this->data['sudahPilih'];
 		} else {
-			$this->title = 'List Calon Ketua';
-			$this->content = 'dashboard/pemilih';
-			$this->data['calons'] = $this->model->getCalon($this->id);
-			$get = $this->db->select('nilai')->from('kpu_kunci')->where('id', 1)->get()->row_array();
-			if ($get == null) {
-				$this->db->insert('kpu_kunci', ['id' => 1, 'nilai' => 1]);
-				$get = ['nilai' => 1];
-			}
-			$this->data['finish'] = $get['nilai'];
 		}
 
 		// Send data to view

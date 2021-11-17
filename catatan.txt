@@ -8,8 +8,9 @@ Admin
     lihat
 
   home
-    Slider
-    Kelebihan
+    Slider [clear]
+    Kelebihan [clear]
+    Penawaran
     Judul - Judul
     Media Sosial
 
@@ -17,4 +18,14 @@ Admin
 
   Navigasi
 
+  header
+    logo
+    judul
+    sosmed
+
   footer
+    logo
+    keterangan
+    sosmed (no_urut, isi)
+    menyediakan (no_urut, isi)
+    info kontak (no_urut, isi)

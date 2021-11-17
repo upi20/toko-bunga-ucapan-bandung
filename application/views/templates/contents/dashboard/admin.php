@@ -10,9 +10,9 @@
         <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Jumlah Calon Ketua</span>
+                <span class="info-box-text">Jumlah Produk</span>
                 <span class="info-box-number">
-                    <?= $calonKetua ?> Orang
+                    1
                 </span>
             </div>
         </div>
@@ -21,9 +21,9 @@
         <div class="info-box">
             <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-users"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Jumlah Pemilih</span>
+                <span class="info-box-text">Jumlah Kategori</span>
                 <span class="info-box-number">
-                    <?= $pemilih ?> Orang
+                    1
                 </span>
             </div>
         </div>
@@ -32,9 +32,9 @@
         <div class="info-box">
             <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-check"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Jumlah Sudah Pilih</span>
+                <span class="info-box-text">Jumlah Warna</span>
                 <span class="info-box-number">
-                    <?= $sudahPilih ?> Orang
+                    1
                 </span>
             </div>
         </div>
@@ -43,9 +43,9 @@
         <div class="info-box">
             <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-times"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Jumlah Belum Pilih</span>
+                <span class="info-box-text">Jumlah No Whatasapp</span>
                 <span class="info-box-number">
-                    <?= $belumPilih ?> Orang
+                    1
                 </span>
             </div>
         </div>
