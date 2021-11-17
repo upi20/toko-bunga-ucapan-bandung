@@ -8,7 +8,7 @@ class Whatsapp extends Render_Controller
     {
         // Page Settings
         $this->title = 'Nomor Whatsapp';
-        $this->navigation = ['Whatsapp'];
+        $this->navigation = ['WhatsApp'];
         $this->plugins = ['datatables'];
 
         // Breadcrumb setting
@@ -16,7 +16,7 @@ class Whatsapp extends Render_Controller
         $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
         $this->breadcrumb_3 = 'Home';
         $this->breadcrumb_3_url = '#';
-        $this->breadcrumb_4 = 'Whatsapp';
+        $this->breadcrumb_4 = 'WhatsApp';
         $this->breadcrumb_4_url = base_url() . 'home/whatsapp';
         // content
         $this->content      = 'admin/whatsapp';
@@ -56,18 +56,11 @@ class Whatsapp extends Render_Controller
     public function insert()
     {
         $this->db->trans_start();
-        $foto = '';
-        if ($_FILES['foto']['name'] != '') {
-            $foto = $this->uploadImage('foto');
-            $foto = $foto['data'];
-        }
         $name = $this->input->post("name");
-        $title = $this->input->post("title");
-        $subtitle = $this->input->post("subtitle");
-        $status = $this->input->post("status");
+        $number = $this->input->post("number");
         $description = $this->input->post("description");
         $user_id = $this->id;
-        $result = $this->model->insert($user_id, $name, $title, $subtitle, $foto, $description, $status);
+        $result = $this->model->insert($user_id, $name, $number, $description);
 
         $this->db->trans_complete();
         $code = $result ? 200 : 500;
@@ -77,21 +70,11 @@ class Whatsapp extends Render_Controller
     public function update()
     {
         $id = $this->input->post("id");
-        $temp_foto = $this->input->post("temp_foto");
-        if ($_FILES['foto']['name'] != '') {
-            $foto = $this->uploadImage('foto');
-            $foto = $foto['data'];
-            $this->deleteFile($temp_foto);
-        } else {
-            $foto = $temp_foto;
-        }
         $name = $this->input->post("name");
-        $title = $this->input->post("title");
-        $subtitle = $this->input->post("subtitle");
-        $status = $this->input->post("status");
+        $number = $this->input->post("number");
         $description = $this->input->post("description");
         $user_id = $this->id;
-        $result = $this->model->update($id, $user_id, $name, $title, $subtitle, $foto, $description, $status);
+        $result = $this->model->update($id, $user_id, $name, $number, $description);
         $code = $result ? 200 : 500;
         $this->output_json(["data" => $result], $code);
     }
@@ -102,6 +85,13 @@ class Whatsapp extends Render_Controller
         $result = $this->model->delete($this->id, $id);
         $code = $result ? 200 : 500;
         $this->output_json(["data" => $result], $code);
+    }
+
+    public function activate()
+    {
+        $id = $this->input->post("id");
+        $result = $this->model->activate($this->id, $id);
+        $this->output_json(["data" => $result], 200);
     }
 
     public function cari()

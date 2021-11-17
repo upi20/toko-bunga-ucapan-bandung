@@ -68,9 +68,4 @@ $route['stylesheets/contents/(:any).js'] = 'loader/stylesheets_contents/$1';
 $route['stylesheets/contents/(:any)/(:any).js'] = 'loader/stylesheets_contents/$1/$2';
 $route['stylesheets/contents/(:any)/(:any)/(:any).js'] = 'loader/stylesheets_contents/$1/$2/$3';
 
-$route['data-master/kategori-warung']   = 'data-master/kategoriWarung';
-$route['data-master/kategori-produk']   = 'data-master/kategoriProduk';
-$route['data-master/satuan-harga']      = 'data-master/satuanHarga';
-
-$route['stok/masuk']      = 'stok/masuk/listMasuk';
-$route['stok/keluar']      = 'stok/keluar/listKeluar';
+$route['admin']      = 'admin/login';

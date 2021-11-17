@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class SliderModel extends Render_Model
+class WhatsappModel extends Render_Model
 {
     public function getAllData($draw = null, $show = null, $start = null, $cari = null, $order = null)
     {
@@ -10,8 +10,9 @@ class SliderModel extends Render_Model
         $this->db->select("a.*,
         IF(a.status = '0' , 'Tidak Aktif', IF(a.status = '1' , 'Aktif', 'Tidak Diketahui')) as status_str
         ");
-        $this->db->from("home_slider a");
+        $this->db->from("whatsapp a");
         $this->db->where('a.status <>', 3);
+        $this->db->order_by('a.status', 'desc');
 
         // order by
         if ($order['order'] != null) {
@@ -33,8 +34,7 @@ class SliderModel extends Render_Model
         if ($cari != null) {
             $this->db->where("(
                 a.name LIKE '%$cari%' or
-                a.title LIKE '%$cari%' or
-                a.subtitle LIKE '%$cari%' or
+                a.number LIKE '%$cari%' or
                 a.description LIKE '%$cari%' or
                 IF(a.status = '0' , 'Tidak Aktif', IF(a.status = '1' , 'Aktif', 'Tidak Diketahui')) LIKE '%$cari%'
             )");
@@ -49,44 +49,43 @@ class SliderModel extends Render_Model
         return $result;
     }
 
-    public function insert($user_id, $name, $title, $subtitle, $foto, $description, $status)
+    public function insert($user_id, $name, $number, $description)
     {
+        $status = $this->db->select('count(*) as found')->from('whatsapp')->where('status', 1)->get()->row();
+        $status = isset($status->found) ? $status->found : 0;
+        $status = $status > 0 ? 0 : 1;
+
         $data = [
             'name' => $name,
-            'title' => $title,
-            'subtitle' => $subtitle,
+            'number' => $number,
             'description' => $description,
             'status' => $status,
-            'foto' => $foto,
             'created_by' => $user_id,
         ];
         // Insert users
-        $execute = $this->db->insert('home_slider', $data);
+        $execute = $this->db->insert('whatsapp', $data);
         $execute = $this->db->insert_id();
         return $execute;
     }
 
-    public function update($id, $user_id, $name, $title, $subtitle, $foto, $description, $status)
+    public function update($id, $user_id, $name,  $number,  $description)
     {
         $data = [
             'name' => $name,
-            'title' => $title,
-            'subtitle' => $subtitle,
+            'number' => $number,
             'description' => $description,
-            'status' => $status,
-            'foto' => $foto,
             'updated_by' => $user_id,
         ];
         // Update users
         $execute = $this->db->where('id', $id);
-        $execute = $this->db->update('home_slider', $data);
+        $execute = $this->db->update('whatsapp', $data);
         return  $execute;
     }
 
     public function delete($user_id, $id)
     {
         // Delete users
-        $exe = $this->db->where('id', $id)->update('home_slider', [
+        $exe = $this->db->where('id', $id)->update('whatsapp', [
             'status' => 3,
             'deleted_by' => $user_id,
             'deleted_at' => Date("Y-m-d H:i:s", time())
@@ -97,8 +96,18 @@ class SliderModel extends Render_Model
     public function getList()
     {
         return $this->db->select('id, nama as text')
-            ->from('home_slider')
+            ->from('whatsapp')
             ->where('status', 1)
             ->get()->result_array();
+    }
+
+    public function activate($user_id, $id)
+    {
+        $this->db->where('id', $id)->update('whatsapp', ['status' => 1, 'updated_by' => $user_id]);
+        $this->db
+            ->where('id <>', $id)
+            ->where('status', 1)
+            ->where('status <>', 3)
+            ->update('whatsapp', ['status' => 0, 'updated_by' => $user_id]);
     }
 }
