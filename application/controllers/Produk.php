@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Home extends Render_Controller
+class Produk extends Render_Controller
 {
 
 	public function index()

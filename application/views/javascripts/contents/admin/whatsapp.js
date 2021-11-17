@@ -16,7 +16,11 @@ $(function () {
       "columns": [
         { "data": null },
         { "data": "name" },
-        { "data": "number" },
+        {
+          "data": "number", render(data, type, full, meta) {
+            return `+62${data}`;
+          }
+        },
         { "data": "description" },
         {
           "data": "status", render(data, type, full, meta) {

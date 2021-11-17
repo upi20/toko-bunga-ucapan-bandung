@@ -161,6 +161,65 @@ $(() => {
 			},
 
 		},
+		frontMenu:
+		{
+
+			detail(id) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>admin/menu/getDataDetail',
+					data:
+					{
+						id: id
+					}
+				})
+			},
+
+			insert(menu_menu_id, nama, index, url, keterangan, status) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>admin/menu/insert',
+					data:
+					{
+						menu_menu_id: menu_menu_id,
+						nama: nama,
+						index: index,
+						url: url,
+						keterangan: keterangan,
+						status: status
+					}
+				})
+			},
+
+			update(id, menu_menu_id, nama, index, url, keterangan, status) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>admin/menu/update',
+					data:
+					{
+						id: id,
+						menu_menu_id: menu_menu_id,
+						nama: nama,
+						index: index,
+						url: url,
+						keterangan: keterangan,
+						status: status
+					}
+				})
+			},
+
+			delete(id) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>admin/menu/delete',
+					data:
+					{
+						id: id
+					}
+				})
+			},
+
+		},
 		pengaturanHakAkses:
 		{
 

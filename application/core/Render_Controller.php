@@ -52,6 +52,9 @@ class Render_Controller extends CI_Controller
 			case 'admin':
 				$navigation = $this->navigationHtml($this->default->menu());
 				break;
+			case 'front':
+				$navigation = $this->navFront();
+				break;
 		}
 		$data = array(
 			// Application
@@ -106,20 +109,6 @@ class Render_Controller extends CI_Controller
 		$result 				= $this->plugin->load_plugins($this->plugins);
 		$this->plugin_styles 	= $result['styles'];
 		$this->plugin_scripts 	= $result['scripts'];
-	}
-
-
-	function __construct()
-	{
-		parent::__construct();
-
-		$this->app_name 		= $this->config->item('app_name');
-		$this->copyright 		= $this->config->item('copyright');
-		$this->page_setting 	= $this->config->item('page_setting');
-		$this->page_nav 		= $this->config->item('page_nav');
-		$this->template_type 	= $this->config->item('template_type');
-
-		$this->load->library('plugin');
 	}
 
 	private function navigationHtml($navigation)
@@ -342,5 +331,120 @@ class Render_Controller extends CI_Controller
 			}
 		}
 		return $res_foto;
+	}
+
+
+	public function navFront()
+	{
+		$result = $this->getNavArray();
+		if (empty($result)) {
+			return '';
+		}
+
+		$li = '';
+		foreach ($result as $res) {
+			if ($res['have_child']) {
+				$li .= $this->haveChildHtml($res);
+			} else {
+				$li .= $this->navHtml($res);
+			}
+		}
+
+		return $li;
+	}
+
+	private function haveChildHtml($data)
+	{
+		$child_html = '';
+		foreach ($data['child'] as $child) {
+			$child_html .= '<li><a ' . ($child['active'] ? 'class="active"' : '') . ' href="' . $child['url'] . '">' . $child['nama'] . '</a></li>';
+		}
+		return '
+			<li>
+				<a ' . ($data['active'] ? 'class="active"' : '') . ' href="' . $data['url'] . '">
+					<span class="menu-text">' . $data['nama'] . '</span>
+					<i class="fa fa-angle-down"></i>
+				</a>
+				<ul class="dropdown-submenu dropdown-hover">
+				' . $child_html . '
+				</ul>
+			</li>
+		';
+	}
+
+	private function navHtml($data)
+	{
+		return '     <li>
+                  <a ' . ($data['active'] ? 'class="active"' : '') . ' href="' . $data['url'] . '">
+                    <span class="menu-text">' . $data['nama'] . '</span>
+                  </a>
+                </li>';
+	}
+
+	private function getNavArray()
+	{
+		$parrents = $this->db->select('menu_id as id, menu_nama as nama, menu_url as url')
+			->from('menu_front')
+			->where('menu_menu_id', 0)
+			->where('menu_status', 'Aktif')
+			->get()->result_array();
+
+		if ($parrents == null) {
+			return [];
+		}
+
+		$now = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+		$now .= "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+		$rows = [];
+		foreach ($parrents as $parrent) {
+			$parrent['url'] = $parrent['url'] == '#' ? $parrent['url'] : base_url($parrent['url']);
+			$parrent_active = $parrent['url'] == $now;
+			$child_active = false;
+			$child = $this->getChild($parrent['id']);
+			$child_rows = [];
+			$have_child = false;
+			if (is_array($child)) {
+				foreach ($child as $c) {
+					$c['url'] = base_url($c['url']);
+					$have_child = true;
+					$active = $c['url'] == $now;
+					$child_rows[] = array_merge($c, ['active' => $active]);
+					if ($active) {
+						$child_active = true;
+					}
+				}
+			}
+			$rows[] = array_merge($parrent, [
+				'child' => $child_rows,
+				'active' => ($parrent_active || $child_active),
+				'have_child' => $have_child
+			]);
+		}
+		return $rows;
+	}
+
+	private function getChild($id)
+	{
+		$child = $this->db->select('menu_id as id, menu_nama as nama, menu_url as url')
+			->from('menu_front')
+			->where('menu_menu_id', $id)
+			->where('menu_status', 'Aktif')
+			->get()->result_array();
+		return $child;
+	}
+
+
+	function __construct()
+	{
+		parent::__construct();
+
+		$this->app_name 		= $this->config->item('app_name');
+		$this->copyright 		= $this->config->item('copyright');
+		$this->page_setting 	= $this->config->item('page_setting');
+		$this->page_nav 		= $this->config->item('page_nav');
+		$this->template_type 	= $this->config->item('template_type');
+
+		$this->load->library('plugin');
 	}
 }

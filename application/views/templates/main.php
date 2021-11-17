@@ -117,98 +117,14 @@
             </div>
           </div>
           <div class="col-lg-8 d-none d-lg-flex justify-content-center col-custom">
+
             <nav class="main-nav d-none d-lg-flex">
               <ul class="nav">
-                <li>
-                  <a class="active" href="index.html">
-                    <span class="menu-text"> Home</span>
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul class="dropdown-submenu dropdown-hover">
-                    <li><a class="active" href="index.html">Home Page - 1</a></li>
-                    <li><a href="index-2.html">Home Page - 2</a></li>
-                    <li><a href="index-3.html">Home Page - 3</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="shop.html">
-                    <span class="menu-text">Shop</span>
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <div class="mega-menu dropdown-hover">
-                    <div class="menu-colum">
-                      <ul>
-                        <li><span class="mega-menu-text">Shop</span></li>
-                        <li><a href="shop.html">Shop Left Sidebar</a></li>
-                        <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                        <li><a href="shop-list-left.html">Shop List Left Sidebar</a></li>
-                        <li><a href="shop-list-right.html">Shop List Right Sidebar</a></li>
-                        <li><a href="shop-fullwidth.html">Shop Full Width</a></li>
-                      </ul>
-                    </div>
-                    <div class="menu-colum">
-                      <ul>
-                        <li><span class="mega-menu-text">Product</span></li>
-                        <li><a href="product-details.html">Single Product</a></li>
-                        <li><a href="variable-product-details.html">Variable Product</a></li>
-                        <li><a href="external-product-details.html">External Product</a></li>
-                        <li><a href="gallery-product-details.html">Gallery Product</a></li>
-                        <li><a href="countdown-product-details.html">Countdown Product</a></li>
-                      </ul>
-                    </div>
-                    <div class="menu-colum">
-                      <ul>
-                        <li><span class="mega-menu-text">Others</span></li>
-                        <li><a href="error-404.html">Error 404</a></li>
-                        <li><a href="compare.html">Compare Page</a></li>
-                        <li><a href="cart.html">Cart Page</a></li>
-                        <li><a href="checkout.html">Checkout Page</a></li>
-                        <li><a href="wishlist.html">Wishlist Page</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <a href="blog-details-fullwidth.html">
-                    <span class="menu-text"> Blog</span>
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul class="dropdown-submenu dropdown-hover">
-                    <li><a href="blog.html">Blog Left Sidebar</a></li>
-                    <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                    <li><a href="blog-list-fullwidth.html">Blog List Fullwidth</a></li>
-                    <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                    <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                    <li><a href="blog-grid-fullwidth.html">Blog Grid Fullwidth</a></li>
-                    <li><a href="blog-details-sidebar.html">Blog Details Sidebar</a></li>
-                    <li><a href="blog-details-fullwidth.html">Blog Details Fullwidth</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="menu-text"> Pages</span>
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul class="dropdown-submenu dropdown-hover">
-                    <li><a href="contact-us.html">Contact</a></li>
-                    <li><a href="my-account.html">My Account</a></li>
-                    <li><a href="frequently-questions.html">FAQ</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="about-us.html">
-                    <span class="menu-text"> About Us</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="contact-us.html">
-                    <span class="menu-text">Contact Us</span>
-                  </a>
-                </li>
+                <?= $navigation; ?>
               </ul>
             </nav>
+
+
           </div>
           <div class="col-lg-2 col-md-6 col-6 col-custom">
             <div class="header-right-area main-nav">

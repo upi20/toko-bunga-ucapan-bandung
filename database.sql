@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 17, 2021 at 04:43 PM
+-- Generation Time: Nov 17, 2021 at 10:14 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -198,7 +198,42 @@ INSERT INTO `menu` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `
 (121, 119, 'Kelebihan', '-', 2, 'far fa-circle', 'admin/home/excess', 'Aktif', '2021-11-15 14:52:32'),
 (122, 119, 'Penawaran', 'Penawaran', 4, 'far fa-circle', 'admin/home/offer', 'Aktif', '2021-11-15 14:53:56'),
 (123, 119, 'Testimoni', '-', 5, 'far fa-circle', 'admin/home/testimoni', 'Aktif', '2021-11-15 14:54:34'),
-(124, 0, 'WhatsApp', 'No whatsapp untuk produk', 3, 'fab fa-whatsapp', 'admin/whatsapp', 'Aktif', '2021-11-17 15:39:07');
+(124, 0, 'WhatsApp', 'No whatsapp untuk produk', 3, 'fab fa-whatsapp', 'admin/whatsapp', 'Aktif', '2021-11-17 15:39:07'),
+(125, 0, 'Home', '-', 1, '-', '/', 'Aktif', '2021-11-17 19:03:12'),
+(126, 0, 'Navigasi', '-', 4, 'fas fa-location-arrow', 'admin/menu', 'Aktif', '2021-11-17 19:09:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_front`
+--
+
+CREATE TABLE `menu_front` (
+  `menu_id` int(11) NOT NULL,
+  `menu_menu_id` int(11) NOT NULL,
+  `menu_nama` varchar(50) NOT NULL,
+  `menu_keterangan` text DEFAULT NULL,
+  `menu_index` int(11) NOT NULL,
+  `menu_icon` varchar(50) DEFAULT NULL,
+  `menu_url` varchar(100) NOT NULL,
+  `menu_status` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `menu_front`
+--
+
+INSERT INTO `menu_front` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `menu_index`, `menu_icon`, `menu_url`, `menu_status`, `created_at`) VALUES
+(1, 0, 'Home', 'Halaman utama', 1, '-', '/', 'Aktif', '2021-11-17 19:06:19'),
+(2, 0, 'BUNGA PAPAN', '', 2, NULL, '#', 'Aktif', '2021-11-17 19:18:47'),
+(3, 2, 'BUNGA WEDDING', '', 1, NULL, '/produk?category=bunga+wedding', 'Aktif', '2021-11-17 19:19:45'),
+(4, 2, 'BUNGA SELAMAT', '-', 2, NULL, '/produk?category=bunga+selamat', 'Aktif', '2021-11-17 19:20:20'),
+(5, 2, 'BUNGA DUKA', '', 3, NULL, '/produk?category=bunga+duka', 'Aktif', '2021-11-17 19:20:57'),
+(7, 0, 'BOX', '', 3, NULL, '/produk?category=box', 'Aktif', '2021-11-17 19:22:44'),
+(8, 0, 'STANDING FLOWER', '', 4, NULL, '/produk?category=standing-flower', 'Aktif', '2021-11-17 19:23:31'),
+(9, 0, 'BUNGA MEJA', '', 5, NULL, '/produk?category=bunga-meja', 'Aktif', '2021-11-17 19:26:16'),
+(10, 0, 'BUNGA BOUQUET', '', 6, NULL, '/produk?category=bunga+bouquet', 'Aktif', '2021-11-17 19:26:48');
 
 -- --------------------------------------------------------
 
@@ -265,7 +300,14 @@ INSERT INTO `product_categories` (`id`, `name`, `slug`, `foto`, `description`, `
 (2, 'Birthday Boqutets', 'birthday-boqutets', '', '', 1, 1, NULL, NULL, '2021-11-14 23:38:33', NULL, NULL),
 (3, 'Funeral Flowers', 'funeral-flowers', '', '', 1, 1, NULL, NULL, '2021-11-14 23:38:53', NULL, NULL),
 (4, 'Interior Decor', 'interior-decor', '', '', 1, 1, NULL, NULL, '2021-11-14 23:39:02', NULL, NULL),
-(5, 'Custom Orders', 'custom-orders', '', '', 1, 1, NULL, NULL, '2021-11-14 23:39:11', NULL, NULL);
+(5, 'Custom Orders', 'custom-orders', '', '', 1, 1, NULL, NULL, '2021-11-14 23:39:11', NULL, NULL),
+(7, 'STANDING FLOWER', 'standing-flower', '', '', 1, 1, NULL, NULL, '2021-11-18 02:24:22', NULL, NULL),
+(8, 'BUNGA MEJA', 'bunga-meja', '', '', 1, 1, NULL, NULL, '2021-11-18 02:24:33', NULL, NULL),
+(9, 'HAND BOUQUET', 'hand-bouquet', '', '', 1, 1, NULL, NULL, '2021-11-18 02:24:42', NULL, NULL),
+(10, 'BUNGA PAPAN', 'bunga-papan', '', '', 1, 1, NULL, NULL, '2021-11-18 02:24:56', NULL, NULL),
+(11, 'BUNGA WEDDING', 'bunga-wedding', '', '', 1, 1, NULL, NULL, '2021-11-18 02:25:11', NULL, NULL),
+(12, 'BUNGA SELAMAT', 'bunga-selamat', '', '', 1, 1, NULL, NULL, '2021-11-18 02:25:23', NULL, NULL),
+(13, 'BUNGA DUKA', 'bunga-duka', '', '', 1, 1, NULL, NULL, '2021-11-18 02:25:30', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -440,7 +482,8 @@ INSERT INTO `role_aplikasi` (`rola_id`, `rola_menu_id`, `rola_lev_id`, `created_
 (249, 121, 1, '2021-11-15 14:55:55'),
 (250, 122, 1, '2021-11-15 14:55:56'),
 (251, 123, 1, '2021-11-15 14:55:56'),
-(252, 124, 1, '2021-11-17 15:39:14');
+(252, 124, 1, '2021-11-17 15:39:14'),
+(253, 126, 1, '2021-11-17 19:09:13');
 
 -- --------------------------------------------------------
 
@@ -461,27 +504,6 @@ CREATE TABLE `role_users` (
 
 INSERT INTO `role_users` (`role_id`, `role_user_id`, `role_lev_id`, `created_at`) VALUES
 (1, 1, 1, '2020-06-18 09:39:26');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `template_navigation`
---
-
-CREATE TABLE `template_navigation` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `parrent_id` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `status` int(11) NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `deleted_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
-  `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -534,6 +556,15 @@ CREATE TABLE `whatsapp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `whatsapp`
+--
+
+INSERT INTO `whatsapp` (`id`, `name`, `description`, `number`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Isep Lutpi Nur', '123', '85798132505', 0, 1, 1, NULL, '2021-11-18 00:58:52', '2021-11-18 01:15:48', NULL),
+(4, 'Nomor 2', 'Tes dua', '858578996321', 1, 1, 1, NULL, '2021-11-18 01:05:30', '2021-11-18 02:38:49', NULL),
+(5, 'no 3', '', '123', 0, 1, 1, NULL, '2021-11-18 01:15:56', '2021-11-18 02:38:49', NULL);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -583,6 +614,12 @@ ALTER TABLE `level`
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
+  ADD PRIMARY KEY (`menu_id`);
+
+--
+-- Indexes for table `menu_front`
+--
+ALTER TABLE `menu_front`
   ADD PRIMARY KEY (`menu_id`);
 
 --
@@ -668,15 +705,6 @@ ALTER TABLE `role_users`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Indexes for table `template_navigation`
---
-ALTER TABLE `template_navigation`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `created_by` (`created_by`),
-  ADD KEY `updated_by` (`updated_by`),
-  ADD KEY `deleted_by` (`deleted_by`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -724,7 +752,13 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+
+--
+-- AUTO_INCREMENT for table `menu_front`
+--
+ALTER TABLE `menu_front`
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -736,7 +770,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_category_detail`
@@ -772,19 +806,13 @@ ALTER TABLE `product_reviews`
 -- AUTO_INCREMENT for table `role_aplikasi`
 --
 ALTER TABLE `role_aplikasi`
-  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
+  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
 
 --
 -- AUTO_INCREMENT for table `role_users`
 --
 ALTER TABLE `role_users`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
-
---
--- AUTO_INCREMENT for table `template_navigation`
---
-ALTER TABLE `template_navigation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -796,7 +824,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `whatsapp`
 --
 ALTER TABLE `whatsapp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -895,14 +923,6 @@ ALTER TABLE `product_reviews`
   ADD CONSTRAINT `product_reviews_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `product_reviews_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `product_reviews_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `template_navigation`
---
-ALTER TABLE `template_navigation`
-  ADD CONSTRAINT `template_navigation_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `template_navigation_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `template_navigation_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `whatsapp`
