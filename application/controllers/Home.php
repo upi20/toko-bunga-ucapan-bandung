@@ -31,6 +31,7 @@ class Home extends Render_Controller
 		$this->data['testimoni_head'] = $this->key_value->get($this->key_testimoni_head);
 		$this->data['testimoni_body'] = $this->model->getTestimoni();
 		$this->title = "Home";
+		$this->content = 'front/home';
 		$this->render();
 	}
 
