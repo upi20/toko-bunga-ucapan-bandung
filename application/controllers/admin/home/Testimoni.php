@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Testimoni extends Render_Controller
 {
-    private $key_head = 'testimoni';
     public function index()
     {
         // Page Settings
@@ -20,7 +19,7 @@ class Testimoni extends Render_Controller
         $this->breadcrumb_4_url = base_url() . 'home/testimoni';
         // content
         $this->content      = 'admin/home/testimoni';
-        $this->data['head'] = $this->key_value->get($this->key_head);
+        $this->data['head'] = $this->key_value->get($this->key_testimoni_head);
 
         // Send data to view
         $this->render();
@@ -112,7 +111,7 @@ class Testimoni extends Render_Controller
         $head_value1 = $this->input->post("head_value1", false);
         $head_value2 = $this->input->post("head_value2", false);
         // update
-        $head = $this->key_value->set($this->key_head, $head_value1, $head_value2);
+        $head = $this->key_value->set($this->key_testimoni_head, $head_value1, $head_value2);
 
         $this->output_json($head);
     }

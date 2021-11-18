@@ -2,15 +2,27 @@
   <div class="card-header">
     <div class="d-flex justify-content-between w-100">
       <h3 class="card-title">List Product</h3>
-      <div>
-        <!-- <a href="<?= base_url() ?>admin/CalonKetua/export_pdf" class="btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> Export PDF</a>
-        <a href="<?= base_url() ?>admin/CalonKetua/export_excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> Export Excel</a> -->
-        <a class="btn btn-primary btn-sm" href="<?= base_url() ?>admin/product/item/create"><i class="fa fa-plus"></i> Tambah</a>
-      </div>
     </div>
   </div>
   <!-- /.card-header -->
   <div class="card-body">
+    <form action="" id="fhead">
+      <div class="form-group">
+        <label for="head_value1">Judul</label>
+        <input type="text" class="form-control" id="head_value1" name="head_value1" placeholder="Judul" value="<?= $head['value1'] ?>" />
+      </div>
+
+      <div class="form-group">
+        <label for="head_value2">Sub Judul</label>
+        <input type="text" class="form-control" id="head_value2" name="head_value2" placeholder="Sub Judul" value="<?= $head['value2'] ?>" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-xs"><i class="fa fa-save"></i> Simpan</button>
+    </form>
+    <hr>
+    <div class="d-flex justify-content-between align-items-center my-2">
+      <label for="dt_basic">List Data</label>
+      <a class="btn btn-primary btn-xs" href="<?= base_url() ?>admin/product/item/create"><i class="fa fa-plus"></i> Tambah</a>
+    </div>
     <table id="dt_basic_v2" class="table table-bordered table-striped table-hover">
       <thead>
         <tr>

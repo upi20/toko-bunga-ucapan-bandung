@@ -18,6 +18,7 @@ class Item extends Render_Controller
     $this->breadcrumb_4 = 'Master';
     $this->breadcrumb_4_url = base_url() . 'admin/product/item';
     $this->content      = 'admin/product/list';
+    $this->data['head'] = $this->key_value->get($this->key_product_head);
 
     // Send data to view
     $this->render();
@@ -87,6 +88,27 @@ class Item extends Render_Controller
     }
   }
 
+  public function update_head()
+  {
+    $temp_foto = $this->input->post("temp_foto");
+    if (isset($_FILES['foto'])) {
+      if ($_FILES['foto']['name'] != '') {
+        $foto = $this->uploadImage('foto');
+        $foto = $foto['data'];
+        $this->deleteFile($temp_foto);
+      } else {
+        $foto = $temp_foto;
+      }
+    }
+
+    // get post
+    $head_value1 = $this->input->post("head_value1", false);
+    $head_value2 = $this->input->post("head_value2", false);
+    // update
+    $head = $this->key_value->set($this->key_product_head, $head_value1, $head_value2);
+
+    $this->output_json($head);
+  }
 
   public function create($id = null)
   {
@@ -635,6 +657,7 @@ class Item extends Render_Controller
     $this->id = $this->session->userdata('data')['id'];
     $this->photo_path = './files/product/pictures/';
     $this->load->model("admin/product/ItemModel", 'model');
+    $this->load->model("admin/KeyValueModel", 'key_value');
     $this->default_template = 'templates/dashboard';
     $this->load->library('plugin');
     $this->load->helper('url');

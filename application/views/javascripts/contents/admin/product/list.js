@@ -1,5 +1,30 @@
 const data_calon = new Map();
 $(function () {
+  $("#fhead").submit(function (ev) {
+    ev.preventDefault();
+    const form = new FormData(this);
+    $.LoadingOverlay("show");
+    $.ajax({
+      method: 'post',
+      url: `<?= base_url() ?>admin/product/item/update_head`,
+      data: form,
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done((data) => {
+      Toast.fire({
+        icon: 'success',
+        title: 'Data berhasil disimpan'
+      })
+    }).fail(($xhr) => {
+      Toast.fire({
+        icon: 'error',
+        title: 'Data gagal disimpan'
+      })
+    }).always(() => {
+      $.LoadingOverlay("hide");
+    })
+  });
   function dynamic_v2(datas = { partner: null }) {
     let filter = null;
     if (datas.partner != null) {

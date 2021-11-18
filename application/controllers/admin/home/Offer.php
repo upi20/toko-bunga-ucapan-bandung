@@ -3,18 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Offer extends Render_Controller
 {
-    private $key_head = 'offer';
-    private $key_body = 'offer_decritpion';
-    private $key_head2 = 'offer2';
-    private $key_body2 = 'offer_decritpion2';
     public function index()
     {
         // get title
-        $this->data['head'] = $this->model->get($this->key_head);
-        $this->data['body'] = $this->model->get($this->key_body);
+        $this->data['head'] = $this->model->get($this->key_offer_head);
+        $this->data['body'] = $this->model->get($this->key_offer_body);
 
-        $this->data['head2'] = $this->model->get($this->key_head2);
-        $this->data['body2'] = $this->model->get($this->key_body2);
+        $this->data['head2'] = $this->model->get($this->key_offer_head2);
+        $this->data['body2'] = $this->model->get($this->key_offer_body2);
 
 
         // get fill
@@ -60,8 +56,8 @@ class Offer extends Render_Controller
         $body_value2 = $this->input->post("body_value2", false);
 
         // update
-        $head = $this->model->set($this->key_head, $head_value1, $head_value2);
-        $body = $this->model->set($this->key_body, $body_value1, $body_value2);
+        $head = $this->model->set($this->key_offer_head, $head_value1, $head_value2);
+        $body = $this->model->set($this->key_offer_body, $body_value1, $body_value2);
 
         // result
         $result = $head && $body;
@@ -89,8 +85,8 @@ class Offer extends Render_Controller
         $body_value2 = $this->input->post("body_value2", false);
 
         // update
-        $head = $this->model->set($this->key_head2, $head_value1, $head_value2);
-        $body = $this->model->set($this->key_body2, $body_value1, $body_value2);
+        $head = $this->model->set($this->key_offer_head2, $head_value1, $head_value2);
+        $body = $this->model->set($this->key_offer_body2, $body_value1, $body_value2);
 
         // result
         $result = $head && $body;

@@ -34,6 +34,14 @@ class Render_Controller extends CI_Controller
 	protected $photo_path = './files/';
 	protected $navigation_type = 'admin';
 
+	// key value
+	protected $key_product_head = 'product';
+	protected $key_testimoni_head = 'testimoni';
+	protected $key_offer_head = 'offer';
+	protected $key_offer_body = 'offer_decritpion';
+	protected $key_offer_head2 = 'offer2';
+	protected $key_offer_body2 = 'offer_decritpion2';
+
 
 	protected function preRender()
 	{
