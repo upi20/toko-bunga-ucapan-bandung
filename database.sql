@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 19, 2021 at 08:38 AM
+-- Generation Time: Nov 19, 2021 at 02:18 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -48,6 +48,32 @@ INSERT INTO `home_excess` (`id`, `foto`, `title`, `description`, `column`, `stat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `home_footer_list`
+--
+
+CREATE TABLE `home_footer_list` (
+  `id` int(11) NOT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `home_footer_list`
+--
+
+INSERT INTO `home_footer_list` (`id`, `link`, `name`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'produk?category=standing-flower', 'Standing flower', 1, 1, 1, NULL, '2021-11-19 18:35:18', '2021-11-19 19:57:59', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `home_slider`
 --
 
@@ -75,6 +101,37 @@ INSERT INTO `home_slider` (`id`, `foto`, `name`, `title`, `subtitle`, `descripti
 (1, '59a901025be8f30dac7575dbaccfb89d.jpg', 'Slider 1', 'Welcome', 'Toko Bunga Ucapan Bandung', '', 1, 1, 1, NULL, '2021-11-17 20:22:03', '2021-11-19 10:57:59', NULL),
 (2, 'e990707bc479e10e60a9fa7d17756a8d.jpg', 'afdsaf', 'asdfasdf', 'sasdfasdf', 'safasdf', 3, 1, NULL, 1, '2021-11-17 20:23:42', '2021-11-17 20:23:47', '2021-11-17 20:23:47'),
 (3, '9d18e4d337bdd0b3254192fddabbb8d4.jpg', 'Slider 2', 'Quality', 'Bunga Dengan Kualitas Terbaik', '', 1, 1, NULL, NULL, '2021-11-17 20:41:55', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `home_sosmed`
+--
+
+CREATE TABLE `home_sosmed` (
+  `id` int(11) NOT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `home_sosmed`
+--
+
+INSERT INTO `home_sosmed` (`id`, `icon`, `link`, `name`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'fa fa-facebook', 'http://facebook.com/iseplutpinur7', 'Facebook', 1, 1, 1, NULL, '2021-11-19 18:38:25', '2021-11-19 19:53:22', NULL),
+(3, 'fa fa-twitter', '#', 'Twitter', 1, 1, NULL, NULL, '2021-11-19 19:55:49', NULL, NULL),
+(4, 'fa fa-linkedin', '#', 'Linkedin', 1, 1, NULL, NULL, '2021-11-19 19:55:49', NULL, NULL),
+(5, 'fa fa-youtube', '#', 'Youtube', 1, 1, NULL, NULL, '2021-11-19 19:55:49', NULL, NULL),
+(6, 'fa fa-vimeo', '#', 'Vimeo', 1, 1, 1, NULL, '2021-11-19 19:55:49', '2021-11-19 20:11:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -128,6 +185,11 @@ CREATE TABLE `key_value` (
 --
 
 INSERT INTO `key_value` (`key`, `value1`, `value2`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+('footer_contact', 'Info Kontak', '                <address>123, ABC, Road ##, Main City, Your address goes here.<br>Phone: 01234 567\r\n                  890<br>Email: https://example.com</address>', 1, 1, NULL, '2021-11-19 17:52:48', '2021-11-19 18:47:06', NULL),
+('footer_copyright', 'Copyright © ${(new Date().getFullYear())} Toko Bunga Ucapan Bandung', NULL, 1, 1, NULL, '2021-11-19 17:52:48', '2021-11-19 18:46:33', NULL),
+('footer_descritpion', 'Kami menyediakan berbagai macam rangkaian bunga dengan design yang modern yang tentunya bisa anda lakukan costum baik ukuran atau jenis bunga', NULL, 1, 1, NULL, '2021-11-19 15:22:55', '2021-11-19 18:17:33', NULL),
+('footer_list_head', 'Menyediakan', NULL, 1, 1, NULL, '2021-11-19 17:52:48', '2021-11-19 18:52:33', NULL),
+('logo', '6fbe94da589c94255915300bf665782c.png', '4707ee8ba9fff6de51d74efbe5a35ee7.png', 1, 1, NULL, '2021-11-19 15:15:03', '2021-11-19 15:41:06', NULL),
 ('offer', 'Terlengkap Dan Terjangkau', 'Toko Bunga Ucapan Bandung', 1, 1, NULL, '2021-11-17 21:17:10', '2021-11-17 21:55:55', NULL),
 ('offer2', 'Terbaik Dan Terpercaya', 'TUNGGU APA LAGI', 1, 1, NULL, '2021-11-17 22:03:28', '2021-11-17 22:06:50', NULL),
 ('offer_decritpion', '<p><span class=\"fw-bold\">Toko Bunga Ucapan Bandung</span> merupakan salah satu toko bunga\r\n              terbaik di <span class=\"fw-bold\">Kota Bandung</span> dengan produk kami berbagai macam\r\n              karangan bunga dan rangkaian bunga seperti :\r\n            </p>\r\n            <br>\r\n            <div class=\"container\">\r\n              <ul style=\"list-style-type: disc;\">\r\n                <li>PAPAN BUNGA Single 2in1 Steroform</li>\r\n                <li>HANDBUQUET</li>\r\n                <li>BUQUET ( Meja, Standing, box )</li>\r\n                <li>SALIB, KRANS DUKA</li>\r\n                <li>Bunga Semat / kantong</li>\r\n                <li>Dekorasi Bahagia, Duka</li>\r\n                <li>Parcel Buah, Cookies</li>\r\n                <li>dll.</li>\r\n              </ul>\r\n            </div>\r\n\r\n            <br>\r\n            <p>Produk yang kami sediakan menggunakan bunga yang fresh dan bermacam warna yang bisa\r\n              disesuaikan untuk moment Anda. Selain itu kami juga menggunakan bunga buatan untuk pengganti\r\n              bunga asli agar karangan bunga Anda tidak cepat layu.</p>', NULL, 1, 1, NULL, '2021-11-17 21:17:10', '2021-11-17 21:56:15', NULL),
@@ -196,13 +258,14 @@ INSERT INTO `menu` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `
 (117, 118, 'Master', 'List daftar Produk', 1, 'far fa-circle', 'admin/product/item', 'Aktif', '2021-11-14 14:38:38'),
 (118, 0, 'Produk', '-', 1, 'fas fa-fan', '#', 'Aktif', '2021-11-14 14:36:41'),
 (119, 0, 'Home', 'Halaman Home', 2, 'fas fa-home', '#', 'Aktif', '2021-11-15 14:50:51'),
-(120, 119, 'Slider', '-', 1, 'far fa-circle', 'admin/home/slider', 'Aktif', '2021-11-15 14:51:28'),
-(121, 119, 'Kelebihan', '-', 2, 'far fa-circle', 'admin/home/excess', 'Aktif', '2021-11-15 14:52:32'),
-(122, 119, 'Penawaran', 'Penawaran', 4, 'far fa-circle', 'admin/home/offer', 'Aktif', '2021-11-15 14:53:56'),
-(123, 119, 'Testimoni', '-', 5, 'far fa-circle', 'admin/home/testimoni', 'Aktif', '2021-11-15 14:54:34'),
+(120, 119, 'Slider', '-', 3, 'far fa-circle', 'admin/home/slider', 'Aktif', '2021-11-15 14:51:28'),
+(121, 119, 'Kelebihan', '-', 4, 'far fa-circle', 'admin/home/excess', 'Aktif', '2021-11-15 14:52:32'),
+(122, 119, 'Penawaran', 'Penawaran', 5, 'far fa-circle', 'admin/home/offer', 'Aktif', '2021-11-15 14:53:56'),
+(123, 119, 'Testimoni', '-', 6, 'far fa-circle', 'admin/home/testimoni', 'Aktif', '2021-11-15 14:54:34'),
 (124, 0, 'WhatsApp', 'No whatsapp untuk produk', 3, 'fab fa-whatsapp', 'admin/whatsapp', 'Aktif', '2021-11-17 15:39:07'),
-(125, 0, 'Home', '-', 1, '-', '/', 'Aktif', '2021-11-17 19:03:12'),
-(126, 0, 'Navigasi', '-', 4, 'fas fa-location-arrow', 'admin/menu', 'Aktif', '2021-11-17 19:09:01');
+(126, 0, 'Navigasi', '-', 4, 'fas fa-location-arrow', 'admin/menu', 'Aktif', '2021-11-17 19:09:01'),
+(127, 119, 'Logo', '-', 1, 'far fa-circle', 'admin/home/logo', 'Aktif', '2021-11-19 08:05:37'),
+(128, 119, 'Footer', '-', 2, 'far fa-circle', 'admin/home/footer', 'Aktif', '2021-11-19 08:08:39');
 
 -- --------------------------------------------------------
 
@@ -227,7 +290,7 @@ CREATE TABLE `menu_front` (
 --
 
 INSERT INTO `menu_front` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `menu_index`, `menu_icon`, `menu_url`, `menu_status`, `created_at`) VALUES
-(1, 0, 'Home', 'Halaman utama', 1, '-', '/', 'Aktif', '2021-11-17 19:06:19'),
+(1, 0, 'Home', 'Halaman utama', 1, NULL, '/', 'Aktif', '2021-11-17 19:06:19'),
 (2, 0, 'BUNGA PAPAN', '', 2, NULL, '#', 'Aktif', '2021-11-17 19:18:47'),
 (3, 2, 'BUNGA WEDDING', '', 1, NULL, '/produk?category=bunga+wedding', 'Aktif', '2021-11-17 19:19:45'),
 (4, 2, 'BUNGA SELAMAT', '-', 2, NULL, '/produk?category=bunga+selamat', 'Aktif', '2021-11-17 19:20:20'),
@@ -526,7 +589,9 @@ INSERT INTO `role_aplikasi` (`rola_id`, `rola_menu_id`, `rola_lev_id`, `created_
 (250, 122, 1, '2021-11-15 14:55:56'),
 (251, 123, 1, '2021-11-15 14:55:56'),
 (252, 124, 1, '2021-11-17 15:39:14'),
-(253, 126, 1, '2021-11-17 19:09:13');
+(253, 126, 1, '2021-11-17 19:09:13'),
+(254, 127, 1, '2021-11-19 08:07:42'),
+(255, 128, 1, '2021-11-19 08:08:51');
 
 -- --------------------------------------------------------
 
@@ -621,9 +686,27 @@ ALTER TABLE `home_excess`
   ADD KEY `deleted_by` (`deleted_by`);
 
 --
+-- Indexes for table `home_footer_list`
+--
+ALTER TABLE `home_footer_list`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
 -- Indexes for table `home_slider`
 --
 ALTER TABLE `home_slider`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
+
+--
+-- Indexes for table `home_sosmed`
+--
+ALTER TABLE `home_sosmed`
   ADD PRIMARY KEY (`id`),
   ADD KEY `created_by` (`created_by`),
   ADD KEY `updated_by` (`updated_by`),
@@ -775,10 +858,22 @@ ALTER TABLE `home_excess`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `home_footer_list`
+--
+ALTER TABLE `home_footer_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `home_slider`
 --
 ALTER TABLE `home_slider`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `home_sosmed`
+--
+ALTER TABLE `home_sosmed`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `home_testimonials`
@@ -796,7 +891,7 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- AUTO_INCREMENT for table `menu_front`
@@ -850,7 +945,7 @@ ALTER TABLE `product_reviews`
 -- AUTO_INCREMENT for table `role_aplikasi`
 --
 ALTER TABLE `role_aplikasi`
-  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
+  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
 
 --
 -- AUTO_INCREMENT for table `role_users`
@@ -883,12 +978,28 @@ ALTER TABLE `home_excess`
   ADD CONSTRAINT `home_excess_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
+-- Constraints for table `home_footer_list`
+--
+ALTER TABLE `home_footer_list`
+  ADD CONSTRAINT `home_footer_list_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_footer_list_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_footer_list_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
 -- Constraints for table `home_slider`
 --
 ALTER TABLE `home_slider`
   ADD CONSTRAINT `home_slider_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `home_slider_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `home_slider_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `home_sosmed`
+--
+ALTER TABLE `home_sosmed`
+  ADD CONSTRAINT `home_sosmed_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_sosmed_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `home_sosmed_ibfk_4` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `home_testimonials`

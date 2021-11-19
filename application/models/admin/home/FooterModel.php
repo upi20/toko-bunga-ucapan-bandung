@@ -86,7 +86,7 @@ class FooterModel extends Render_Model
     $this->db->select("a.*,
         IF(a.status = '0' , 'Tidak Aktif', IF(a.status = '1' , 'Aktif', 'Tidak Diketahui')) as status_str
         ");
-    $this->db->from("home_footer_sosmed a");
+    $this->db->from("home_sosmed a");
     $this->db->where('a.status <>', 3);
 
     // order by
@@ -110,6 +110,7 @@ class FooterModel extends Render_Model
       $this->db->where("(
                 a.name LIKE '%$cari%' or
                 a.link LIKE '%$cari%' or
+                a.icon LIKE '%$cari%' or
                 a.name LIKE '%$cari%' or
                 IF(a.status = '0' , 'Tidak Aktif', IF(a.status = '1' , 'Aktif', 'Tidak Diketahui')) LIKE '%$cari%'
             )");
@@ -133,7 +134,7 @@ class FooterModel extends Render_Model
       'icon' => $icon,
       'created_by' => $user_id,
     ];
-    $execute = $this->db->insert('home_footer_sosmed', $data);
+    $execute = $this->db->insert('home_sosmed', $data);
     $execute = $this->db->insert_id();
     return $execute;
   }
@@ -149,13 +150,13 @@ class FooterModel extends Render_Model
       'updated_at' => Date("Y-m-d H:i:s", time()),
     ];
     $execute = $this->db->where('id', $id);
-    $execute = $this->db->update('home_footer_sosmed', $data);
+    $execute = $this->db->update('home_sosmed', $data);
     return  $execute;
   }
 
   public function sosmed_delete($id)
   {
-    $exe = $this->db->where('id', $id)->delete('home_footer_sosmed');
+    $exe = $this->db->where('id', $id)->delete('home_sosmed');
     return $exe;
   }
 }

@@ -204,57 +204,35 @@
                   <img src="<?= base_url("files/logo/{$front['logo']['value2']}") ?>" alt="Logo Image">
                 </a>
               </div>
-              <p class="desc-content"><?= $front['footer_description']['value1'] ?></p>
+              <p class="desc-content"><?= $front['description']['value1'] ?></p>
               <div class="social-links">
                 <ul class="d-flex">
-                  <li>
-                    <a class="rounded-circle" href="#" title="Facebook">
-                      <i class="fa fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="rounded-circle" href="#" title="Twitter">
-                      <i class="fa fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="rounded-circle" href="#" title="Linkedin">
-                      <i class="fa fa-linkedin"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="rounded-circle" href="#" title="Youtube">
-                      <i class="fa fa-youtube"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="rounded-circle" href="#" title="Vimeo">
-                      <i class="fa fa-vimeo"></i>
-                    </a>
-                  </li>
+                  <?php foreach ($front['sosmed'] as $item) : ?>
+                    <li>
+                      <a class="rounded-circle" href="<?= $item['link']; ?>" title="<?= $item['name']; ?>">
+                        <i class="<?= $item['icon']; ?>"></i>
+                      </a>
+                    </li>
+                  <?php endforeach; ?>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-custom">
             <div class="single-footer-widget">
-              <h2 class="widget-title">Menyediakan</h2>
+              <h2 class="widget-title"><?= $front['list_head']['value1']; ?></h2>
               <ul class="widget-list">
-                <li><a href="about-us.html">Box</a></li>
-                <li><a href="contact-us.html">Bunga Duka</a></li>
-                <li><a href="about-us.html">Bunga Selamat</a></li>
-                <li><a href="about-us.html">Bunga Weding</a></li>
-                <li><a href="about-us.html">Bunga bouquet</a></li>
-                <li><a href="about-us.html">Standing Flower</a></li>
+                <?php foreach ($front['list_item'] as $item) : ?>
+                  <li><a href="<?= $item['link']; ?>"><?= $item['name']; ?></a></li>
+                <?php endforeach; ?>
               </ul>
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-custom">
             <div class="single-footer-widget">
-              <h2 class="widget-title">Info Kontak</h2>
+              <h2 class="widget-title"> <?= $front['contact']['value1']; ?></h2>
               <div class="widget-body">
-                <address>123, ABC, Road ##, Main City, Your address goes here.<br>Phone: 01234 567
-                  890<br>Email: https://example.com</address>
+                <?= $front['contact']['value2']; ?>
               </div>
             </div>
           </div>
@@ -309,7 +287,7 @@
   <!-- Main JS -->
   <script src="<?= base_url('assets/template/front') ?>/js/main.js"></script>
   <script>
-    document.getElementById('copyright').innerHTML = `<p>Copyright © ${(new Date().getFullYear())} Toko Bunga Ucapan Bandung</p>`;
+    document.getElementById('copyright').innerHTML = `<p><?= $front['copyright']['value1'] ?></p>`;
   </script>
   <!-- PAGE RELATED PLUGIN(S) -->
   <?php if (!empty($plugin_scripts)) : ?>

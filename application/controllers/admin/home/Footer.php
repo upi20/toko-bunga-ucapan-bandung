@@ -15,7 +15,7 @@ class Footer extends Render_Controller
         $this->navigation = ['Footer'];
         $this->title_show = false;
         $this->breadcrumb_show = false;
-        $this->plugins = ['summernote'];
+        $this->plugins = ['summernote', 'datatables'];
 
         // Breadcrumb setting
         $this->breadcrumb_1 = 'Dashboard';
@@ -77,6 +77,8 @@ class Footer extends Render_Controller
 
     public function list_insert()
     {
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+        $this->cache->delete($this->cache_list_item);
         $this->db->trans_start();
         $name = $this->input->post("name");
         $link = $this->input->post("link");
@@ -91,6 +93,8 @@ class Footer extends Render_Controller
 
     public function list_update()
     {
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+        $this->cache->delete($this->cache_list_item);
         $this->db->trans_start();
         $id = $this->input->post("id");
         $name = $this->input->post("name");
@@ -106,6 +110,8 @@ class Footer extends Render_Controller
 
     public function list_delete()
     {
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+        $this->cache->delete($this->cache_list_item);
         $this->db->trans_start();
         $id = $this->input->post("id");
         $result = $this->model->list_delete($id);
@@ -138,6 +144,8 @@ class Footer extends Render_Controller
 
     public function sosmed_insert()
     {
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+        $this->cache->delete($this->cache_sosmed);
         $this->db->trans_start();
         $name = $this->input->post("name");
         $link = $this->input->post("link");
@@ -153,6 +161,8 @@ class Footer extends Render_Controller
 
     public function sosmed_update()
     {
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+        $this->cache->delete($this->cache_sosmed);
         $this->db->trans_start();
         $id = $this->input->post("id");
         $name = $this->input->post("name");
@@ -169,6 +179,8 @@ class Footer extends Render_Controller
 
     public function sosmed_delete()
     {
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+        $this->cache->delete($this->cache_sosmed);
         $this->db->trans_start();
         $id = $this->input->post("id");
         $result = $this->model->sosmed_delete($id);

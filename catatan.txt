@@ -32,10 +32,13 @@ Admin
 
   copyright [key]
 
-  head key val1
+  head key val1 [clear]
   footer list [table]
 
   REVIEWS
     admin table > produk review
     delete, nonactive
     front
+
+  pengatran judul situs key val
+  menu clear cache

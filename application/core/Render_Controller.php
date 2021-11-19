@@ -53,6 +53,8 @@ class Render_Controller extends CI_Controller
 	// menu_nav cache
 	protected $cache_menu_nav = 'menu_nav';
 	protected $cache_menu_nav_side = 'menu_nav_side';
+	protected $cache_sosmed = 'sosmed';
+	protected $cache_list_item = 'list_item';
 	protected function preRender()
 	{
 	}
@@ -129,11 +131,35 @@ class Render_Controller extends CI_Controller
 			'navigation_array' => $this->navigation
 		);
 
-		// if front
+		// frontend
 		if ($this->navigation_type == 'front') {
+
+			// list sosmed
+			$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+			if (!$list_item = $this->cache->get($this->cache_list_item)) {
+				$list_item = $this->db->select('link, name')
+					->from('home_footer_list')->where('status', 1)
+					->get()->result_array();
+				$this->cache->save($this->cache_list_item, $list_item);
+			}
+
+			// list item
+			if (!$sosmed = $this->cache->get($this->cache_sosmed)) {
+				$sosmed = $this->db->select('icon, link, name')
+					->from('home_sosmed')->where('status', 1)
+					->get()->result_array();
+				$this->cache->save($this->cache_sosmed, $sosmed);
+			}
+
+
 			$data['front'] = [
 				'logo' => $this->key_get($this->key_logo),
-				'footer_description' => $this->key_get($this->key_footer_descritpion)
+				'list_head' => $this->key_get($this->key_footer_list_head),
+				'contact' => $this->key_get($this->key_footer_contact),
+				'copyright' => $this->key_get($this->key_footer_copyright),
+				'description' => $this->key_get($this->key_footer_descritpion),
+				'list_item' => $list_item,
+				'sosmed' => $sosmed,
 			];
 		}
 
