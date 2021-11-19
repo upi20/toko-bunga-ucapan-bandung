@@ -329,7 +329,7 @@ class ItemModel extends Render_Model
         return $result;
     }
 
-    public function simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $view_home, $status)
+    public function simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $view_home, $view_review, $status)
     {
         $this->db->trans_start();
 
@@ -338,6 +338,7 @@ class ItemModel extends Render_Model
             'slug' => $slug,
             'excerpt' => $excerpt,
             'view_home' => $view_home,
+            'view_review' => $view_review,
             'price' => $price,
             'old_price' => $old_price,
             'discount' => $discount,

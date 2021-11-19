@@ -6,17 +6,18 @@ Admin
     REVIEWS
     Produk Terbaru (di setiap product ada)[clear]
     lihat
+    kamu mungkin juga suka
 
   home
     Slider [clear]
     Kelebihan [clear]
-    Penawaran
-    Judul - Judul
+    Penawaran [clear]
+    Judul - Judul [clear]
     Media Sosial
 
-  Testimoni
+  Testimoni[clear]
 
-  Navigasi
+  Navigasi [clear]
 
   header
     logo

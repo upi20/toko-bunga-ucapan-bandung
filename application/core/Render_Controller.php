@@ -36,6 +36,7 @@ class Render_Controller extends CI_Controller
 
 	// key value
 	protected $key_product_head = 'product';
+	protected $key_product_head2 = 'product2';
 	protected $key_testimoni_head = 'testimoni';
 	protected $key_offer_head = 'offer';
 	protected $key_offer_body = 'offer_decritpion';
@@ -55,6 +56,12 @@ class Render_Controller extends CI_Controller
 		if ($template == NULL) {
 			$template = $this->default_template;
 		}
+
+		$this->navigation_type_front_array = [];
+		if ($this->navigation_type == 'front') {
+			$this->navigation_type_front_array = $this->getNavArray();
+		}
+
 		$navigation = [];
 		switch ($this->navigation_type) {
 			case 'admin':
@@ -62,6 +69,13 @@ class Render_Controller extends CI_Controller
 				break;
 			case 'front':
 				$navigation = $this->navFront();
+				break;
+		}
+
+		$navigation2 = [];
+		switch ($this->navigation_type) {
+			case 'front':
+				$navigation2 = $this->navFront2();
 				break;
 		}
 		$data = array(
@@ -92,8 +106,9 @@ class Render_Controller extends CI_Controller
 			'title' 				=> $this->title,
 			'title_show' 			=> $this->title_show,
 			'navigation' 			=> $navigation,
+			'navigation2' 			=> $navigation2,
 			'content' 				=> $this->content,
-			'navigation_array'		=> $this->navigation
+			'navigation_array' => $this->navigation
 		);
 
 		$data = array_merge($data, $this->data);
@@ -344,7 +359,7 @@ class Render_Controller extends CI_Controller
 
 	public function navFront()
 	{
-		$result = $this->getNavArray();
+		$result = $this->navigation_type_front_array;
 		if (empty($result)) {
 			return '';
 		}
@@ -355,6 +370,25 @@ class Render_Controller extends CI_Controller
 				$li .= $this->haveChildHtml($res);
 			} else {
 				$li .= $this->navHtml($res);
+			}
+		}
+
+		return $li;
+	}
+
+	public function navFront2()
+	{
+		$result = $this->navigation_type_front_array;
+		if (empty($result)) {
+			return '';
+		}
+
+		$li = '';
+		foreach ($result as $res) {
+			if ($res['have_child']) {
+				$li .= $this->haveChildHtml2($res);
+			} else {
+				$li .= $this->navHtml2($res);
 			}
 		}
 
@@ -387,6 +421,25 @@ class Render_Controller extends CI_Controller
                     <span class="menu-text">' . $data['nama'] . '</span>
                   </a>
                 </li>';
+	}
+
+	private function haveChildHtml2($data)
+	{
+		$child_html = '';
+		foreach ($data['child'] as $child) {
+			$child_html .= '<li><a ' . ($child['active'] ? 'class="active"' : '') . ' href="' . $child['url'] . '">' . $child['nama'] . '</a></li>';
+		}
+		return '<li class="menu-item-has-children"><a ' . ($data['active'] ? 'class="active"' : '') . ' href="' . $data['url'] . '">' . $data['nama'] . '</a>
+				<ul class="dropdown">
+				' . $child_html . '
+				</ul>
+			</li>
+		';
+	}
+
+	private function navHtml2($data)
+	{
+		return '</li><li><a  ' . ($data['active'] ? 'class="active"' : '') . ' href="' . $data['url'] . '">' . $data['nama'] . '</a></li>';
 	}
 
 	private function getNavArray()

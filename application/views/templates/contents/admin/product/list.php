@@ -7,16 +7,36 @@
   <!-- /.card-header -->
   <div class="card-body">
     <form action="" id="fhead">
-      <div class="form-group">
-        <label for="head_value1">Judul</label>
-        <input type="text" class="form-control" id="head_value1" name="head_value1" placeholder="Judul" value="<?= $head['value1'] ?>" />
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="head_value1">Judul Di Halaman Utama</label>
+            <input type="text" class="form-control" id="head_value1" name="head_value1" placeholder="Judul" value="<?= $head['value1'] ?>" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="head_value2">Sub Judul Di Halaman Utama</label>
+            <input type="text" class="form-control" id="head_value2" name="head_value2" placeholder="Sub Judul" value="<?= $head['value2'] ?>" />
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="form-group mb-lg-0">
+            <label for="head2_value1">Judul Di Halaman Produk</label>
+            <input type="text" class="form-control" id="head2_value1" name="head2_value1" placeholder="Judul" value="<?= $head2['value1'] ?>" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group mb-lg-0">
+            <label for="head2_value2">Sub Judul Di Halaman Produk</label>
+            <input type="text" class="form-control" id="head2_value2" name="head2_value2" placeholder="Sub Judul" value="<?= $head2['value2'] ?>" />
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-between align-items-end">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+        </div>
       </div>
-
-      <div class="form-group">
-        <label for="head_value2">Sub Judul</label>
-        <input type="text" class="form-control" id="head_value2" name="head_value2" placeholder="Sub Judul" value="<?= $head['value2'] ?>" />
-      </div>
-      <button type="submit" class="btn btn-primary btn-xs"><i class="fa fa-save"></i> Simpan</button>
     </form>
     <hr>
     <div class="d-flex justify-content-between align-items-center my-2">

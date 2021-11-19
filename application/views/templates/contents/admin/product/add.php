@@ -129,6 +129,10 @@
           </select>
         </div>
         <div class="form-group">
+          <input type="checkbox" id="view_review" name="view_review" title="Tampilkan di halaman utama" <?= $product['view_review'] == 1 ? 'checked' : ''; ?> form="main-form" />
+          <label for="view_review">Tampilkan review produk</label>
+        </div>
+        <div class="form-group">
           <input type="checkbox" id="view_home" name="view_home" title="Tampilkan di halaman utama" <?= $product['view_home'] == 1 ? 'checked' : ''; ?> form="main-form" />
           <label for="view_home">Tampilkan di halaman utama</label>
         </div>

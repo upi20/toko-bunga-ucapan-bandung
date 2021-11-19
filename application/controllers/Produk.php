@@ -10,9 +10,16 @@ class Produk extends Render_Controller
 		$this->render();
 	}
 
-	public function detail($slug)
+	public function detail($slug = null)
 	{
-		$this->title = "Home";
+		$product = $this->model->getProduct($slug);
+		$this->data['data'] = (object)$product;
+		$this->data['view_product'] = !is_null($product);
+		$this->data['whatsapp'] = $this->model->getNoWhatsapp();
+		$this->data['recent'] = $this->model->getProductsRecent();
+		$this->data['title_recent'] = $this->key_value->get($this->key_product_head2);
+		$this->title = is_null($product) ? 'Detail Produk' : $product['product']->name;
+		$this->content = 'front/detail';
 		$this->render();
 	}
 
@@ -22,6 +29,7 @@ class Produk extends Render_Controller
 		$this->default_template = 'templates/main';
 		$this->navigation_type = 'front';
 		$this->load->model('ProdukModel', 'model');
+		$this->load->model("admin/KeyValueModel", 'key_value');
 		$this->load->library('plugin');
 		$this->load->helper('url');
 	}

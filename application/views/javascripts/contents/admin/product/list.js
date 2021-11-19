@@ -60,7 +60,7 @@ $(function () {
 
           "data": "id", render(data, type, full, meta) {
             return `<div class="pull-right">
-                <a class="btn btn-info btn-xs" href="<?= base_url() ?>admin/product/item/create/${data}">
+                <a class="btn btn-info btn-xs" href="<?= base_url() ?>produk/detail/${full.slug}">
                   <i class="fa fa-eye"></i> Lihat
                 </a>
                 <a class="btn btn-primary btn-xs" href="<?= base_url() ?>admin/product/item/create/${data}">

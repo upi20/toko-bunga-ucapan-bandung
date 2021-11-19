@@ -19,6 +19,7 @@ class Item extends Render_Controller
     $this->breadcrumb_4_url = base_url() . 'admin/product/item';
     $this->content      = 'admin/product/list';
     $this->data['head'] = $this->key_value->get($this->key_product_head);
+    $this->data['head2'] = $this->key_value->get($this->key_product_head2);
 
     // Send data to view
     $this->render();
@@ -76,7 +77,8 @@ class Item extends Render_Controller
       $size = $this->input->post('size', false);
       $status = $this->input->post('status');
       $view_home = is_null($this->input->post('view_home')) ? 0 : 1;
-      $result = $this->model->simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $view_home, $status);
+      $view_review = is_null($this->input->post('view_review')) ? 0 : 1;
+      $result = $this->model->simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $view_home, $view_review, $status);
       $code = $result != null ? 200 : 400;
       $status = $result != null;
       $this->output_json([
@@ -104,10 +106,13 @@ class Item extends Render_Controller
     // get post
     $head_value1 = $this->input->post("head_value1", false);
     $head_value2 = $this->input->post("head_value2", false);
+    $head2_value1 = $this->input->post("head2_value1", false);
+    $head2_value2 = $this->input->post("head2_value2", false);
     // update
     $head = $this->key_value->set($this->key_product_head, $head_value1, $head_value2);
+    $head2 = $this->key_value->set($this->key_product_head2, $head2_value1, $head2_value2);
 
-    $this->output_json($head);
+    $this->output_json($head && $head2);
   }
 
   public function create($id = null)
@@ -213,7 +218,7 @@ class Item extends Render_Controller
     ];
 
     $data = $this->model->ajax_data_categories($draw, $length, $start, $_cari, $order, $filter)->result_array();
-    $count = $this->model->ajax_data_categories(null, null, null, $_cari, $order, null, $filter)->num_rows();
+    $count = $this->model->ajax_data_categories(null, null, null, $_cari, $order, $filter)->num_rows();
 
     $this->output_json(['recordsTotal' => $count, 'recordsFiltered' => $count, 'draw' => $draw, 'search' => $_cari, 'data' => $data]);
   }
@@ -264,7 +269,7 @@ class Item extends Render_Controller
     ];
 
     $data = $this->model->ajax_data_colors($draw, $length, $start, $_cari, $order, $filter)->result_array();
-    $count = $this->model->ajax_data_colors(null, null, null, $_cari, $order, null, $filter)->num_rows();
+    $count = $this->model->ajax_data_colors(null, null, null, $_cari, $order, $filter)->num_rows();
 
     $this->output_json(['recordsTotal' => $count, 'recordsFiltered' => $count, 'draw' => $draw, 'search' => $_cari, 'data' => $data]);
   }
@@ -316,7 +321,7 @@ class Item extends Render_Controller
     ];
 
     $data = $this->model->images_ajax_data($draw, $length, $start, $_cari, $order, $filter)->result_array();
-    $count = $this->model->images_ajax_data(null, null, null, $_cari, $order, null, $filter)->num_rows();
+    $count = $this->model->images_ajax_data(null, null,    null,   $_cari, $order, $filter)->num_rows();
 
     $this->output_json(['recordsTotal' => $count, 'recordsFiltered' => $count, 'draw' => $draw, 'search' => $_cari, 'data' => $data]);
   }

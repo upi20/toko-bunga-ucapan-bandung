@@ -378,7 +378,7 @@ $(document).ready(() => {
     }).fail(($xhr) => {
       Toast.fire({
         icon: 'error',
-        title: 'Data gagal disimpan'
+        title: 'Data gagal disimpan, Mungkin slug sudah terdaftar'
       })
     }).always(() => {
       $.LoadingOverlay("hide");

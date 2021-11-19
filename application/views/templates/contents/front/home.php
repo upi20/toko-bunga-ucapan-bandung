@@ -76,14 +76,16 @@
                       ) :  ?>
                         <span class="onsale"><?= $product1['discount']; ?>%</span>
                       <?php endif ?>
-                      <a class="d-block" href="<?= base_url("produk/?detail={$product1['slug']}") ?>">
+                      <a class="d-block" href="<?= base_url("produk/detail/{$product1['slug']}") ?>">
                         <img src="<?= base_url("files/product/pictures/{$product1['foto1']}") ?>" alt="<?= $product1['name']; ?>" class="product-image-1 w-100">
-                        <img src="<?= base_url("files/product/pictures/{$product1['foto2']}") ?>" alt="<?= $product1['name']; ?>" class="product-image-2 position-absolute w-100">
+                        <?php if ($product1['foto2']) : ?>
+                          <img src="<?= base_url("files/product/pictures/{$product1['foto2']}") ?>" alt="<?= $product1['name']; ?>" class="product-image-2 position-absolute w-100">
+                        <?php endif; ?>
                       </a>
                     </div>
                     <div class="product-content">
                       <div class="product-title">
-                        <h4 class="title-2"> <a href="<?= base_url("produk/?detail={$product1['slug']}") ?>"><?= $product1['name']; ?></a></h4>
+                        <h4 class="title-2"> <a href="<?= base_url("produk/detail/{$product1['slug']}") ?>"><?= $product1['name']; ?></a></h4>
                       </div>
                       <div class="price-box">
                         <span class="regular-price rupiah"><?= $product1['price']; ?></span>
@@ -92,7 +94,7 @@
                           $product1['old_price'] != null &&
                           $product1['old_price'] != '0'
                         ) :  ?>
-                          <span class="old-price rupiah"><del><?= $product1['old_price']; ?></del></span>
+                          <span class="old-price "><del class="rupiah"><?= $product1['old_price']; ?></del></span>
                         <?php endif ?>
                       </div>
                       <a href="https://api.whatsapp.com/send?phone=<?= $whatsapp ?>" class="btn product-cart">Pesan Sekarang</a>
@@ -108,14 +110,15 @@
                         ) :  ?>
                           <span class="onsale"><?= $product2['discount']; ?>%</span>
                         <?php endif ?>
-                        <a class="d-block" href="<?= base_url("produk/?detail={$product2['slug']}") ?>">
+                        <a class="d-block" href="<?= base_url("produk/detail/{$product2['slug']}") ?>">
                           <img src="<?= base_url("files/product/pictures/{$product2['foto1']}") ?>" alt="<?= $product2['name']; ?>" class="product-image-1 w-100">
-                          <img src="<?= base_url("files/product/pictures/{$product2['foto2']}") ?>" alt="<?= $product2['name']; ?>" class="product-image-2 position-absolute w-100">
-                        </a>
+                          <?php if ($product2['foto2']) : ?>
+                            <img src="<?= base_url("files/product/pictures/{$product2['foto2']}") ?>" alt="<?= $product2['name']; ?>" class="product-image-2 position-absolute w-100">
+                          <?php endif; ?></a>
                       </div>
                       <div class="product-content">
                         <div class="product-title">
-                          <h4 class="title-2"> <a href="<?= base_url("produk/?detail={$product2['slug']}") ?>"><?= $product2['name']; ?></a></h4>
+                          <h4 class="title-2"> <a href="<?= base_url("produk/detail/{$product2['slug']}") ?>"><?= $product2['name']; ?></a></h4>
                         </div>
                         <div class="price-box">
                           <span class="regular-price rupiah"><?= $product2['price']; ?></span>
@@ -124,7 +127,7 @@
                             $product2['old_price'] != null &&
                             $product2['old_price'] != '0'
                           ) :  ?>
-                            <span class="old-price rupiah"><del><?= $product2['old_price']; ?></del></span>
+                            <span class="old-price "><del class="rupiah"><?= $product2['old_price']; ?></del></span>
                           <?php endif ?>
                         </div>
                         <a href="https://api.whatsapp.com/send?phone=<?= $whatsapp ?>" class="btn product-cart">Pesan Sekarang</a>
