@@ -67,7 +67,7 @@
                 $data->product->discount != null &&
                 $data->product->discount != '0'
               ) :  ?>
-                <span class="regular-price"><?= $data->product->discount ?></span>
+                <span class="regular-price"><?= $data->product->discount ?>%</span>
               <?php endif ?>
             </div>
 

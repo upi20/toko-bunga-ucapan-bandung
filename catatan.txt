@@ -5,8 +5,8 @@ Admin
     master [clear]
     REVIEWS
     Produk Terbaru (di setiap product ada)[clear]
-    lihat
-    kamu mungkin juga suka
+    lihat[clear]
+    kamu mungkin juga suka[clear]
 
   home
     Slider [clear]
@@ -30,3 +30,5 @@ Admin
     sosmed (no_urut, isi)
     menyediakan (no_urut, isi)
     info kontak (no_urut, isi)
+
+  Pencarian produk
