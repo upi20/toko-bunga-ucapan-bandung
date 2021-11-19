@@ -60,6 +60,9 @@ $(function () {
 
           "data": "id", render(data, type, full, meta) {
             return `<div class="pull-right">
+                <a class="btn btn-secondary btn-xs" href="<?= base_url() ?>admin/product/item/review/${data}">
+                  <i class="fa fa-list"></i> Review
+                </a>
                 <a class="btn btn-info btn-xs" href="<?= base_url() ?>produk/detail/${full.slug}">
                   <i class="fa fa-eye"></i> Lihat
                 </a>

@@ -203,4 +203,39 @@ class ProdukModel extends Render_Model
     $result = (object)['data' => $result, 'title' => $key];
     return $result;
   }
+
+  public function getReview($slug)
+  {
+    $product_id = $this->getIdProdukBySlug($slug);
+    $result = $this->db->select('name, date, description')->from('product_reviews')
+      ->where('status', 1)
+      ->where('product_id', $product_id)
+      ->order_by('created_at', 'desc')
+      ->get()->result_array();
+    return $result;
+  }
+
+  public function insertReview($slug, $name, $description, $email)
+  {
+    $product_id = $this->getIdProdukBySlug($slug);
+    $data = [
+      'product_id' => $product_id,
+      'name' => $name,
+      'description' => $description,
+      'email' => $email,
+      'date' => Date('Y-m-d'),
+      'status' => 1,
+    ];
+    $result = $this->db->insert('product_reviews', $data);
+    return $result;
+  }
+
+
+  private function getIdProdukBySlug($slug)
+  {
+    $return = $this->db->select('id')->from('products')
+      ->where('slug', $slug)
+      ->get()->row_array();
+    return is_null($return) ? 0 : $return['id'];
+  }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 19, 2021 at 02:18 PM
+-- Generation Time: Nov 19, 2021 at 04:27 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -545,6 +545,7 @@ CREATE TABLE `product_reviews` (
   `name` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `description` text DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `status` int(11) NOT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -553,6 +554,18 @@ CREATE TABLE `product_reviews` (
   `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_reviews`
+--
+
+INSERT INTO `product_reviews` (`id`, `product_id`, `name`, `date`, `description`, `email`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 5, 'Isep Lutpi Nur', '2021-11-19', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in viverra ex, vitae vestibulum arcu. Duis sollicitudin metus sed lorem commodo, eu dapibus libero interdum. Morbi convallis viverra erat, et aliquet orci congue vel. Integer in odio enim. Pellentesque in dignissim leo. Vivamus varius ex sit amet quam tincidunt iaculis.', 'iseplutpinur7@gmail.com', 1, 1, NULL, NULL, '2021-11-19 20:46:57', '2021-11-19 22:23:42', '2021-11-19 14:46:06'),
+(6, 5, 'Isep Lutpi Nur', '2021-11-19', 'tes', 'sales@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:20:15', '2021-11-19 22:23:50', NULL),
+(7, 5, 'Isep Lutpi Nur', '2021-11-19', 'tes', 'sales@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:21:49', NULL, NULL),
+(9, 5, 'a', '2021-11-19', 'a', 'ahmad@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:22:29', NULL, NULL),
+(10, 5, 'a', '2021-11-19', 'a', 'admin@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:30:16', NULL, NULL),
+(11, 5, 'Isep Lutpi Nur', '2021-11-19', 'a', 'iseplutpi123@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:35:32', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -939,7 +952,7 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `product_reviews`
 --
 ALTER TABLE `product_reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `role_aplikasi`

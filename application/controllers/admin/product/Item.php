@@ -120,7 +120,7 @@ class Item extends Render_Controller
     // Page Settings
     $this->title = is_null($id) ? 'Tambah Produk' : 'Ubah Produk';
     $this->navigation = ['Master'];
-    $this->plugins = ['datatables', 'select2', 'summernote'];
+    $this->plugins = ['datatables', 'summernote'];
     // Breadcrumb setting
     $this->breadcrumb_1 = 'Dashboard';
     $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
@@ -145,6 +145,35 @@ class Item extends Render_Controller
     $this->data['categories'] = $this->model->getListCategory();
     $this->data['colors'] = $this->model->getListColor();
     $this->data['isUbah'] = $id != null;
+
+    // Send data to view
+    $this->render();
+  }
+
+  public function review($id = null)
+  {
+    // Page Settings
+    $this->navigation = ['Master'];
+    $this->plugins = ['datatables'];
+    // Breadcrumb setting
+    $this->breadcrumb_1 = 'Dashboard';
+    $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
+    $this->breadcrumb_2 = 'Produk';
+    $this->breadcrumb_2_url = base_url() . 'admin/product/item';
+    $this->breadcrumb_3 = 'Tambah';
+    $this->breadcrumb_3_url = base_url() . 'admin/product/item/review';
+
+    // content
+    $this->content      = 'admin/product/review';
+
+    $ceknew = $this->model->cekNew($id);
+    if ($ceknew == null) {
+      redirect('/admin/product/item');
+      return;
+    }
+
+    $this->data['product_id'] =  $ceknew['id'];
+    $this->title = $ceknew['name'];
 
     // Send data to view
     $this->render();
@@ -195,6 +224,54 @@ class Item extends Render_Controller
     }
   }
 
+  public function review_delete_all()
+  {
+    $product_id = $this->input->post('product_id');
+    $result = $this->model->review_delete_all($product_id);
+    $this->output_json($result);
+  }
+
+  public function review_delete()
+  {
+    $id = $this->input->post('id');
+    $result = $this->model->review_delete($id);
+    $this->output_json($result);
+  }
+
+  public function review_cange()
+  {
+    $id = $this->input->post('id');
+    $status = $this->input->post('status');
+    $result = $this->model->review_cange($id, $status);
+    $this->output_json($result);
+  }
+
+  // categories
+  public function ajax_data_review()
+  {
+    $order = ['order' => $this->input->post('order'), 'columns' => $this->input->post('columns')];
+    $start = $this->input->post('start');
+    $draw = $this->input->post('draw');
+    $draw = $draw == null ? 1 : $draw;
+    $length = $this->input->post('length');
+    $cari = $this->input->post('search');
+
+    if (isset($cari['value'])) {
+      $_cari = $cari['value'];
+    } else {
+      $_cari = null;
+    }
+
+    $product_id = $this->input->post('product_id');
+    $filter = [
+      'product' => $product_id,
+    ];
+
+    $data = $this->model->ajax_data_review($draw, $length, $start, $_cari, $order, $filter)->result_array();
+    $count = $this->model->ajax_data_review(null, null,      null, $_cari, $order, $filter)->num_rows();
+
+    $this->output_json(['recordsTotal' => $count, 'recordsFiltered' => $count, 'draw' => $draw, 'search' => $_cari, 'data' => $data]);
+  }
 
   // categories
   public function ajax_data_categories()

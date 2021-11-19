@@ -1,9 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
 class Produk extends Render_Controller
 {
-
 	public function index()
 	{
 		$search = $this->input->get('search');
@@ -30,7 +28,6 @@ class Produk extends Render_Controller
 				'text' => 'Nama dari Z ke A'
 			],
 		];
-
 
 		$this->data['products'] = [];
 		$this->data['title_head'] = '';
@@ -78,10 +75,49 @@ class Produk extends Render_Controller
 		$this->data['view_product'] = !is_null($product);
 		$this->data['whatsapp'] = $this->model->getNoWhatsapp();
 		$this->data['recent'] = $this->model->getProductsRecent();
+		$this->data['slug'] = $slug;
 		$this->data['title_recent'] = $this->key_get($this->key_product_head2);
 		$this->title = is_null($product) ? 'Detail Produk' : $product['product']->name;
 		$this->content = 'front/detail';
 		$this->render();
+	}
+
+	public function review($slug = null)
+	{
+		if (is_null($slug)) {
+			$this->output_json(null);
+			return;
+		}
+
+		$result = $this->model->getReview($slug);
+		$this->output_json($result);
+	}
+
+	public function review_store()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('slug', 'Slug', 'trim|required');
+		$this->form_validation->set_rules('description', 'Deskripsi', 'trim|required');
+		$this->form_validation->set_rules('name', 'Deskripsi', 'trim|required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->output_json([
+				'status' => false,
+				'data' => null,
+				'message' => validation_errors()
+			], 400);
+		} else {
+			$email = $this->input->post('email');
+			$name = $this->input->post('name');
+			$slug = $this->input->post('slug');
+			$description = $this->input->post('description');
+			$result = $this->model->insertReview($slug, $name, $description, $email);
+			$this->output_json([
+				'status' => $result,
+				'data' =>  $result,
+			], 200);
+		}
 	}
 
 	function __construct()

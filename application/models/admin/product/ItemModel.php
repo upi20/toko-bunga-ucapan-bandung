@@ -388,4 +388,67 @@ class ItemModel extends Render_Model
             ->get()->result_array();
         return $result;
     }
+
+    public function ajax_data_review($draw = null, $show = null, $start = null, $cari = null, $order = null, $filter = null)
+    {
+        // select datatable
+        $this->db->select("*, IF(a.status = '0' , 'Tidak Aktif', IF(a.status = '1' , 'Aktif', 'Tidak Diketahui')) as status_str,")
+            ->from('product_reviews a');
+
+        // order by
+        if ($order['order'] != null) {
+            $columns = $order['columns'];
+            $dir = $order['order'][0]['dir'];
+            $order = $order['order'][0]['column'];
+            $columns = $columns[$order];
+
+            $order_colum = $columns['data'];
+            $this->db->order_by($order_colum, $dir);
+        }
+
+        // initial data table
+        if ($draw == 1) {
+            $this->db->limit(10, 0);
+        }
+
+        // filter
+        if ($filter != null) {
+            if ($filter['product'] != '') {
+                $this->db->where('a.product_id', $filter['product']);
+            }
+        }
+
+        // pencarian
+        if ($cari != null) {
+            $this->db->where("(
+                a.name LIKE '%$cari%' or
+                a.email LIKE '%$cari%' or
+                a.tanggal LIKE '%$cari%' or
+                a.description LIKE '%$cari%'
+                )");
+        }
+
+        // pagination
+        if ($show != null && $start != null) {
+            $this->db->limit($show, $start);
+        }
+
+        $result = $this->db->get();
+        return $result;
+    }
+
+    public function review_delete_all($product_id)
+    {
+        return $this->db->where('product_id', $product_id)->delete('product_reviews');
+    }
+
+    public function review_delete($id)
+    {
+        return $this->db->where('id', $id)->delete('product_reviews');
+    }
+
+    public function review_cange($id, $status)
+    {
+        return $this->db->where('id', $id)->update('product_reviews', ['status' => $status]);
+    }
 }

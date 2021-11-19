@@ -114,74 +114,43 @@
               </div>
             </div>
             <?php if ($data->product->view_review == 1) : ?>
+
+              <!-- review -->
               <div class="tab-pane fade" id="connect-2" role="tabpanel" aria-labelledby="profile-tab">
                 <!-- Start Single Content -->
                 <div class="product_tab_content  border p-3">
-                  <div class="review_address_inner">
-                    <!-- Start Single Review -->
-                    <div class="pro_review mb-5">
-                      <div class="review_thumb">
-                        <img alt="review images" src="<?= base_url() ?>templates/assets/images/review/1.jpg">
-                      </div>
-                      <div class="review_details">
-                        <div class="review_info mb-2">
-                          <div class="product-rating mb-2">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                          </div>
-                          <h5>Admin - <span> December 19, 2020</span></h5>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in viverra
-                          ex, vitae vestibulum arcu. Duis sollicitudin metus sed lorem commodo, eu
-                          dapibus libero interdum. Morbi convallis viverra erat, et aliquet orci
-                          congue vel. Integer in odio enim. Pellentesque in dignissim leo. Vivamus
-                          varius ex sit amet quam tincidunt iaculis.</p>
-                      </div>
-                    </div>
-                    <!-- End Single Review -->
+                  <div class="review_address_inner" id="review_container">
                   </div>
                   <!-- Start RAting Area -->
                   <div class="rating_wrap">
-                    <h5 class="rating-title-1 font-weight-bold mb-2">Add a review </h5>
-                    <p class="mb-2">Your email address will not be published. Required fields are marked
-                      *</p>
-                    <h6 class="rating-title-2 mb-2">Your Rating</h6>
-                    <div class="rating_list mb-4">
-                      <div class="review_info">
-                        <div class="product-rating mb-3">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                        </div>
-                      </div>
-                    </div>
+                    <h5 class="rating-title-1 font-weight-bold mb-2">Berikan komentar anda anda </h5>
+                    <p class="mb-2">Email anda tidak akan dipulikasikan. kolom wajib di isi*</p>
                   </div>
                   <!-- End RAting Area -->
+                  <div id="alert_area">
+
+                  </div>
                   <div class="comments-area comments-reply-area">
                     <div class="row">
                       <div class="col-lg-12 col-custom">
-                        <form action="#" class="comment-form-area">
+                        <form action="#" id="freview" class="comment-form-area">
+                          <input type="hidden" name="slug" value="<?= $slug ?>" id="slug">
                           <div class="row comment-input">
                             <div class="col-md-6 col-custom comment-form-author mb-3">
-                              <label>Name <span class="required">*</span></label>
-                              <input type="text" required="required" name="Name">
+                              <label>Nama <span class="required">*</span></label>
+                              <input type="text" required="required" name="name" id="name">
                             </div>
                             <div class="col-md-6 col-custom comment-form-emai mb-3">
                               <label>Email <span class="required">*</span></label>
-                              <input type="text" required="required" name="email">
+                              <input type="email" required="required" name="email" id="email">
                             </div>
                           </div>
                           <div class="comment-form-comment mb-3">
-                            <label>Comment</label>
-                            <textarea class="comment-notes" required="required"></textarea>
+                            <label>Komentar <span class="required">*</span></label>
+                            <textarea class="comment-notes" required="required" name="description" id="description"></textarea>
                           </div>
                           <div class="comment-form-submit">
-                            <button class="btn flosun-button secondary-btn rounded-0">Submit</button>
+                            <button class="btn flosun-button secondary-btn rounded-0" type="submit" id="btn-submit">Kirim</button>
                           </div>
                         </form>
                       </div>
@@ -303,3 +272,8 @@
     </div>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  const review = '<?= $data->product->view_review ?>';
+</script>

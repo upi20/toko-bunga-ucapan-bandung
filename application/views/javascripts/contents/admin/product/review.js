@@ -4,7 +4,7 @@ $(function () {
     table_html.dataTable().fnDestroy()
     const new_table = table_html.DataTable({
       "ajax": {
-        "url": "<?= base_url()?>admin/product/color/ajax_data/",
+        "url": "<?= base_url()?>admin/product/item/ajax_data_review/",
         "data": null,
         "type": 'POST'
       },
@@ -16,38 +16,36 @@ $(function () {
       "columns": [
         { "data": null },
         { "data": "name" },
-        { "data": "slug" },
+        { "data": "email" },
         { "data": "description" },
-        {
-          "data": "foto", render(data, type, full, meta) {
-            return `<button
-                      class="btn btn-success btn-sm btn-gambar"
-                      data-toggle="modal"
-                      data-data="${data}"
-                      data-target="#gambar_modal"
-                      onclick="view_gambar(this)"
-                      id="btn-gambar"><i class="fas fa-eye"></i></button>`
-          }, className: "nowrap"
-        },
-        { "data": "color_product" },
+        { "data": "date" },
         { "data": "status_str" },
         {
           "data": "id", render(data, type, full, meta) {
+            const status = full.status == 1 ? 0 : 1;
+            let btn = '';
+            if (status == 1) {
+              btn = `<button class="btn btn-info btn-xs"
+                            data-id="${data}"
+                            data-status="${status}"
+                            data-title="Aktifkan Reveiw"
+                            data-toggle="modal" data-target="#tambahModal"
+                            onclick="Ubah(this)">
+                        <i class="fa fa-check"></i> Aktifkan
+                      </button>`;
+            } else if (status == 0) {
+              btn = `<button class="btn btn-warning btn-xs"
+                                        data-id="${data}"
+                                        data-status="${status}"
+                                        data-title="Nonaktifkan Reveiw"
+                                        data-toggle="modal" data-target="#tambahModal"
+                                        onclick="Ubah(this)">
+                      <i class="fa fa-check"></i> Nonaktifkan
+                    </button>`;
+            }
+
             return `<div class="pull-right">
-            <a class="btn btn-info btn-xs" href="">
-            <i class="fa fa-eye"></i> Lihat
-          </a>
-                <button class="btn btn-primary btn-xs"
-                                      data-id="${data}"
-                                      data-name="${full.name}"
-                                      data-slug="${full.slug}"
-                                      data-foto="${full.foto}"
-                                      data-description="${full.description}"
-                                      data-status="${full.status}"
-                                      data-toggle="modal" data-target="#tambahModal"
-                                  onclick="Ubah(this)">
-                  <i class="fa fa-edit"></i> Ubah
-                </button>
+                ${btn}
                 <button class="btn btn-danger btn-xs" onclick="Hapus(${data})">
                   <i class="fa fa-trash"></i> Hapus
                 </button>
@@ -60,7 +58,7 @@ $(function () {
       ],
       columnDefs: [{
         orderable: false,
-        targets: [0, 7]
+        targets: [0, 5]
       }],
     });
     new_table.on('draw.dt', function () {
@@ -75,7 +73,7 @@ $(function () {
   dynamic();
 
   $("#btn-tambah").click(() => {
-    $("#tambahModalTitle").text("Tambah warna");
+    $("#tambahModalTitle").text("Tambah ");
     $('#id').val('');
     $('#name').val('');
     $('#slug').val('');
@@ -97,7 +95,7 @@ $(function () {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/color/' + ($("#id").val() == "" ? 'insert' : 'update'),
+      url: '<?= base_url() ?>admin/product/item/review_cange',
       data: form,
       cache: false,
       contentType: false,
@@ -119,13 +117,41 @@ $(function () {
     })
   });
 
+  $("#fall").submit(function (ev) {
+    ev.preventDefault();
+    const form = new FormData(this);
+    $.LoadingOverlay("show");
+    $.ajax({
+      method: 'post',
+      url: '<?= base_url() ?>admin/product/item/review_delete_all',
+      data: form,
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done((data) => {
+      Toast.fire({
+        icon: 'success',
+        title: 'Data berhasil disimpan'
+      })
+      dynamic();
+    }).fail(($xhr) => {
+      Toast.fire({
+        icon: 'error',
+        title: 'Data gagal disimpan'
+      })
+    }).always(() => {
+      $.LoadingOverlay("hide");
+      $('#hapusSemuaModal').modal('toggle')
+    })
+  });
+
   // hapus
   $('#OkCheck').click(() => {
     let id = $("#idCheck").val()
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/color/delete',
+      url: '<?= base_url() ?>admin/product/item/review_delete',
       data: {
         id: id
       }
@@ -147,15 +173,11 @@ $(function () {
   })
 })
 
-const view_gambar = (datas) => {
-  $("#img-view").attr('src', `<?= base_url() ?>/files/product/color/${datas.dataset.data}`)
-}
-
 // Click Hapus
 const Hapus = (id) => {
   $("#idCheck").val(id)
   $("#LabelCheck").text('Form Hapus')
-  $("#ContentCheck").text('Apakah anda yakin akan menghapus data ini?')
+  $("#ContentCheck").text('Apakah anda yakin akan menghapus review ini?')
   $('#ModalCheck').modal('toggle')
 }
 
@@ -163,11 +185,6 @@ const Hapus = (id) => {
 const Ubah = (datas) => {
   const data = datas.dataset;
   $('#id').val(data.id);
-  $('#temp_foto').val(data.foto);
-  $('#slug').val(data.slug);
-  $('#foto').val('');
-  $('#name').val(data.name);
-  $('#description').val(data.description);
   $('#status').val(data.status);
-  $("#tambahModalTitle").text("Ubah warna");
+  $("#tambahModalTitle").text(data.title);
 }
