@@ -42,8 +42,17 @@ class Render_Controller extends CI_Controller
 	protected $key_offer_body = 'offer_decritpion';
 	protected $key_offer_head2 = 'offer2';
 	protected $key_offer_body2 = 'offer_decritpion2';
+	// home
+	protected $key_logo = 'logo';
+	protected $key_footer_descritpion = 'footer_descritpion';
 
+	protected $key_footer_contact = 'footer_contact';
+	protected $key_footer_list_head = 'footer_list_head';
+	protected $key_footer_copyright = 'footer_copyright';
 
+	// menu_nav cache
+	protected $cache_menu_nav = 'menu_nav';
+	protected $cache_menu_nav_side = 'menu_nav_side';
 	protected function preRender()
 	{
 	}
@@ -68,14 +77,23 @@ class Render_Controller extends CI_Controller
 				$navigation = $this->navigationHtml($this->default->menu());
 				break;
 			case 'front':
-				$navigation = $this->navFront();
+				$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+				if (!$navigation = $this->cache->get($this->cache_menu_nav)) {
+					$navigation = $this->navFront();
+					$this->cache->save($this->cache_menu_nav, $navigation);
+				}
 				break;
 		}
 
 		$navigation2 = [];
 		switch ($this->navigation_type) {
 			case 'front':
-				$navigation2 = $this->navFront2();
+				$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+				if (!$navigation2 = $this->cache->get($this->cache_menu_nav_side)) {
+					$navigation2 = $this->navFront2();
+					$this->cache->save($this->cache_menu_nav_side, $navigation2);
+				}
+
 				break;
 		}
 		$data = array(
@@ -110,6 +128,14 @@ class Render_Controller extends CI_Controller
 			'content' 				=> $this->content,
 			'navigation_array' => $this->navigation
 		);
+
+		// if front
+		if ($this->navigation_type == 'front') {
+			$data['front'] = [
+				'logo' => $this->key_get($this->key_logo),
+				'footer_description' => $this->key_get($this->key_footer_descritpion)
+			];
+		}
 
 		$data = array_merge($data, $this->data);
 		$this->load->view($template, $data);
@@ -324,8 +350,8 @@ class Render_Controller extends CI_Controller
 	public function uploadImage($name)
 	{
 		$config['upload_path']          = $this->photo_path;
-		$config['allowed_types']        = 'jpg|png|jpeg|JPG|PNG|JPEG';
-		$config['file_name']            = md5(uniqid("duahati", true));
+		$config['allowed_types']        = 'jpg|png|jpeg|JPG|PNG|JPEG|svg|SVG';
+		$config['file_name']            = md5(uniqid("bunga", true));
 		$config['overwrite']            = true;
 		$config['max_size']             = 8024;
 		$this->load->library('upload', $config);
@@ -493,6 +519,55 @@ class Render_Controller extends CI_Controller
 			->where('menu_status', 'Aktif')
 			->get()->result_array();
 		return $child;
+	}
+
+	public function key_get($key)
+	{
+		$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+		if (!$get = $this->cache->get($key)) {
+			$get = $this->db->select("key, value1, value2")
+				->from('key_value')->where('key', $key)->get();
+			if ($get->num_rows() == 0) {
+				$data = [
+					'key' => $key,
+					'value1' => null,
+					'value2' => null,
+					'created_by' => $this->session->userdata('data')['id'],
+				];
+				$this->db->insert("key_value",  $data);
+				$get = $data;
+			} else {
+				$get = $get->row_array();
+			}
+			$this->cache->save($key, $get);
+		}
+		return $get;
+	}
+
+	public function key_set($key, $value1, $value2)
+	{
+		// delete cache
+		$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+		$this->cache->delete($key);
+
+		// query
+		$get = $this->db->select("key")
+			->from('key_value')->where('key', $key)->get();
+		if ($get->num_rows() == 0) {
+			$get = $this->db->insert("key_value", [
+				'key' => $key,
+				'value1' => $value1,
+				'value2' => $value2,
+				'created_by' => $this->session->userdata('data')['id'],
+			]);
+		} else {
+			$get = $this->db->where('key', $key)->update('key_value', [
+				'value1' => $value1,
+				'value2' => $value2,
+				'updated_by' => $this->session->userdata('data')['id'],
+			]);
+		}
+		return $get;
 	}
 
 

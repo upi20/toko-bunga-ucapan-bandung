@@ -112,7 +112,7 @@
           <div class="col-lg-2 col-xl-2 col-md-6 col-6 col-custom">
             <div class="header-logo d-flex align-items-center">
               <a href="<?= base_url() ?>">
-                <img class="img-full" src="<?= base_url('assets/template/front') ?>/images/logo/logo.svg" alt="Header Logo">
+                <img class="img-full" src="<?= base_url("files/logo/{$front['logo']['value1']}") ?>" alt="Header Logo">
               </a>
             </div>
           </div>
@@ -201,11 +201,10 @@
             <div class="single-footer-widget m-0">
               <div class="footer-logo">
                 <a href="<?= base_url() ?>">
-                  <img src="<?= base_url('assets/template/front') ?>/images/logo/logo-footer.svg" alt="Logo Image">
+                  <img src="<?= base_url("files/logo/{$front['logo']['value2']}") ?>" alt="Logo Image">
                 </a>
               </div>
-              <p class="desc-content">Kami menyediakan berbagai macam rangkaian bunga dengan design yang
-                modern yang tentunya bisa anda lakukan costum baik ukuran atau jenis bunga</p>
+              <p class="desc-content"><?= $front['footer_description']['value1'] ?></p>
               <div class="social-links">
                 <ul class="d-flex">
                   <li>

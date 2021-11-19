@@ -16,19 +16,19 @@ class Home extends Render_Controller
 		$this->data['excesses'] = $this->model->getExcess();
 
 		// list produk
-		$this->data['product_head'] = $this->key_value->get($this->key_product_head);
+		$this->data['product_head'] = $this->key_get($this->key_product_head);
 		$this->data['products'] = $this->model->getProducts();
 
 		// penawaran
-		$this->data['offer_head'] = $this->key_value->get($this->key_offer_head);
-		$this->data['offer_body'] = $this->key_value->get($this->key_offer_body);
+		$this->data['offer_head'] = $this->key_get($this->key_offer_head);
+		$this->data['offer_body'] = $this->key_get($this->key_offer_body);
 
 		// penawaran 2
-		$this->data['offer_head2'] = $this->key_value->get($this->key_offer_head2);
-		$this->data['offer_body2'] = $this->key_value->get($this->key_offer_body2);
+		$this->data['offer_head2'] = $this->key_get($this->key_offer_head2);
+		$this->data['offer_body2'] = $this->key_get($this->key_offer_body2);
 
 		// testimoni
-		$this->data['testimoni_head'] = $this->key_value->get($this->key_testimoni_head);
+		$this->data['testimoni_head'] = $this->key_get($this->key_testimoni_head);
 		$this->data['testimoni_body'] = $this->model->getTestimoni();
 		$this->title = "Home";
 		$this->content = 'front/home';
@@ -47,7 +47,6 @@ class Home extends Render_Controller
 		$this->default_template = 'templates/main';
 		$this->navigation_type = 'front';
 		$this->load->model('ProdukModel', 'model');
-		$this->load->model("admin/KeyValueModel", 'key_value');
 		$this->load->library('plugin');
 		$this->load->helper('url');
 	}

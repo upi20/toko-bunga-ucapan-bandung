@@ -6,11 +6,11 @@ class Offer extends Render_Controller
     public function index()
     {
         // get title
-        $this->data['head'] = $this->model->get($this->key_offer_head);
-        $this->data['body'] = $this->model->get($this->key_offer_body);
+        $this->data['head'] = $this->key_get($this->key_offer_head);
+        $this->data['body'] = $this->key_get($this->key_offer_body);
 
-        $this->data['head2'] = $this->model->get($this->key_offer_head2);
-        $this->data['body2'] = $this->model->get($this->key_offer_body2);
+        $this->data['head2'] = $this->key_get($this->key_offer_head2);
+        $this->data['body2'] = $this->key_get($this->key_offer_body2);
 
 
         // get fill
@@ -56,8 +56,8 @@ class Offer extends Render_Controller
         $body_value2 = $this->input->post("body_value2", false);
 
         // update
-        $head = $this->model->set($this->key_offer_head, $head_value1, $head_value2);
-        $body = $this->model->set($this->key_offer_body, $body_value1, $body_value2);
+        $head = $this->key_set($this->key_offer_head, $head_value1, $head_value2);
+        $body = $this->key_set($this->key_offer_body, $body_value1, $body_value2);
 
         // result
         $result = $head && $body;
@@ -85,8 +85,8 @@ class Offer extends Render_Controller
         $body_value2 = $this->input->post("body_value2", false);
 
         // update
-        $head = $this->model->set($this->key_offer_head2, $head_value1, $head_value2);
-        $body = $this->model->set($this->key_offer_body2, $body_value1, $body_value2);
+        $head = $this->key_set($this->key_offer_head2, $head_value1, $head_value2);
+        $body = $this->key_set($this->key_offer_body2, $body_value1, $body_value2);
 
         // result
         $result = $head && $body;
@@ -104,7 +104,6 @@ class Offer extends Render_Controller
         }
         $this->id = $this->session->userdata('data')['id'];
         $this->photo_path = './files/home/slider/';
-        $this->load->model("admin/KeyValueModel", 'model');
         $this->default_template = 'templates/dashboard';
         $this->load->library('plugin');
         $this->load->helper('url');

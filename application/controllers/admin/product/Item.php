@@ -18,8 +18,8 @@ class Item extends Render_Controller
     $this->breadcrumb_4 = 'Master';
     $this->breadcrumb_4_url = base_url() . 'admin/product/item';
     $this->content      = 'admin/product/list';
-    $this->data['head'] = $this->key_value->get($this->key_product_head);
-    $this->data['head2'] = $this->key_value->get($this->key_product_head2);
+    $this->data['head'] = $this->key_get($this->key_product_head);
+    $this->data['head2'] = $this->key_get($this->key_product_head2);
 
     // Send data to view
     $this->render();
@@ -109,8 +109,8 @@ class Item extends Render_Controller
     $head2_value1 = $this->input->post("head2_value1", false);
     $head2_value2 = $this->input->post("head2_value2", false);
     // update
-    $head = $this->key_value->set($this->key_product_head, $head_value1, $head_value2);
-    $head2 = $this->key_value->set($this->key_product_head2, $head2_value1, $head2_value2);
+    $head = $this->key_set($this->key_product_head, $head_value1, $head_value2);
+    $head2 = $this->key_set($this->key_product_head2, $head2_value1, $head2_value2);
 
     $this->output_json($head && $head2);
   }
@@ -662,7 +662,6 @@ class Item extends Render_Controller
     $this->id = $this->session->userdata('data')['id'];
     $this->photo_path = './files/product/pictures/';
     $this->load->model("admin/product/ItemModel", 'model');
-    $this->load->model("admin/KeyValueModel", 'key_value');
     $this->default_template = 'templates/dashboard';
     $this->load->library('plugin');
     $this->load->helper('url');

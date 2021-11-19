@@ -52,6 +52,9 @@ class Menu extends Render_Controller
 	// Insert data
 	public function insert()
 	{
+		$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+		$this->cache->delete($this->cache_menu_nav);
+		$this->cache->delete($this->cache_menu_nav_side);
 		$menu_menu_id 		= $this->input->post('menu_menu_id');
 		$nama 						= $this->input->post('nama');
 		$index 						= $this->input->post('index');
@@ -80,6 +83,9 @@ class Menu extends Render_Controller
 	// Update data
 	public function update()
 	{
+		$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+		$this->cache->delete($this->cache_menu_nav);
+		$this->cache->delete($this->cache_menu_nav_side);
 		$id 						= $this->input->post('id');
 		$menu_menu_id 				= $this->input->post('menu_menu_id');
 		$nama 						= $this->input->post('nama');
@@ -109,6 +115,9 @@ class Menu extends Render_Controller
 	// Delete data
 	public function delete()
 	{
+		$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+		$this->cache->delete($this->cache_menu_nav);
+		$this->cache->delete($this->cache_menu_nav_side);
 		$id 							= $this->input->post('id');
 
 		$exe 							= $this->menu->delete($id);

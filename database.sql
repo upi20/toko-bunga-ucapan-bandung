@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 19, 2021 at 01:23 AM
+-- Generation Time: Nov 19, 2021 at 08:38 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -72,7 +72,7 @@ CREATE TABLE `home_slider` (
 --
 
 INSERT INTO `home_slider` (`id`, `foto`, `name`, `title`, `subtitle`, `description`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'b72c1c02e892fb661119fc31bf69e0f5.jpg', 'Slider 1', 'Welcome', 'Toko Bunga Ucapan Bandung', '', 1, 1, 1, NULL, '2021-11-17 20:22:03', '2021-11-17 20:41:13', NULL),
+(1, '59a901025be8f30dac7575dbaccfb89d.jpg', 'Slider 1', 'Welcome', 'Toko Bunga Ucapan Bandung', '', 1, 1, 1, NULL, '2021-11-17 20:22:03', '2021-11-19 10:57:59', NULL),
 (2, 'e990707bc479e10e60a9fa7d17756a8d.jpg', 'afdsaf', 'asdfasdf', 'sasdfasdf', 'safasdf', 3, 1, NULL, 1, '2021-11-17 20:23:42', '2021-11-17 20:23:47', '2021-11-17 20:23:47'),
 (3, '9d18e4d337bdd0b3254192fddabbb8d4.jpg', 'Slider 2', 'Quality', 'Bunga Dengan Kualitas Terbaik', '', 1, 1, NULL, NULL, '2021-11-17 20:41:55', NULL, NULL);
 
@@ -346,7 +346,6 @@ CREATE TABLE `product_category_detail` (
 --
 
 INSERT INTO `product_category_detail` (`id`, `product_id`, `category_id`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(4, NULL, NULL, 1, 1, NULL, NULL, '2021-11-15 09:30:28', NULL, NULL),
 (6, 1, 2, 1, 1, NULL, NULL, '2021-11-15 09:35:48', NULL, NULL),
 (7, 1, 3, 1, 1, NULL, NULL, '2021-11-15 09:35:52', NULL, NULL),
 (9, 3, 2, 1, 1, NULL, NULL, '2021-11-19 04:40:21', NULL, NULL),
@@ -356,7 +355,10 @@ INSERT INTO `product_category_detail` (`id`, `product_id`, `category_id`, `statu
 (13, 7, 5, 1, 1, NULL, NULL, '2021-11-19 04:52:07', NULL, NULL),
 (14, 8, 4, 1, 1, NULL, NULL, '2021-11-19 04:54:58', NULL, NULL),
 (15, 9, 1, 1, 1, NULL, NULL, '2021-11-19 04:55:53', NULL, NULL),
-(16, 10, 1, 1, 1, NULL, NULL, '2021-11-19 04:59:44', NULL, NULL);
+(16, 10, 1, 1, 1, NULL, NULL, '2021-11-19 04:59:44', NULL, NULL),
+(17, 5, 8, 1, 1, NULL, NULL, '2021-11-19 14:26:36', NULL, NULL),
+(18, 1, 8, 1, 1, NULL, NULL, '2021-11-19 14:26:36', NULL, NULL),
+(19, 3, 8, 1, 1, NULL, NULL, '2021-11-19 14:26:36', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -818,7 +820,7 @@ ALTER TABLE `product_categories`
 -- AUTO_INCREMENT for table `product_category_detail`
 --
 ALTER TABLE `product_category_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `product_colors`

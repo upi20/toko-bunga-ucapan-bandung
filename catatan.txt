@@ -19,16 +19,23 @@ Admin
 
   Navigasi [clear]
 
-  header
-    logo
-    judul
-    sosmed
+  Pencarian produk[clear]
 
-  footer
-    logo
-    keterangan
-    sosmed (no_urut, isi)
-    menyediakan (no_urut, isi)
-    info kontak (no_urut, isi)
+  Berjalan =============================================================================================================
+  logo footer key val1 [clear]
+  logo header key val1 [clear]
+  description key val2 [clear]
 
-  Pencarian produk
+  sosmed list table
+
+  info kontak (head, key)
+
+  copyright [key]
+
+  head key val1
+  footer list [table]
+
+  REVIEWS
+    admin table > produk review
+    delete, nonactive
+    front
