@@ -133,7 +133,7 @@
                   <a href="#"><i class="fa fa-search"></i> </a>
                   <ul class="dropdown-sidemenu dropdown-hover-2 dropdown-search">
                     <li>
-                      <form action="#">
+                      <form action="<?= base_url('produk') ?>">
                         <input name="search" id="search" placeholder="Search" type="text">
                         <button type="submit"><i class="fa fa-search"></i></button>
                       </form>
@@ -166,7 +166,7 @@
         </div>
         <div class="off-canvas-inner">
           <div class="search-box-offcanvas">
-            <form>
+            <form action="<?= base_url('produk') ?>">
               <input type="text" placeholder="Search product...">
               <button class="search-btn"><i class="fa fa-search"></i></button>
             </form>
@@ -181,55 +181,6 @@
             </nav>
             <!-- mobile menu navigation end -->
           </div>
-          <!-- mobile menu end -->
-          <div class="offcanvas-widget-area">
-            <div class="top-info-wrap text-left text-black">
-              <div class="widget-social">
-                <a class="facebook-color-bg" title="Facebook-f" href="#"><i class="fa fa-facebook-f"></i></a>
-                <a class="twitter-color-bg" title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
-                <a class="linkedin-color-bg" title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                <a class="youtube-color-bg" title="Youtube" href="#"><i class="fa fa-youtube"></i></a>
-                <a class="vimeo-color-bg" title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </aside>
-    <!-- off-canvas menu end -->
-    <!-- off-canvas menu start -->
-    <aside class="off-canvas-menu-wrapper" id="sideMenu">
-      <div class="off-canvas-overlay"></div>
-      <div class="off-canvas-inner-content">
-        <div class="off-canvas-inner">
-          <div class="btn-close-off-canvas">
-            <i class="fa fa-times"></i>
-          </div>
-
-          <!-- offcanvas widget area start -->
-          <div class="offcanvas-widget-area">
-            <ul class="menu-top-menu">
-              <li><a href="about-us.html">Tentang Kami</a></li>
-            </ul>
-            <p class="desc-content">Toko Bunga Papan Ucapan menawarkan proses pemesanan yang sangat mudah,
-              tinggal
-              cari
-              produk yang Anda inginkan, atau rekomendasi produk sesuai dengan moment yang Anda
-              butuhkan
-              melalui katalog produk di website ini, maupun langsung hubungi team CS kami yang siap
-              membantu anda 24 jam untuk membantu pemesanan bunga secara online dan offline.</p>
-            <div class="top-info-wrap text-left text-black">
-              <div class="widget-social">
-                <a class="facebook-color-bg" title="Facebook-f" href="#"><i class="fa fa-facebook-f"></i></a>
-                <a class="twitter-color-bg" title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
-                <a class="linkedin-color-bg" title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                <a class="youtube-color-bg" title="Youtube" href="#"><i class="fa fa-youtube"></i></a>
-                <a class="vimeo-color-bg" title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>
-              </div>
-            </div>
-          </div>
-          <!-- offcanvas widget area end -->
-
         </div>
       </div>
     </aside>

@@ -87,17 +87,17 @@
                       <div class="product-title">
                         <h4 class="title-2"> <a href="<?= base_url("produk/detail/{$product1['slug']}") ?>"><?= $product1['name']; ?></a></h4>
                       </div>
-                      <div class="price-box">
-                        <span class="regular-price rupiah"><?= $product1['price']; ?></span>
+                      <div class="">
+                        <span class="regular-price rupiah" style="font-weight: bold;"><?= $product1['price']; ?></span>
                         <?php if (
                           $product1['old_price'] != '' &&
                           $product1['old_price'] != null &&
                           $product1['old_price'] != '0'
                         ) :  ?>
-                          <span class="old-price "><del class="rupiah"><?= $product1['old_price']; ?></del></span>
+                          <span class="old-price" style="margin-left: 8px;"><del class="rupiah"><?= $product1['old_price']; ?></del></span>
                         <?php endif ?>
                       </div>
-                      <a href="https://api.whatsapp.com/send?phone=<?= $whatsapp ?>" class="btn product-cart">Pesan Sekarang</a>
+                      <a href="https://api.whatsapp.com/send?phone=<?= $whatsapp ?>" class="btn flosun-button secondary-btn theme-color rounded-0 mt-3">Pesan Sekarang</a>
                     </div>
                   </div>
                   <?php if ($product2 != null) : ?>
@@ -120,17 +120,17 @@
                         <div class="product-title">
                           <h4 class="title-2"> <a href="<?= base_url("produk/detail/{$product2['slug']}") ?>"><?= $product2['name']; ?></a></h4>
                         </div>
-                        <div class="price-box">
-                          <span class="regular-price rupiah"><?= $product2['price']; ?></span>
+                        <div class="">
+                          <span class="regular-price rupiah" style="font-weight: bold;"><?= $product2['price']; ?></span>
                           <?php if (
                             $product2['old_price'] != '' &&
                             $product2['old_price'] != null &&
                             $product2['old_price'] != '0'
                           ) :  ?>
-                            <span class="old-price "><del class="rupiah"><?= $product2['old_price']; ?></del></span>
+                            <span class="old-price" style="margin-left: 8px;"><del class="rupiah"><?= $product2['old_price']; ?></del></span>
                           <?php endif ?>
                         </div>
-                        <a href="https://api.whatsapp.com/send?phone=<?= $whatsapp ?>" class="btn product-cart">Pesan Sekarang</a>
+                        <a href="https://api.whatsapp.com/send?phone=<?= $whatsapp ?>" class="btn flosun-button secondary-btn theme-color rounded-0 mt-3">Pesan Sekarang</a>
                       </div>
                     </div>
                   <?php endif ?>

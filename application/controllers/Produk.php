@@ -6,7 +6,68 @@ class Produk extends Render_Controller
 
 	public function index()
 	{
-		$this->title = "Home";
+		$search = $this->input->get('search');
+		$category = $this->input->get('category');
+		$color = $this->input->get('color');
+		$sort = $this->input->get('sort');
+
+		// sort value
+		$sort_list = [
+			[
+				'id' => '01',
+				'text' => 'Harga dari rendah ke tinggi'
+			],
+			[
+				'id' => '10',
+				'text' => 'Harga dari tinggi ke rendah'
+			],
+			[
+				'id' => 'az',
+				'text' => 'Nama dari A ke Z'
+			],
+			[
+				'id' => 'za',
+				'text' => 'Nama dari Z ke A'
+			],
+		];
+
+
+		$this->data['products'] = [];
+		$this->data['title_head'] = '';
+		$this->data['form'] = [
+			'name' => '',
+			'value' => '',
+		];
+		if ($search) {
+			$products = $this->model->getProductsSearch($search, $sort);
+			$this->data['products'] = $products->data;
+			$this->data['title_head'] = "Pecarian produk: {$products->title}";
+			$this->data['form'] = [
+				'name' => 'search',
+				'value' => $search,
+			];
+		} elseif ($category) {
+			$products = $this->model->getProductsByCategory($category, $sort);
+			$this->data['products'] = $products->data;
+			$this->data['title_head'] = "Produk berdasarkan kategori: {$products->title}";
+			$this->data['form'] = [
+				'name' => 'category',
+				'value' => $category,
+			];
+		} elseif ($color) {
+			$products = $this->model->getProductsByColor($color, $sort);
+			$this->data['products'] = $products->data;
+			$this->data['title_head'] = "Produk berdasarkan warna: {$products->title}";
+			$this->data['form'] = [
+				'name' => 'color',
+				'value' => $color,
+			];
+		}
+		$this->data['sort'] = $sort;
+		$this->data['sort_list'] = $sort_list;
+		$this->title = $this->data['title_head'];
+		$this->data['whatsapp'] = $this->model->getNoWhatsapp();
+		$this->content = 'front/produk';
 		$this->render();
 	}
 

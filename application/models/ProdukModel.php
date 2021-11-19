@@ -42,7 +42,7 @@ class ProdukModel extends Render_Model
       SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 0, 1
     ) foto1, (
       SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 1, 2
-    ) foto2,')
+    ) foto2,a.excerpt')
       ->from('products a')->where('a.status', 1)->where('a.view_home', 1)->get()->result_array();
     return $result;
   }
@@ -93,9 +93,114 @@ class ProdukModel extends Render_Model
       SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 0, 1
     ) foto1, (
       SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 1, 2
-    ) foto2,')
+    ) foto2,a.excerpt')
       ->from('products a')->where('a.status', 1)->where('a.view_home', 1)
       ->order_by('created_at', 'desc')->limit(10)->get()->result_array();
+    return $result;
+  }
+
+
+  public function getProductsByCategory($category, $sort)
+  {
+    $result = $this->db->select('a.name, a.slug, a.price, a.old_price, a.discount, (
+      SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 0, 1
+    ) foto1, (
+      SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 1, 2
+    ) foto2,a.excerpt')
+      ->from('products a')
+      ->join('product_category_detail b', 'b.product_id=a.id')
+      ->join('product_categories c', 'b.category_id=c.id')
+      ->where('a.status', 1)->where('c.slug', $category);
+    // sort
+    if ($sort == '10') {
+      $result->order_by('a.price', 'desc');
+    } else if ($sort == 'az') {
+      $result->order_by('a.name', 'asc');
+    } else if ($sort == 'za') {
+      $result->order_by('a.name', 'desc');
+    } else {
+      $result->order_by('a.price', 'asc');
+    }
+
+    $result = $result->get()->result_array();
+
+    $title = $this->db->select('name')->from('product_categories')->where('slug', $category)->get()->row_array();
+
+    $result = (object)['data' => $result, 'title' => is_null($title) ? '' : $title['name']];
+    return $result;
+  }
+
+  public function getProductsByColor($color, $sort)
+  {
+    $result = $this->db->select('a.name, a.slug, a.price, a.old_price, a.discount, (
+      SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 0, 1
+    ) foto1, (
+      SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 1, 2
+    ) foto2,a.excerpt')
+      ->from('products a')
+      ->join('product_color_detail b', 'b.product_id=a.id')
+      ->join('product_colors c', 'b.color_id=c.id')
+      ->where('a.status', 1)->where('c.slug', $color);
+    // sort
+    if ($sort == '10') {
+      $result->order_by('a.price', 'desc');
+    } else if ($sort == 'az') {
+      $result->order_by('a.name', 'asc');
+    } else if ($sort == 'za') {
+      $result->order_by('a.name', 'desc');
+    } else {
+      $result->order_by('a.price', 'asc');
+    }
+
+    $result = $result->get()->result_array();
+    $title = $this->db->select('name')->from('product_colors')->where('slug', $color)->get()->row_array();
+    $result = (object)['data' => $result, 'title' => is_null($title) ? '' : $title['name']];
+    return $result;
+  }
+
+  public function getProductsSearch($key, $sort)
+  {
+    $result = $this->db->select('a.name, a.slug, a.price, a.old_price, a.discount, (
+      SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 0, 1
+    ) foto1, (
+      SELECT foto FROM product_images WHERE product_id = a.id order by number asc LIMIT 1, 2
+    ) foto2,a.excerpt')
+      ->from('products a')
+      // category
+      ->join('product_category_detail b', 'b.product_id=a.id', 'left')
+      ->join('product_categories c', 'b.category_id=c.id', 'left')
+      // color
+      ->join('product_color_detail d', 'd.product_id=a.id', 'left')
+      ->join('product_colors e', 'd.color_id=e.id', 'left')
+      ->where('a.status', 1)
+      ->where("(
+        a.name like '%$key%' or
+        a.slug like '%$key%' or
+        a.old_price like '%$key%' or
+        a.price like '%$key%' or
+        a.discount like '%$key%' or
+        a.description like '%$key%' or
+        c.name like '%$key%' or
+        c.slug like '%$key%' or
+        c.description like '%$key%' or
+        e.name like '%$key%' or
+        e.slug like '%$key%' or
+        e.description like '%$key%'
+      )")->group_by('a.id');
+
+    // sort
+    if ($sort == '10') {
+      $result->order_by('a.price', 'desc');
+    } else if ($sort == 'az') {
+      $result->order_by('a.name', 'asc');
+    } else if ($sort == 'za') {
+      $result->order_by('a.name', 'desc');
+    } else {
+      $result->order_by('a.price', 'asc');
+    }
+
+    $result = $result->get()->result_array();
+    $result = (object)['data' => $result, 'title' => $key];
     return $result;
   }
 }
