@@ -15,8 +15,15 @@ class Dashboard extends Render_Controller
 		// Breadcrumb setting
 		$this->breadcrumb_1 = 'Dashboard';
 		$this->breadcrumb_1_url = '#';
-
 		if ($this->level == 'Super Admin') {
+			$this->data['product'] = $this->model->getSumProduct();
+			$this->data['category'] = $this->model->getSumCategory();
+			$this->data['color'] = $this->model->getSumColor();
+			$this->data['reveiw'] = $this->model->getSumREveiw();
+			$this->data['images'] = $this->model->getSumImages();
+			$this->data['whatsapp'] = $this->model->getSumWhatsapp();
+			$this->data['slider'] = $this->model->getSumSlider();
+			$this->data['testimoni'] = $this->model->getSumTestimoni();
 			$this->content = 'dashboard/admin';
 		} else {
 		}
