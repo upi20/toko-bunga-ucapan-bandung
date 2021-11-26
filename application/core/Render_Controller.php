@@ -34,7 +34,8 @@ class Render_Controller extends CI_Controller
 	protected $photo_path = './files/';
 	protected $navigation_type = 'admin';
 
-	// key value
+
+	// key value =========================================================================================================
 	protected $key_product_head = 'product';
 	protected $key_product_head2 = 'product2';
 	protected $key_testimoni_head = 'testimoni';
@@ -42,13 +43,25 @@ class Render_Controller extends CI_Controller
 	protected $key_offer_body = 'offer_decritpion';
 	protected $key_offer_head2 = 'offer2';
 	protected $key_offer_body2 = 'offer_decritpion2';
+
 	// home
 	protected $key_logo = 'logo';
 	protected $key_footer_descritpion = 'footer_descritpion';
-
 	protected $key_footer_contact = 'footer_contact';
 	protected $key_footer_list_head = 'footer_list_head';
 	protected $key_footer_copyright = 'footer_copyright';
+
+	// about
+	protected $key_about = 'about';
+	protected $key_about_foto = 'about_foto';
+	protected $key_about_history = 'about_history';
+
+	// contact
+	protected $key_contact_maps = 'contact_maps';
+
+
+	// key value =========================================================================================================
+
 
 	// menu_nav cache
 	protected $cache_menu_nav = 'menu_nav';
@@ -79,23 +92,13 @@ class Render_Controller extends CI_Controller
 				$navigation = $this->navigationHtml($this->default->menu());
 				break;
 			case 'front':
-				$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
-				if (!$navigation = $this->cache->get($this->cache_menu_nav)) {
-					$navigation = $this->navFront();
-					$this->cache->save($this->cache_menu_nav, $navigation);
-				}
-				break;
+				$navigation = $this->navFront();
 		}
 
 		$navigation2 = [];
 		switch ($this->navigation_type) {
 			case 'front':
-				$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
-				if (!$navigation2 = $this->cache->get($this->cache_menu_nav_side)) {
-					$navigation2 = $this->navFront2();
-					$this->cache->save($this->cache_menu_nav_side, $navigation2);
-				}
-
+				$navigation2 = $this->navFront2();
 				break;
 		}
 		$data = array(

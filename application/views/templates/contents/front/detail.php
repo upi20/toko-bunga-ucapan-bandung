@@ -71,15 +71,16 @@
               <?php endif ?>
             </div>
 
+
             <p class="desc-content mb-2"><?= $data->product->excerpt ?></p>
-            <div class="social-share">
-              <span>Kategori :</span>
+            <div class="">
+              <span class="fw-bold">Kategori :</span>
               <?php foreach ($data->categories as $category) : ?>
                 <a href="<?= base_url("produk?category={$category->slug}") ?>" class="title-2"><?= $category->name ?></a> |
               <?php endforeach; ?>
             </div>
-            <div class="social-share mb-2">
-              <span>Warna :</span>
+            <div class="mb-2">
+              <span  class="fw-bold">Warna :</span>
               <?php foreach ($data->colors as $color) : ?>
                 <a href="<?= base_url("produk?color={$color->slug}") ?>" class="title-2"><?= $color->name ?></a> |
               <?php endforeach; ?>

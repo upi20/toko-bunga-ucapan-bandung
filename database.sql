@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 19, 2021 at 04:27 PM
+-- Generation Time: Nov 26, 2021 at 01:49 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -14,6 +14,36 @@ SET time_zone = "+00:00";
 --
 -- Database: `tokobungapapanucapanbandung`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `column` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `icon`, `title`, `description`, `column`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'lnr lnr-map-marker', 'Lokasi Kami', 'Toko bunga papan ucapan Bandung - Pasar Bunga tegalega, Bandung', 'col-lg-4 col-md-6 col-custom', 1, 1, NULL, NULL, '2021-11-26 07:25:17', NULL, NULL),
+(2, 'lnr lnr-smartphone', 'Kontak Kami', 'Call: 082111942244 <br>WA: 081903902070', 'col-lg-4 col-md-6 col-custom', 1, 1, NULL, NULL, '2021-11-26 07:26:08', NULL, NULL),
+(3, 'lnr lnr-envelope', 'Email', 'athenafloristbandung@gmail.com <br> bungapapanucapanbdg@gmail.com', 'col-lg-4 col-md-6 col-custom', 1, 1, NULL, NULL, '2021-11-26 07:26:42', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -69,7 +99,12 @@ CREATE TABLE `home_footer_list` (
 --
 
 INSERT INTO `home_footer_list` (`id`, `link`, `name`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'produk?category=standing-flower', 'Standing flower', 1, 1, 1, NULL, '2021-11-19 18:35:18', '2021-11-19 19:57:59', NULL);
+(1, 'produk?category=standing-flower', 'Standing flower', 1, 1, 1, NULL, '2021-11-19 18:35:18', '2021-11-19 19:57:59', NULL),
+(3, 'produk?category=bunga+wedding', 'Bunga wedding', 1, 1, 1, NULL, '2021-11-22 22:11:41', '2021-11-22 22:12:26', NULL),
+(4, 'produk?category=bunga+selamat', 'Bunga selamat', 1, 1, NULL, NULL, '2021-11-22 22:21:28', NULL, NULL),
+(5, 'produk?category=bunga+duka', 'Bunga Duka', 1, 1, NULL, NULL, '2021-11-22 22:21:48', NULL, NULL),
+(6, 'produk?category=bucket+bunga', 'Bucket Bunga', 1, 1, NULL, NULL, '2021-11-22 22:22:09', NULL, NULL),
+(7, 'produk?category=standing+flowers', 'Standing Flower', 1, 1, NULL, NULL, '2021-11-22 22:23:17', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -185,7 +220,11 @@ CREATE TABLE `key_value` (
 --
 
 INSERT INTO `key_value` (`key`, `value1`, `value2`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('footer_contact', 'Info Kontak', '                <address>123, ABC, Road ##, Main City, Your address goes here.<br>Phone: 01234 567\r\n                  890<br>Email: https://example.com</address>', 1, 1, NULL, '2021-11-19 17:52:48', '2021-11-19 18:47:06', NULL),
+('about', 'Tentang Kami', '                        <h3 class=\"section-title-3 pb-0\">Athena Florist</h3>\r\n                        <p>Athena Florist Bandung merupakan perusahaan yang bergerak dibidang penjualan bunga papan, berdiri sejak 2018 di Bandung.\r\n                            Perusahaan ini didirikan oleh keluarga saya pada tanggal 15 januari 2018.\r\n                            athena florist bandung - merupakan layanan toko karangan bunga online yang telah berpengalaman dan terpercaya melayani berbagai jenis rangkaiian bunga yang menarik, elegan, dan kreatif dalam segi rangkaiian yang di hasilkan. kami berpusat di kota bandung siap melayani anda 24 jam dengan senang hati, beragam jenis karangan/rangkaian bunga papan ucapan seperti Anniversry, Congratulation, duka cita, Happy Wedding, dan even even tertentu seperti Valentine, acara kantor, dll</p>', 1, 1, NULL, '2021-11-26 03:39:47', '2021-11-26 03:56:13', NULL),
+('about_foto', '1d765eeecf75da2a1ebe89e6670d92d3.png', NULL, 1, 1, NULL, '2021-11-26 03:39:47', '2021-11-26 03:57:07', NULL),
+('about_history', 'A little story about us', '<h2 class=\"section-title-large\">Our History</h2>\r\n                        <p><strong>Sejarah adanya bunga papan ucapan Bandung</strong></p>\r\n                        <p>bunga papan ini biasanya dikirimkan oleh seseorang ataupun perusahaan ketika dalam suatu acara ataupun momen tertentu, seperti misalnya acara pernikahan, peresmian, duka cita atau bahkan perayaan ulang tahun seseorang yang dianggap penting atau spesial. Anggapan kita terhadap sebuah acara atau seseorang yang banyak dikirimi karangan bunga papan maka ia adalah orang penting yang mempunyai banyak pengaruh untuk kalangan orang banyak. Biasanya semakin besar suatu acara yang diadakan maka akan semakin banyak pula kiriman karangan bunga papannya</p>\r\n                   ', 1, 1, NULL, '2021-11-26 03:38:13', '2021-11-26 03:59:15', NULL),
+('contact_maps', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.6134744797523!2d107.60127411431729!3d-6.936714169829251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e9a18575daed%3A0x9c362e4a9bbfa5a7!2sToko%20Bunga%20papan%20ucapan%20Bandung%20-%20Athena%20Florist!5e0!3m2!1sid!2sid!4v1637587340767!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', NULL, 1, 1, NULL, '2021-11-26 07:27:55', '2021-11-26 07:36:32', NULL),
+('footer_contact', 'Info Kontak', '<p>                </p><address><span style=\"color: rgb(72, 72, 72); font-family: Poppins, sans-serif; font-size: 14px; text-align: center; background-color: rgb(255, 255, 255);\">Toko bunga papan ucapan Bandung - Pasar Bunga tegalega, Bandung</span><br>Phone:&nbsp;<span style=\"color: rgb(72, 72, 72); font-family: Poppins, sans-serif; font-size: 14px; text-align: center; background-color: rgb(255, 255, 255);\">081903902070</span><br>Email: athenafloristbandung@gmail.com</address>https://tokobungapapanucapanbandung.com<address><br></address><p></p>', 1, 1, NULL, '2021-11-19 17:52:48', '2021-11-22 22:07:58', NULL),
 ('footer_copyright', 'Copyright © ${(new Date().getFullYear())} Toko Bunga Ucapan Bandung', NULL, 1, 1, NULL, '2021-11-19 17:52:48', '2021-11-19 18:46:33', NULL),
 ('footer_descritpion', 'Kami menyediakan berbagai macam rangkaian bunga dengan design yang modern yang tentunya bisa anda lakukan costum baik ukuran atau jenis bunga', NULL, 1, 1, NULL, '2021-11-19 15:22:55', '2021-11-19 18:17:33', NULL),
 ('footer_list_head', 'Menyediakan', NULL, 1, 1, NULL, '2021-11-19 17:52:48', '2021-11-19 18:52:33', NULL),
@@ -265,7 +304,9 @@ INSERT INTO `menu` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `
 (124, 0, 'WhatsApp', 'No whatsapp untuk produk', 3, 'fab fa-whatsapp', 'admin/whatsapp', 'Aktif', '2021-11-17 15:39:07'),
 (126, 0, 'Navigasi', '-', 4, 'fas fa-location-arrow', 'admin/menu', 'Aktif', '2021-11-17 19:09:01'),
 (127, 119, 'Logo', '-', 1, 'far fa-circle', 'admin/home/logo', 'Aktif', '2021-11-19 08:05:37'),
-(128, 119, 'Footer', '-', 2, 'far fa-circle', 'admin/home/footer', 'Aktif', '2021-11-19 08:08:39');
+(128, 119, 'Footer', '-', 2, 'far fa-circle', 'admin/home/footer', 'Aktif', '2021-11-19 08:08:39'),
+(129, 119, 'About', '-', 9, 'fa fa-clone', 'admin/home/about', 'Aktif', '2021-11-24 15:39:57'),
+(130, 119, 'Contact', '-', 10, 'far fa-circle', 'admin/home/contact', 'Aktif', '2021-11-25 21:01:27');
 
 -- --------------------------------------------------------
 
@@ -291,14 +332,14 @@ CREATE TABLE `menu_front` (
 
 INSERT INTO `menu_front` (`menu_id`, `menu_menu_id`, `menu_nama`, `menu_keterangan`, `menu_index`, `menu_icon`, `menu_url`, `menu_status`, `created_at`) VALUES
 (1, 0, 'Home', 'Halaman utama', 1, NULL, '/', 'Aktif', '2021-11-17 19:06:19'),
-(2, 0, 'BUNGA PAPAN', '', 2, NULL, '#', 'Aktif', '2021-11-17 19:18:47'),
-(3, 2, 'BUNGA WEDDING', '', 1, NULL, '/produk?category=bunga+wedding', 'Aktif', '2021-11-17 19:19:45'),
-(4, 2, 'BUNGA SELAMAT', '-', 2, NULL, '/produk?category=bunga+selamat', 'Aktif', '2021-11-17 19:20:20'),
-(5, 2, 'BUNGA DUKA', '', 3, NULL, '/produk?category=bunga+duka', 'Aktif', '2021-11-17 19:20:57'),
-(7, 0, 'BOX', '', 3, NULL, '/produk?category=box', 'Aktif', '2021-11-17 19:22:44'),
-(8, 0, 'STANDING FLOWER', '', 4, NULL, '/produk?category=standing-flower', 'Aktif', '2021-11-17 19:23:31'),
-(9, 0, 'BUNGA MEJA', '', 5, NULL, '/produk?category=bunga-meja', 'Aktif', '2021-11-17 19:26:16'),
-(10, 0, 'BUNGA BOUQUET', '', 6, NULL, '/produk?category=bunga+bouquet', 'Aktif', '2021-11-17 19:26:48');
+(2, 0, 'Bunga Papan', '', 2, NULL, '#', 'Aktif', '2021-11-17 19:18:47'),
+(3, 2, 'Bunga Wedding', '', 1, NULL, 'produk?category=bunga-wedding', 'Aktif', '2021-11-17 19:19:45'),
+(4, 2, 'Bunga Selamat', '-', 2, NULL, 'produk?category=bunga-selamat', 'Aktif', '2021-11-17 19:20:20'),
+(5, 2, 'Bunga Duka', '', 3, NULL, 'produk?category=bunga-duka', 'Aktif', '2021-11-17 19:20:57'),
+(7, 0, 'Bucket Bunga', '', 3, NULL, 'produk?category=box', 'Aktif', '2021-11-17 19:22:44'),
+(8, 0, 'Standing Flowers', '', 5, NULL, 'produk?category=standing-flower', 'Aktif', '2021-11-17 19:23:31'),
+(10, 0, 'About', '', 6, NULL, 'about', 'Aktif', '2021-11-17 19:26:48'),
+(11, 0, 'Contact', '', 7, NULL, 'contact', 'Aktif', '2021-11-22 12:56:23');
 
 -- --------------------------------------------------------
 
@@ -373,17 +414,18 @@ CREATE TABLE `product_categories` (
 
 INSERT INTO `product_categories` (`id`, `name`, `slug`, `foto`, `description`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Bunga wedding', 'bunga-wedding', '37192df5281fe4fbee5c19457edd685c.png', 'tes', 3, 1, 1, 1, '2021-11-14 23:10:38', '2021-11-14 23:38:45', '2021-11-14 23:38:45'),
-(2, 'Birthday Boqutets', 'birthday-boqutets', '', '', 1, 1, NULL, NULL, '2021-11-14 23:38:33', NULL, NULL),
-(3, 'Funeral Flowers', 'funeral-flowers', '', '', 1, 1, NULL, NULL, '2021-11-14 23:38:53', NULL, NULL),
-(4, 'Interior Decor', 'interior-decor', '', '', 1, 1, NULL, NULL, '2021-11-14 23:39:02', NULL, NULL),
-(5, 'Custom Orders', 'custom-orders', '', '', 1, 1, NULL, NULL, '2021-11-14 23:39:11', NULL, NULL),
-(7, 'STANDING FLOWER', 'standing-flower', '', '', 1, 1, NULL, NULL, '2021-11-18 02:24:22', NULL, NULL),
-(8, 'BUNGA MEJA', 'bunga-meja', '', '', 1, 1, NULL, NULL, '2021-11-18 02:24:33', NULL, NULL),
-(9, 'HAND BOUQUET', 'hand-bouquet', '', '', 1, 1, NULL, NULL, '2021-11-18 02:24:42', NULL, NULL),
-(10, 'BUNGA PAPAN', 'bunga-papan', '', '', 1, 1, NULL, NULL, '2021-11-18 02:24:56', NULL, NULL),
-(11, 'BUNGA WEDDING', 'bunga-wedding', '', '', 1, 1, NULL, NULL, '2021-11-18 02:25:11', NULL, NULL),
-(12, 'BUNGA SELAMAT', 'bunga-selamat', '', '', 1, 1, NULL, NULL, '2021-11-18 02:25:23', NULL, NULL),
-(13, 'BUNGA DUKA', 'bunga-duka', '', '', 1, 1, NULL, NULL, '2021-11-18 02:25:30', NULL, NULL);
+(2, 'Birthday Boqutets', 'birthday-boqutets', '', '', 3, 1, NULL, 1, '2021-11-14 23:38:33', '2021-11-22 15:10:03', '2021-11-22 15:10:03'),
+(3, 'Funeral Flowers', 'funeral-flowers', '', '', 3, 1, NULL, 1, '2021-11-14 23:38:53', '2021-11-22 15:09:59', '2021-11-22 15:09:59'),
+(4, 'Interior Decor', 'interior-decor', '', '', 3, 1, NULL, 1, '2021-11-14 23:39:02', '2021-11-22 15:09:54', '2021-11-22 15:09:54'),
+(5, 'Bucket Bunga', 'bucket-bunga', '', '', 1, 1, 1, NULL, '2021-11-14 23:39:11', '2021-11-22 22:45:17', NULL),
+(7, 'STANDING FLOWER', 'standing-flower', '', '', 3, 1, NULL, 1, '2021-11-18 02:24:22', '2021-11-22 15:10:26', '2021-11-22 15:10:26'),
+(8, 'BUNGA MEJA', 'bunga-meja', '', '', 3, 1, NULL, 1, '2021-11-18 02:24:33', '2021-11-22 22:48:24', '2021-11-22 22:48:24'),
+(9, 'HAND BOUQUET', 'hand-bouquet', '', '', 3, 1, NULL, 1, '2021-11-18 02:24:42', '2021-11-22 22:48:28', '2021-11-22 22:48:28'),
+(10, 'Standing Flower', 'standing-flower', '', '', 1, 1, 1, NULL, '2021-11-18 02:24:56', '2021-11-22 22:49:50', NULL),
+(11, 'Bunga Wedding', 'bunga-wedding', '', '', 1, 1, 1, NULL, '2021-11-18 02:25:11', '2021-11-22 22:50:05', NULL),
+(12, 'Bunga selamat', 'bunga-selamat', '', '', 1, 1, 1, NULL, '2021-11-18 02:25:23', '2021-11-22 22:50:17', NULL),
+(13, 'Bunga Duka', 'bunga-duka', '', '', 1, 1, 1, NULL, '2021-11-18 02:25:30', '2021-11-22 22:50:24', NULL),
+(15, 'tes', 'tes', '', '', 3, 1, NULL, 1, '2021-11-22 22:49:46', '2021-11-22 22:49:52', '2021-11-22 22:49:52');
 
 -- --------------------------------------------------------
 
@@ -413,15 +455,14 @@ INSERT INTO `product_category_detail` (`id`, `product_id`, `category_id`, `statu
 (7, 1, 3, 1, 1, NULL, NULL, '2021-11-15 09:35:52', NULL, NULL),
 (9, 3, 2, 1, 1, NULL, NULL, '2021-11-19 04:40:21', NULL, NULL),
 (10, 4, 8, 1, 1, NULL, NULL, '2021-11-19 04:44:17', NULL, NULL),
-(11, 5, 4, 1, 1, NULL, NULL, '2021-11-19 04:48:57', NULL, NULL),
 (12, 6, 1, 1, 1, NULL, NULL, '2021-11-19 04:50:46', NULL, NULL),
 (13, 7, 5, 1, 1, NULL, NULL, '2021-11-19 04:52:07', NULL, NULL),
 (14, 8, 4, 1, 1, NULL, NULL, '2021-11-19 04:54:58', NULL, NULL),
 (15, 9, 1, 1, 1, NULL, NULL, '2021-11-19 04:55:53', NULL, NULL),
 (16, 10, 1, 1, 1, NULL, NULL, '2021-11-19 04:59:44', NULL, NULL),
-(17, 5, 8, 1, 1, NULL, NULL, '2021-11-19 14:26:36', NULL, NULL),
 (18, 1, 8, 1, 1, NULL, NULL, '2021-11-19 14:26:36', NULL, NULL),
-(19, 3, 8, 1, 1, NULL, NULL, '2021-11-19 14:26:36', NULL, NULL);
+(19, 3, 8, 1, 1, NULL, NULL, '2021-11-19 14:26:36', NULL, NULL),
+(20, 5, 1, 1, 1, NULL, NULL, '2021-11-22 22:25:12', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -565,7 +606,8 @@ INSERT INTO `product_reviews` (`id`, `product_id`, `name`, `date`, `description`
 (7, 5, 'Isep Lutpi Nur', '2021-11-19', 'tes', 'sales@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:21:49', NULL, NULL),
 (9, 5, 'a', '2021-11-19', 'a', 'ahmad@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:22:29', NULL, NULL),
 (10, 5, 'a', '2021-11-19', 'a', 'admin@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:30:16', NULL, NULL),
-(11, 5, 'Isep Lutpi Nur', '2021-11-19', 'a', 'iseplutpi123@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:35:32', NULL, NULL);
+(11, 5, 'Isep Lutpi Nur', '2021-11-19', 'a', 'iseplutpi123@gmail.com', 1, NULL, NULL, NULL, '2021-11-19 21:35:32', NULL, NULL),
+(12, 5, 'adjie abdul azis', '2021-11-22', 'bagus', 'adjieabdulazis42@gmail.com', 1, NULL, NULL, NULL, '2021-11-22 15:11:58', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -604,7 +646,9 @@ INSERT INTO `role_aplikasi` (`rola_id`, `rola_menu_id`, `rola_lev_id`, `created_
 (252, 124, 1, '2021-11-17 15:39:14'),
 (253, 126, 1, '2021-11-17 19:09:13'),
 (254, 127, 1, '2021-11-19 08:07:42'),
-(255, 128, 1, '2021-11-19 08:08:51');
+(255, 128, 1, '2021-11-19 08:08:51'),
+(256, 129, 1, '2021-11-24 15:45:20'),
+(257, 130, 1, '2021-11-25 21:01:35');
 
 -- --------------------------------------------------------
 
@@ -681,13 +725,22 @@ CREATE TABLE `whatsapp` (
 --
 
 INSERT INTO `whatsapp` (`id`, `name`, `description`, `number`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Isep Lutpi Nur', '123', '85798132505', 0, 1, 1, NULL, '2021-11-18 00:58:52', '2021-11-18 01:15:48', NULL),
-(4, 'Nomor 2', 'Tes dua', '858578996321', 1, 1, 1, NULL, '2021-11-18 01:05:30', '2021-11-18 02:38:49', NULL),
-(5, 'no 3', '', '123', 0, 1, 1, NULL, '2021-11-18 01:15:56', '2021-11-18 02:38:49', NULL);
+(1, 'gilang persada', '123', '81903902070', 1, 1, 1, NULL, '2021-11-18 00:58:52', '2021-11-24 22:06:38', NULL),
+(4, 'Nomor 2', 'Tes dua', '858578996321', 3, 1, 1, 1, '2021-11-18 01:05:30', '2021-11-24 22:05:59', '2021-11-24 22:05:59'),
+(5, 'no 3', '', '123', 3, 1, 1, 1, '2021-11-18 01:15:56', '2021-11-24 22:06:04', '2021-11-24 22:06:04');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created_by` (`created_by`),
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `deleted_by` (`deleted_by`);
 
 --
 -- Indexes for table `home_excess`
@@ -865,6 +918,12 @@ ALTER TABLE `whatsapp`
 --
 
 --
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `home_excess`
 --
 ALTER TABLE `home_excess`
@@ -874,7 +933,7 @@ ALTER TABLE `home_excess`
 -- AUTO_INCREMENT for table `home_footer_list`
 --
 ALTER TABLE `home_footer_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `home_slider`
@@ -904,13 +963,13 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `menu_front`
 --
 ALTER TABLE `menu_front`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -922,13 +981,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `product_category_detail`
 --
 ALTER TABLE `product_category_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `product_colors`
@@ -952,13 +1011,13 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `product_reviews`
 --
 ALTER TABLE `product_reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `role_aplikasi`
 --
 ALTER TABLE `role_aplikasi`
-  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
+  MODIFY `rola_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 
 --
 -- AUTO_INCREMENT for table `role_users`

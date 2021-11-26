@@ -41,4 +41,14 @@ Admin
     front
 
   pengatran judul situs key val
-  menu clear cache
+  menu clear cache [clear]
+
+
+about
+  foto key val
+  tentang [head, fill]
+  histori [head, fill]
+
+contact
+  buat table mirip excess
+  key value gmap

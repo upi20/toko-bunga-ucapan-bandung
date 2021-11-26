@@ -238,4 +238,10 @@ class ProdukModel extends Render_Model
       ->get()->row_array();
     return is_null($return) ? 0 : $return['id'];
   }
+
+  public function contactGet()
+  {
+    return $this->db->select('icon, title, description, column')->from('contacts')
+      ->where('status', 1)->get()->result_array();
+  }
 }

@@ -4,7 +4,7 @@ $(function () {
     table_html.dataTable().fnDestroy()
     const new_table = table_html.DataTable({
       "ajax": {
-        "url": "<?= base_url()?>admin/product/category/ajax_data/",
+        "url": "<?= base_url()?>admin/home/contact/ajax_data/",
         "data": null,
         "type": 'POST'
       },
@@ -15,33 +15,22 @@ $(function () {
       "autoWidth": false,
       "columns": [
         { "data": null },
-        { "data": "name" },
-        { "data": "slug" },
+        { "data": "title" },
         { "data": "description" },
-        {
-          "data": "foto", render(data, type, full, meta) {
-            return `<button
-                      class="btn btn-success btn-sm btn-gambar"
-                      data-toggle="modal"
-                      data-data="${data}"
-                      data-target="#gambar_modal"
-                      onclick="view_gambar(this)"
-                      id="btn-gambar"><i class="fas fa-eye"></i></button>`
-          }, className: "nowrap"
-        },
-        { "data": "category_product" },
+        { "data": "column" },
+        { "data": "icon" },
         { "data": "status_str" },
         {
           "data": "id", render(data, type, full, meta) {
             return `<div class="pull-right">
-            <a class="btn btn-info btn-xs" href="<?= base_url()?>produk?category=${full.slug}">
+            <a class="btn btn-info btn-xs" href="<?= base_url('contact')?>">
             <i class="fa fa-eye"></i> Lihat
           </a>
                 <button class="btn btn-primary btn-xs"
                                       data-id="${data}"
-                                      data-name="${full.name}"
-                                      data-slug="${full.slug}"
-                                      data-foto="${full.foto}"
+                                      data-title="${full.title}"
+                                      data-column="${full.column}"
+                                      data-icon="${full.icon}"
                                       data-description="${full.description}"
                                       data-status="${full.status}"
                                       data-toggle="modal" data-target="#tambahModal"
@@ -60,7 +49,7 @@ $(function () {
       ],
       columnDefs: [{
         orderable: false,
-        targets: [0, 7]
+        targets: [0, 6]
       }],
     });
     new_table.on('draw.dt', function () {
@@ -75,20 +64,13 @@ $(function () {
   dynamic();
 
   $("#btn-tambah").click(() => {
-    $("#tambahModalTitle").text("Tambah Kategori");
+    $("#tambahModalTitle").text("Tambah Contact Item");
     $('#id').val('');
-    $('#name').val('');
-    $('#slug').val('');
-    $('#foto').val('');
+    $('#title').val('');
+    $('#column').val('');
+    $('#icon').val('');
     $('#description').val('');
     $('#status').val('1');
-  });
-
-  $("#name").keyup(function () {
-    var Text = $(this).val();
-    $("#slug").val(Text.toLowerCase()
-      .replace(/[^\w ]+/g, '')
-      .replace(/ +/g, '-'));
   });
 
   $("#fmain").submit(function (ev) {
@@ -97,7 +79,7 @@ $(function () {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/category/' + ($("#id").val() == "" ? 'insert' : 'update'),
+      url: '<?= base_url() ?>admin/home/contact/' + ($("#id").val() == "" ? 'insert' : 'update'),
       data: form,
       cache: false,
       contentType: false,
@@ -125,7 +107,7 @@ $(function () {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/category/delete',
+      url: '<?= base_url() ?>admin/home/contact/delete',
       data: {
         id: id
       }
@@ -145,10 +127,39 @@ $(function () {
       $.LoadingOverlay("hide");
     })
   })
+
+  $("#fmap").submit(function (ev) {
+    ev.preventDefault();
+    const form = new FormData(this);
+    $.LoadingOverlay("show");
+    $.ajax({
+      method: 'post',
+      url: `<?= base_url() ?>admin/home/contact/update_maps`,
+      data: form,
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done((data) => {
+      Toast.fire({
+        icon: 'success',
+        title: 'Data berhasil disimpan'
+      })
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000)
+    }).fail(($xhr) => {
+      Toast.fire({
+        icon: 'error',
+        title: 'Data gagal disimpan'
+      })
+    }).always(() => {
+      $.LoadingOverlay("hide");
+    })
+  });
 })
 
 const view_gambar = (datas) => {
-  $("#img-view").attr('src', `<?= base_url() ?>/files/product/category/${datas.dataset.data}`)
+  $("#img-view").attr('src', `<?= base_url() ?>/files/home/contact/${datas.dataset.data}`)
 }
 
 // Click Hapus
@@ -163,11 +174,10 @@ const Hapus = (id) => {
 const Ubah = (datas) => {
   const data = datas.dataset;
   $('#id').val(data.id);
-  $('#temp_foto').val(data.foto);
-  $('#slug').val(data.slug);
-  $('#foto').val('');
-  $('#name').val(data.name);
+  $('#title').val(data.title);
+  $('#column').val(data.column);
+  $('#icon').val(data.icon);
   $('#description').val(data.description);
   $('#status').val(data.status);
-  $("#tambahModalTitle").text("Ubah Kategori");
+  $("#tambahModalTitle").text("Ubah Contact Item");
 }

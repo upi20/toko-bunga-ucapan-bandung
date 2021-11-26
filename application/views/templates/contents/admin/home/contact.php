@@ -1,7 +1,7 @@
 <div class="card card-primary card-outline">
   <div class="card-header">
     <div class="d-flex justify-content-between w-100">
-      <h3 class="card-title">List Keunggulan Toko Di Halaman Utama</h3>
+      <h3 class="card-title">List Item Contact</h3>
       <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal" id="btn-tambah"><i class="fa fa-plus"></i> Tambah</button>
     </div>
   </div>
@@ -14,7 +14,7 @@
           <th>Judul</th>
           <th>Keterangan</th>
           <th>Kolom</th>
-          <th>Gambar</th>
+          <th>icon</th>
           <th>Status</th>
           <th>Aksi</th>
         </tr>
@@ -22,6 +22,24 @@
     </table>
   </div>
   <!-- /.card-body -->
+</div>
+
+<div class="card card-primary card-outline">
+  <div class="card-header">
+    <div class="d-flex justify-content-between w-100">
+      <h3 class="card-title">Contact Google maps</h3>
+      <button type="submit" form="fmap" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Simpan</button>
+    </div>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <form id="fmap" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="value">Google Maps</label>
+        <textarea name="value" id="value" rows="3" class="form-control" placeholder="Google Maps"><?= $maps['value1'] ?></textarea>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!-- view foto -->
@@ -34,7 +52,6 @@
       <div class="modal-body">
         <form action="" id="fmain" method="post">
           <input type="hidden" id="id" name="id">
-          <input type="hidden" id="temp_foto" name="temp_foto">
           <div class="form-group">
             <label for="title">Judul</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Judul" required />
@@ -44,8 +61,8 @@
             <textarea cols="3" rows="4" class="form-control" id="description" name="description" placeholder="Keterangan"></textarea>
           </div>
           <div class="form-group">
-            <label for="foto">Gambar</label>
-            <input type="file" class="form-control-file" id="foto" name="foto" accept="image/png, image/jpeg, image/JPG, image/PNG, image/JPEG">
+            <label for="icon">Icon</label>
+            <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon" required>
           </div>
           <div class="form-group">
             <label for="column">Kolom</label>

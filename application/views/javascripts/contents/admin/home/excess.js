@@ -74,7 +74,7 @@ $(function () {
   dynamic();
 
   $("#btn-tambah").click(() => {
-    $("#tambahModalTitle").text("Tambah Slider");
+    $("#tambahModalTitle").text("Tambah Kelebihan");
     $('#id').val('');
     $('#title').val('');
     $('#column').val('');
@@ -161,5 +161,5 @@ const Ubah = (datas) => {
   $('#foto').val('');
   $('#description').val(data.description);
   $('#status').val(data.status);
-  $("#tambahModalTitle").text("Ubah Slider");
+  $("#tambahModalTitle").text("Ubah Kelebihan");
 }
