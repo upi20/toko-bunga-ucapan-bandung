@@ -51,7 +51,7 @@ class Item extends Render_Controller
     $this->output_json(['recordsTotal' => $count, 'recordsFiltered' => $count, 'draw' => $draw, 'search' => $_cari, 'data' => $data]);
   }
 
-  public function simpan()
+  public function save()
   {
     $this->load->library('form_validation');
     $this->form_validation->set_error_delimiters('', '');
@@ -78,7 +78,11 @@ class Item extends Render_Controller
       $status = $this->input->post('status');
       $view_home = is_null($this->input->post('view_home')) ? 0 : 1;
       $view_review = is_null($this->input->post('view_review')) ? 0 : 1;
-      $result = $this->model->simpan($id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $view_home, $view_review, $status);
+
+      $categories = $this->input->post('categories');
+      $colors = $this->input->post('colors');
+
+      $result = $this->model->save($this->id, $id, $name, $slug, $excerpt, $price, $old_price, $discount, $description, $size, $view_home, $view_review, $status, $categories, $colors);
       $code = $result != null ? 200 : 400;
       $status = $result != null;
       $this->output_json([
@@ -120,7 +124,7 @@ class Item extends Render_Controller
     // Page Settings
     $this->title = is_null($id) ? 'Tambah Produk' : 'Ubah Produk';
     $this->navigation = ['Master'];
-    $this->plugins = ['datatables', 'summernote'];
+    $this->plugins = ['datatables', 'summernote', 'select2'];
     // Breadcrumb setting
     $this->breadcrumb_1 = 'Dashboard';
     $this->breadcrumb_1_url = base_url() . 'admin/dashboard';
@@ -139,11 +143,10 @@ class Item extends Render_Controller
       return;
     }
 
-
     $this->data['getID'] = $ceknew['id'];
     $this->data['product'] = $ceknew;
-    $this->data['categories'] = $this->model->getListCategory();
-    $this->data['colors'] = $this->model->getListColor();
+    $this->data['categories'] = $this->model->getListCategory($ceknew['id']);
+    $this->data['colors'] = $this->model->getListColor($ceknew['id']);
     $this->data['isUbah'] = $id != null;
 
     // Send data to view

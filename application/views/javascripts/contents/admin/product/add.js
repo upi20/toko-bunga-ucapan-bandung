@@ -1,96 +1,5 @@
 $(document).ready(() => {
-  // table
-  // category
-  function table_category() {
-    const table_html = $('#table_category');
-    table_html.dataTable().fnDestroy()
-    const new_table = table_html.DataTable({
-      "ajax": {
-        "url": "<?= base_url()?>admin/product/item/ajax_data_categories/",
-        "data": { product_id: $("#id").val() },
-        "type": 'POST'
-      },
-      "processing": true,
-      "serverSide": true,
-      "responsive": true,
-      "lengthChange": true,
-      "autoWidth": false,
-      "columns": [
-        { "data": null },
-        { "data": "name" },
-        {
-          "data": "id", render(data, type, full, meta) {
-            return `<div class="pull-right">
-                <button class="btn btn-danger btn-xs" onclick="category_delete('${data}')">
-                <i class="fa fa-trash"></i>
-                </button>
-              </div>`
-          }, className: "nowrap"
-        }
-      ],
-      order: [
-        [1, 'asc']
-      ],
-      columnDefs: [{
-        orderable: false,
-        targets: [0, 2]
-      }],
-    });
-    new_table.on('draw.dt', function () {
-      var PageInfo = table_html.DataTable().page.info();
-      new_table.column(0, {
-        page: 'current'
-      }).nodes().each(function (cell, i) {
-        cell.innerHTML = i + 1 + PageInfo.start;
-      });
-    });
-  }
-
-  // color
-  function table_color() {
-    const table_html = $('#table_color');
-    table_html.dataTable().fnDestroy()
-    const new_table = table_html.DataTable({
-      "ajax": {
-        "url": "<?= base_url()?>admin/product/item/ajax_data_colors/",
-        "data": { product_id: $("#id").val() },
-        "type": 'POST'
-      },
-      "processing": true,
-      "serverSide": true,
-      "responsive": true,
-      "lengthChange": true,
-      "autoWidth": false,
-      "columns": [
-        { "data": null },
-        { "data": "name" },
-        {
-          "data": "id", render(data, type, full, meta) {
-            return `<div class="pull-right">
-            <button class="btn btn-danger btn-xs" onclick="color_delete('${data}')">
-            <i class="fa fa-trash"></i>
-            </button>
-              </div>`
-          }, className: "nowrap"
-        }
-      ],
-      order: [
-        [1, 'asc']
-      ],
-      columnDefs: [{
-        orderable: false,
-        targets: [0, 2]
-      }],
-    });
-    new_table.on('draw.dt', function () {
-      var PageInfo = table_html.DataTable().page.info();
-      new_table.column(0, {
-        page: 'current'
-      }).nodes().each(function (cell, i) {
-        cell.innerHTML = i + 1 + PageInfo.start;
-      });
-    });
-  }
+  $('.select2-class').select2();
 
   // image
   function table_image() {
@@ -148,13 +57,7 @@ $(document).ready(() => {
       }],
     });
   }
-
-  // initial table
-  table_category();
-  table_color();
   table_image();
-
-  // insert
 
   // image
   $("#image_from").submit(function (ev) {
@@ -223,124 +126,6 @@ $(document).ready(() => {
     $("#image_foto").val('');
   })
 
-  // category
-  $("#category_from").submit(function (ev) {
-    ev.preventDefault();
-    const form = new FormData(this);
-    form.append('product_id', $('#id').val());
-    $.LoadingOverlay("show");
-    $.ajax({
-      method: 'post',
-      url: `<?= base_url() ?>admin/product/item/insert_category`,
-      data: form,
-      cache: false,
-      contentType: false,
-      processData: false,
-    }).done((data) => {
-      Toast.fire({
-        icon: 'success',
-        title: 'Data berhasil disimpan'
-      })
-      table_category();
-      $("#category_modal").modal('toggle');
-    }).fail(($xhr) => {
-      Toast.fire({
-        icon: 'error',
-        title: 'Data gagal disimpan'
-      })
-    }).always(() => {
-      $.LoadingOverlay("hide");
-    })
-  });
-
-  $("#category_delete_from").submit(function (ev) {
-    ev.preventDefault();
-    const form = new FormData(this);
-    form.append('product_id', $('#id').val());
-    $.LoadingOverlay("show");
-    $.ajax({
-      method: 'post',
-      url: `<?= base_url() ?>admin/product/item/delete_category`,
-      data: form,
-      cache: false,
-      contentType: false,
-      processData: false,
-    }).done((data) => {
-      Toast.fire({
-        icon: 'success',
-        title: 'Data berhasil dihapus'
-      })
-      table_category();
-      $("#category_modal_delete").modal('toggle');
-    }).fail(($xhr) => {
-      Toast.fire({
-        icon: 'error',
-        title: 'Data gagal dihapus'
-      })
-    }).always(() => {
-      $.LoadingOverlay("hide");
-    })
-  });
-
-  // color
-  $("#color_from").submit(function (ev) {
-    ev.preventDefault();
-    const form = new FormData(this);
-    form.append('product_id', $('#id').val());
-    $.LoadingOverlay("show");
-    $.ajax({
-      method: 'post',
-      url: `<?= base_url() ?>admin/product/item/insert_color`,
-      data: form,
-      cache: false,
-      contentType: false,
-      processData: false,
-    }).done((data) => {
-      Toast.fire({
-        icon: 'success',
-        title: 'Data berhasil disimpan'
-      })
-      table_color();
-      $("#color_modal").modal('toggle');
-    }).fail(($xhr) => {
-      Toast.fire({
-        icon: 'error',
-        title: 'Data gagal disimpan'
-      })
-    }).always(() => {
-      $.LoadingOverlay("hide");
-    })
-  });
-
-  $("#color_delete_from").submit(function (ev) {
-    ev.preventDefault();
-    const form = new FormData(this);
-    form.append('product_id', $('#id').val());
-    $.LoadingOverlay("show");
-    $.ajax({
-      method: 'post',
-      url: `<?= base_url() ?>admin/product/item/delete_color`,
-      data: form,
-      cache: false,
-      contentType: false,
-      processData: false,
-    }).done((data) => {
-      Toast.fire({
-        icon: 'success',
-        title: 'Data berhasil dihapus'
-      })
-      table_color();
-      $("#color_modal_delete").modal('toggle');
-    }).fail(($xhr) => {
-      Toast.fire({
-        icon: 'error',
-        title: 'Data gagal dihapus'
-      })
-    }).always(() => {
-      $.LoadingOverlay("hide");
-    })
-  });
-
   $("#name").keyup(function () {
     var Text = $(this).val();
     $("#slug").val(Text.toLowerCase()
@@ -361,7 +146,7 @@ $(document).ready(() => {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>admin/product/item/simpan',
+      url: '<?= base_url() ?>admin/product/item/save',
       data: form,
       cache: false,
       contentType: false,
@@ -371,10 +156,6 @@ $(document).ready(() => {
         icon: 'success',
         title: 'Data berhasil disimpan'
       })
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 300)
     }).fail(($xhr) => {
       Toast.fire({
         icon: 'error',
@@ -409,16 +190,4 @@ function image_delete(datas) {
   $("#image_modal_delete").modal('toggle');
   $("#image_detail_id").val(data.id);
   $("#image_delete").val(data.foto);
-}
-
-// category
-function category_delete(id) {
-  $("#category_modal_delete").modal('toggle');
-  $("#category_detail_id").val(id);
-}
-
-// color
-function color_delete(id) {
-  $("#color_modal_delete").modal('toggle');
-  $("#color_detail_id").val(id);
 }

@@ -67,77 +67,69 @@
         <label for="size">Ukuran Produk</label>
         <textarea name="size" id="size" rows="3" class="form-control summernote" placeholder="Ukuran"><?= $product['size'] ?></textarea>
       </div>
-    </form>
-    <div class="row">
-      <!-- category -->
-      <div class="col-lg-6 my-2">
-        <div class="d-flex justify-content-between align-items-center">
-          <label>Kategori Produk</label>
-          <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#category_modal"><i class="fa fa-plus"></i> Tambah</button>
-        </div>
-        <table id="table_category" class="table table-bordered table-striped table-hover">
-          <thead>
-            <tr>
-              <th style="max-width: 30px;">No</th>
-              <th>Nama</th>
-              <th style="max-width: 50px;">Aksi</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
 
-      <!-- images -->
-      <div class="col-lg-6 my-2">
-        <div class="d-flex justify-content-between align-items-center">
-          <label>Gambar Produk</label>
-          <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#image_modal" id="image_btn_tambah"><i class="fa fa-plus"></i> Tambah</button>
-        </div>
-        <table id="table_image" class="table table-bordered table-striped table-hover">
-          <thead>
-            <tr>
-              <th style="max-width: 70px;">No. urut</th>
-              <th>Nama</th>
-              <th style="max-width: 80px;">Aksi</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
+      <div class="row">
 
-      <!-- color -->
-      <div class="col-lg-6 my-2">
-        <div class="d-flex justify-content-between align-items-center">
-          <label>Warna Produk</label>
-          <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#color_modal"><i class="fa fa-plus"></i> Tambah</button>
-        </div>
-        <table id="table_color" class="table table-bordered table-striped table-hover">
-          <thead>
-            <tr>
-              <th style="max-width: 30px;">No</th>
-              <th>Nama</th>
-              <th style="max-width: 50px;">Aksi</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      <div class="col-lg-6">
-        <div class="form-group">
-          <label for="status">Status<span class="text-red">*</span></label>
-          <select class="form-control" id="status" name="status" required form="main-form">
-            <option value="">Pilih Status</option>
-            <option value="1" <?= $product['status'] == 1 ? 'selected' : '' ?>>Aktif</option>
-            <option value="2" <?= $product['status'] == 2 ? 'selected' : '' ?>>Tidak Aktif</option>
+        <!-- category -->
+        <div class="col-lg-6 my-2">
+          <label for="categories">Kategori</label>
+          <br>
+          <select class="select2-class w-100" name="categories[]" multiple="multiple">
+            <?php foreach ($categories as $category) : ?>
+              <option value="<?= $category['id'] ?>" <?= $category['selected'] != '0' ? 'selected' : '' ?>><?= $category['text'] ?></option>
+            <?php endforeach; ?>
           </select>
         </div>
-        <div class="form-group">
-          <input type="checkbox" id="view_review" name="view_review" title="Tampilkan di halaman utama" <?= $product['view_review'] == 1 ? 'checked' : ''; ?> form="main-form" />
-          <label for="view_review">Tampilkan review produk</label>
+
+        <!-- color -->
+        <div class="col-lg-6 my-2">
+          <label for="colors">Kategori</label>
+          <br>
+          <select class="select2-class w-100" name="colors[]" multiple="multiple">
+            <?php foreach ($colors as $color) : ?>
+              <option value="<?= $color['id'] ?>" <?= $color['selected'] != '0' ? 'selected' : '' ?>><?= $color['text'] ?></option>
+            <?php endforeach; ?>
+          </select>
         </div>
-        <div class="form-group">
-          <input type="checkbox" id="view_home" name="view_home" title="Tampilkan di halaman utama" <?= $product['view_home'] == 1 ? 'checked' : ''; ?> form="main-form" />
-          <label for="view_home">Tampilkan di halaman utama</label>
+
+        <!-- images -->
+        <div class="col-lg-6 my-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <label>Gambar Produk</label>
+            <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#image_modal" id="image_btn_tambah"><i class="fa fa-plus"></i> Tambah</button>
+          </div>
+          <table id="table_image" class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th style="max-width: 70px;">No. urut</th>
+                <th>Nama</th>
+                <th style="max-width: 80px;">Aksi</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="status">Status<span class="text-red">*</span></label>
+            <select class="form-control" id="status" name="status" required form="main-form">
+              <option value="">Pilih Status</option>
+              <option value="1" <?= $product['status'] == 1 ? 'selected' : '' ?>>Aktif</option>
+              <option value="2" <?= $product['status'] == 2 ? 'selected' : '' ?>>Tidak Aktif</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" id="view_review" name="view_review" title="Tampilkan di halaman utama" <?= $product['view_review'] == 1 ? 'checked' : ''; ?> form="main-form" />
+            <label for="view_review">Tampilkan review produk</label>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" id="view_home" name="view_home" title="Tampilkan di halaman utama" <?= $product['view_home'] == 1 ? 'checked' : ''; ?> form="main-form" />
+            <label for="view_home">Tampilkan di halaman utama</label>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
   <!-- /.card-body -->
   <div class="card-footer text-right">
@@ -224,33 +216,6 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c" type="submit" form="image_delete_from"><i class="fa fa-save"></i> Hapus</button>
-        <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- categories -->
-<div class="modal fade" id="category_modal" tabindex="-1" role="dialog" aria-labelledby="category_modalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header outline-info">
-        <h5 class="modal-title text-center" id="category_modalTitle">Tambah Kategori</h5>
-      </div>
-      <div class="modal-body">
-        <form action="" id="category_from" method="post">
-          <div class="form-group">
-            <label for="category_id">Kategori</label>
-            <select name="category_id" id="category_id" class="form-control">
-              <?php foreach ($categories as $category) : ?>
-                <option value="<?= $category['id']; ?>"><?= $category['text']; ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c" type="submit" form="category_from"><i class="fa fa-save"></i> Simpan</button>
         <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" data-dismiss="modal"><i class="fa fa-arrow-left"></i> Kembali</button>
       </div>
     </div>
