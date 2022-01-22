@@ -80,7 +80,7 @@
               <?php endforeach; ?>
             </div>
             <div class="mb-2">
-              <span  class="fw-bold">Warna :</span>
+              <span class="fw-bold">Warna :</span>
               <?php foreach ($data->colors as $color) : ?>
                 <a href="<?= base_url("produk?color={$color->slug}") ?>" class="title-2"><?= $color->name ?></a> |
               <?php endforeach; ?>
