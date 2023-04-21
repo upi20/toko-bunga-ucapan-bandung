@@ -7,7 +7,7 @@ class Login extends Render_Controller
 	public function index()
 	{
 		$this->sesion->cek_login();
-		$this->content = 'login_token';
+		$this->content = 'login';
 		$this->render();
 	}
 
@@ -105,7 +105,7 @@ class Login extends Render_Controller
 	{
 		parent::__construct();
 		$this->load->model('loginModel', 'login');
-		$this->default_template = 'templates/login_token';
+		$this->default_template = 'templates/login';
 		$this->load->library('plugin');
 		$this->load->helper('url');
 	}
